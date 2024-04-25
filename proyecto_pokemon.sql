@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2024 a las 11:05:57
+-- Tiempo de generación: 23-04-2024 a las 09:51:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -125,7 +125,33 @@ INSERT INTO `movimientos` (`ID_MOVIMIENTO`, `NOM_MOVIMIENTO`, `POTENCIA`, `TIPO`
 (41, 'Psicoonda', 40, 'Psiquico', NULL, NULL, NULL, NULL, NULL, 14),
 (42, 'Psicorrayo', 65, 'Psiquico', NULL, NULL, NULL, NULL, NULL, 20),
 (43, 'Psíquico', 90, 'Psiquico', NULL, NULL, NULL, NULL, NULL, 26),
-(44, 'Cabezazo zen', 80, 'Psiquico', NULL, NULL, NULL, NULL, NULL, 24);
+(44, 'Cabezazo zen', 80, 'Psiquico', NULL, NULL, NULL, NULL, NULL, 24),
+(45, 'Avalancha', 75, 'Roca', NULL, NULL, NULL, NULL, NULL, 23),
+(46, 'Lanzarrocas', 50, 'Roca', NULL, NULL, NULL, NULL, NULL, 16),
+(47, 'Pedrada', 25, 'Roca', NULL, NULL, NULL, NULL, NULL, 10),
+(48, 'Joya de luz', 80, 'Roca', NULL, NULL, NULL, NULL, NULL, 24),
+(49, 'Huesomerang', 50, 'Tierra', NULL, NULL, NULL, NULL, NULL, 16),
+(50, 'Terremoto', 100, 'Tierra', NULL, NULL, NULL, NULL, NULL, 28),
+(51, 'Terratemblor', 60, 'Tierra', NULL, NULL, NULL, NULL, NULL, 19),
+(52, 'Bofetón lodo', 20, 'Tierra', NULL, NULL, NULL, NULL, NULL, 10),
+(53, 'Tóxico', NULL, 'Veneno', 'Envenenado', NULL, NULL, NULL, NULL, 20),
+(54, 'Bomba lodo', 90, 'Veneno', NULL, NULL, NULL, NULL, NULL, 26),
+(55, 'Bilis', 100, 'Veneno', NULL, NULL, NULL, NULL, NULL, 28),
+(56, 'Veneno X', 70, 'Veneno', NULL, NULL, NULL, NULL, NULL, 21),
+(57, 'Picotazo', 35, 'Volador', NULL, NULL, NULL, NULL, NULL, 8),
+(58, 'Tornado', 40, 'Volador', NULL, NULL, NULL, NULL, NULL, 12),
+(59, 'Vuelo', 90, 'Volador', NULL, NULL, NULL, NULL, NULL, 25),
+(60, 'Pico taladro', 80, 'Volador', NULL, NULL, NULL, NULL, NULL, 19),
+(61, 'Pájaro Osado', 110, 'Volador', NULL, NULL, NULL, NULL, NULL, 30),
+(62, 'Cabezazo', 130, 'Normal', NULL, NULL, NULL, NULL, NULL, 38),
+(63, 'Bomba huevo', 100, 'Normal', NULL, NULL, NULL, NULL, NULL, 28),
+(64, 'Dia de pago', 40, 'Normal', NULL, NULL, NULL, NULL, NULL, 14),
+(65, 'Escupir', 60, 'Normal', NULL, NULL, NULL, NULL, NULL, 19),
+(66, 'Chaleco bomba', 1000, 'Normal', NULL, NULL, NULL, NULL, NULL, 10),
+(67, 'Mochila bomba', 1000, 'Normal', NULL, NULL, NULL, NULL, NULL, 15),
+(68, 'Placaje', 40, 'Normal', NULL, NULL, NULL, NULL, NULL, 7),
+(69, 'Suspenso', 9999, 'Normal', NULL, NULL, NULL, NULL, NULL, 30),
+(70, 'Amego Segarro', NULL, 'Normal', 'Defensa', 55, NULL, NULL, NULL, 22);
 
 -- --------------------------------------------------------
 
