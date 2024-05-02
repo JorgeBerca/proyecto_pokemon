@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2024 a las 09:51:45
+-- Tiempo de generación: 02-05-2024 a las 23:24:04
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,8 +43,15 @@ CREATE TABLE `entrenador` (
   `ID_ENTRENADOR` int(11) NOT NULL,
   `NOM_ENTRENADOR` varchar(20) NOT NULL,
   `PASS` varchar(20) DEFAULT NULL,
-  `POKEDOLLARS` int(11) NOT NULL
+  `POKEDOLLARS` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `entrenador`
+--
+
+INSERT INTO `entrenador` (`ID_ENTRENADOR`, `NOM_ENTRENADOR`, `PASS`, `POKEDOLLARS`) VALUES
+(1, 'abc', '123456', NULL);
 
 -- --------------------------------------------------------
 
@@ -367,6 +374,16 @@ ALTER TABLE `pokemon`
 ALTER TABLE `turnos`
   ADD PRIMARY KEY (`ID_TURNO`),
   ADD KEY `ID_COMBATE` (`ID_COMBATE`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `entrenador`
+--
+ALTER TABLE `entrenador`
+  MODIFY `ID_ENTRENADOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
