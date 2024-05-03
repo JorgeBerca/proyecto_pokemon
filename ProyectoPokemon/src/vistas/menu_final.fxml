@@ -41,7 +41,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerMenu" >
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -50,7 +50,7 @@
                   <Image url="@../imagenes/fondo_menu.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="403.0" layoutY="228.0" mnemonicParsing="false" opacity="0.0" prefHeight="112.0" prefWidth="103.0" text="Combate">
+            <Button layoutX="403.0" layoutY="228.0" mnemonicParsing="false" onAction="#combate" opacity="0.0" prefHeight="112.0" prefWidth="103.0" text="Combate">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -60,7 +60,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="279.0" layoutY="39.0" mnemonicParsing="false" opacity="0.0" prefHeight="87.0" prefWidth="91.0" text="Captura">
+            <Button layoutX="279.0" layoutY="39.0" mnemonicParsing="false" onAction="#captura" opacity="0.0" prefHeight="87.0" prefWidth="91.0" text="Captura">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -70,7 +70,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="743.0" layoutY="221.0" mnemonicParsing="false" opacity="0.0" prefHeight="105.0" prefWidth="103.0" text="Etrenamiento">
+            <Button layoutX="743.0" layoutY="221.0" mnemonicParsing="false" onAction="#entrenamiento" opacity="0.0" prefHeight="105.0" prefWidth="103.0" text="Etrenamiento">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -80,7 +80,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="566.0" layoutY="39.0" mnemonicParsing="false" opacity="0.0" prefHeight="77.0" prefWidth="97.0" text="Equipo">
+            <Button layoutX="566.0" layoutY="39.0" mnemonicParsing="false" onAction="#equipo" opacity="0.0" prefHeight="77.0" prefWidth="97.0" text="Equipo">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -90,7 +90,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="68.0" layoutY="223.0" mnemonicParsing="false" opacity="0.0" prefHeight="99.0" prefWidth="76.0" text="Centro pokemon">
+            <Button layoutX="68.0" layoutY="223.0" mnemonicParsing="false" onAction="#centropokemon" opacity="0.0" prefHeight="99.0" prefWidth="76.0" text="Centro pokemon">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -100,7 +100,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="250.0" layoutY="432.0" mnemonicParsing="false" opacity="0.0" prefHeight="105.0" prefWidth="66.0" text="Crianza">
+            <Button layoutX="250.0" layoutY="432.0" mnemonicParsing="false" onAction="#crianza" opacity="0.0" prefHeight="105.0" prefWidth="66.0" text="Crianza">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -110,7 +110,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="612.0" layoutY="432.0" mnemonicParsing="false" opacity="0.0" prefHeight="105.0" prefWidth="103.0" text="mochila">
+            <Button layoutX="612.0" layoutY="432.0" mnemonicParsing="false" onAction="#mochila" opacity="0.0" prefHeight="105.0" prefWidth="103.0" text="mochila">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
