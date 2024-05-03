@@ -47,7 +47,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0" layoutX="-11.0" layoutY="-5.0">
                <image>
-                  <Image url="@../imagenes/centro pokemon.png" />
+                  <Image url="@../imagenes/fondos_pantallas/centro pokemon.png" />
                </image>
             </ImageView>
             <Button layoutX="650.0" layoutY="48.0" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="64.0" text="pc">

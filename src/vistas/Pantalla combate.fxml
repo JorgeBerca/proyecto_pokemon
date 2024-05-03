@@ -47,7 +47,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
-                  <Image url="@../imagenes/fondo_combate.png" />
+                  <Image url="@../imagenes/fondos_pantallas/fondo_combate.png" />
                </image>
             </ImageView>
             <Button layoutX="454.0" layoutY="531.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Pokemon">

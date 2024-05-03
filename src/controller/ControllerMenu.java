@@ -19,7 +19,7 @@ public class ControllerMenu {
     }
 
     public void centropokemon() {
-        loadScene("../vistas/pantalla centro pokemon 1.fxml");
+        loadScene("../vistas/pantalla centro pokemon.fxml");
     }
     
     public void combate() {

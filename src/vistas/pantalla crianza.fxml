@@ -47,7 +47,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
-                  <Image url="@../imagenes/fondo_crianza.png" />
+                  <Image url="@../imagenes/fondos_pantallas/fondo_crianza.png" />
                </image>
             </ImageView>
             <Label layoutX="543.0" layoutY="216.0" prefHeight="61.0" prefWidth="213.0" text="Dime que dos pokemon">

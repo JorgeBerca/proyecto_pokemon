@@ -43,7 +43,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
-                  <Image url="@../imagenes/fondo_equipo.png" />
+                  <Image url="@../imagenes/fondos_pantallas/fondo_equipo.png" />
                </image>
             </ImageView>
          </children>

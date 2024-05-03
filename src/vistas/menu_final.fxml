@@ -47,7 +47,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
-                  <Image url="@../imagenes/fondo_menu.jpg" />
+                  <Image url="@../imagenes/fondos_pantallas/fondo_menu.jpg" />
                </image>
             </ImageView>
             <Button layoutX="403.0" layoutY="228.0" mnemonicParsing="false" onAction="#combate" opacity="0.0" prefHeight="112.0" prefWidth="103.0" text="Combate">
