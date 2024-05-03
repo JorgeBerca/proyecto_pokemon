@@ -65,6 +65,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="806.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/atras/atras.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="806.0" layoutY="505.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="60.0" text="atras" />
          </children>
     </AnchorPane>
   </children>

@@ -68,6 +68,15 @@
                   <Font size="27.0" />
                </font>
             </Label>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="798.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/atras/atras.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="798.0" layoutY="499.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="60.0" text="atras">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
     </AnchorPane>
   </children>
