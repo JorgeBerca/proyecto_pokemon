@@ -45,7 +45,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="920.0" layoutX="-11.0" layoutY="-5.0">
+            <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
                   <Image url="@../imagenes/fondos_pantallas/centro pokemon.png" />
                </image>
