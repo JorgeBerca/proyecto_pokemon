@@ -16,6 +16,18 @@ public class controllercentropokemon {
     }
     @FXML
     public void pc() {
+        try {
+            // Cargar la vista para el PC de almacenamiento Pokémon
+            Parent pcView = FXMLLoader.load(getClass().getResource("@../vistas/.fxml"));
+            
+            // Obtener el escenario actual y establecer la nueva escena
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(pcView));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al cargar la pantalla del PC: " + e.getMessage());
+        }
     	
     }
     
