@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
 
 public class controllercentropokemon {
     @FXML
@@ -15,10 +17,10 @@ public class controllercentropokemon {
         // Método para capturar pokemon, aún no implementado
     }
     @FXML
-    public void pc() {
+    public void pc(ActionEvent event) {
         try {
             // Cargar la vista para el PC de almacenamiento Pokémon
-            Parent pcView = FXMLLoader.load(getClass().getResource("@../vistas/.fxml"));
+            Parent pcView = FXMLLoader.load(getClass().getResource("../vistas/pantalla pc.fxml"));
             
             // Obtener el escenario actual y establecer la nueva escena
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
