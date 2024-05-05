@@ -41,7 +41,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" fx:controller="controller.controllercombate" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -50,22 +50,22 @@
                   <Image url="@../imagenes/fondos_pantallas/fondo_combate.png" />
                </image>
             </ImageView>
-            <Button layoutX="454.0" layoutY="531.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Pokemon">
+            <Button layoutX="454.0" layoutY="531.0" mnemonicParsing="false" onAction="#pokemon" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Pokemon">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="660.0" layoutY="474.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Mochila">
+            <Button layoutX="660.0" layoutY="474.0" mnemonicParsing="false" onAction="#mochila" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Mochila">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="660.0" layoutY="531.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Huir">
+            <Button layoutX="660.0" layoutY="531.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Huir">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="454.0" layoutY="474.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Lucha">
+            <Button layoutX="454.0" layoutY="474.0" mnemonicParsing="false" onAction="#lucha" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Lucha">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

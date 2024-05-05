@@ -41,7 +41,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" fx:controller="controller.controllercentropokemon" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -50,7 +50,7 @@
                   <Image url="@../imagenes/fondos_pantallas/centro pokemon.png" />
                </image>
             </ImageView>
-            <Button layoutX="650.0" layoutY="48.0" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="64.0" text="pc">
+            <Button layoutX="658.0" layoutY="48.0" mnemonicParsing="false" onAction="#pc" opacity="0.0" prefHeight="136.0" prefWidth="75.0" text="pc">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -70,7 +70,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button layoutX="378.0" layoutY="80.0" mnemonicParsing="false" opacity="0.0" prefHeight="305.0" prefWidth="143.0" text="curar" />
+            <Button layoutX="389.0" layoutY="84.0" mnemonicParsing="false" onAction="#curar" opacity="0.0" prefHeight="314.0" prefWidth="143.0" text="curar" />
             <Label layoutX="357.0" layoutY="445.0" prefHeight="62.0" prefWidth="224.0" text="curar tus pokemon" textFill="RED">
                <font>
                   <Font size="22.0" />
@@ -81,7 +81,7 @@
                   <Image url="@../imagenes/atras/atras.png" />
                </image>
             </ImageView>
-            <Button layoutX="684.0" layoutY="398.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="60.0" text="atras">
+            <Button layoutX="684.0" layoutY="398.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="60.0" prefWidth="60.0" text="atras">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
