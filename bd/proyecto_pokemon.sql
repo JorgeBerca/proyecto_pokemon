@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2024 a las 23:24:04
+-- Tiempo de generación: 05-05-2024 a las 22:15:37
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -51,7 +51,10 @@ CREATE TABLE `entrenador` (
 --
 
 INSERT INTO `entrenador` (`ID_ENTRENADOR`, `NOM_ENTRENADOR`, `PASS`, `POKEDOLLARS`) VALUES
-(1, 'abc', '123456', NULL);
+(1, 'abc', '123456', NULL),
+(2, 'Jorgito', '123', NULL),
+(3, '1', '1', NULL),
+(4, 'jaime', '123', NULL);
 
 -- --------------------------------------------------------
 
@@ -200,9 +203,6 @@ CREATE TABLE `pokedex` (
   `NOM_POKEMON` varchar(30) NOT NULL,
   `TIPO1` varchar(20) NOT NULL,
   `TIPO2` varchar(20) DEFAULT NULL,
-  `SPRITE_DELANTE` varchar(255) NOT NULL,
-  `SPRITE_DETRAS` varchar(255) NOT NULL,
-  `SONIDO` varchar(100) NOT NULL,
   `NIVEL_EVOLUCION` int(11) DEFAULT NULL,
   `FK_NUM_POKEDEX_EVO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -211,57 +211,57 @@ CREATE TABLE `pokedex` (
 -- Volcado de datos para la tabla `pokedex`
 --
 
-INSERT INTO `pokedex` (`NUM_POKEDEX`, `NOM_POKEMON`, `TIPO1`, `TIPO2`, `SPRITE_DELANTE`, `SPRITE_DETRAS`, `SONIDO`, `NIVEL_EVOLUCION`, `FK_NUM_POKEDEX_EVO`) VALUES
-(1, 'Bulbasaur', 'Planta', 'Veneno', 'C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Bubasaur_frente.png', 'C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Bubasaur_detras.png', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Bulbasaur.mp3\"', 16, NULL),
-(2, 'Ivysaur', 'Planta', 'Veneno ', 'C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Ivysaur_frente.png', 'C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Ivysaur_detras.png', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Ivysaur.mp3\"', 32, NULL),
-(3, 'Venusaur', 'Planta', 'Veneno', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\venusaur_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\venusaur_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Venusaur.mp3\"', NULL, NULL),
-(4, 'Charmander', 'Fuego', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Charmander_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Charmander_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Charmander.mp3\"', 16, NULL),
-(5, 'Charmeleon', 'Fuego', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Charmeleon_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Charmeleon_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Charmeleon.mp3\"', 36, NULL),
-(6, 'Charizard', 'Fuego', 'Volador', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Charizard_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\Charizard_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Charizard.mp3\"', NULL, NULL),
-(7, 'Squirtle', 'Agua', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\squirtle_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\squirtle_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Squirtle.mp3\"', 16, NULL),
-(8, 'Wartortle', 'Agua', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\wartortle_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\wartortle_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Wartortle.mp3\"', 36, NULL),
-(9, 'Blastoise', 'Agua', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\blastoise_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\blastoise_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Blastoise.mp3\"', NULL, NULL),
-(10, 'Caterpie', 'Bicho', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\caterpie_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\caterpie_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Caterpie.mp3\"', 7, NULL),
-(11, 'Metapod', 'Bicho', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\metapod_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\metapod_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Metapod.mp3\"', 10, NULL),
-(12, 'Butterfree', 'Bicho', 'Volador', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\butterfree_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\butterfree_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Butterfree.mp3\"', NULL, NULL),
-(13, 'Weedle', 'Bicho ', 'Veneno', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\weedle_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\weedle_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Weedle.mp3\"', 7, NULL),
-(14, 'Kakuna', 'Bicho ', 'Veneno ', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\kakuna_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\kakuna_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Kakuna.mp3\"', 10, NULL),
-(15, 'Beedrill', 'Bicho', 'Veneno', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\beedrill_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\beedrill_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Beedrill.mp3\"', NULL, NULL),
-(16, 'Pidgey', 'Normal', 'Volador', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\pidgey_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\pidgey_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Pidgey.mp3\"', 18, NULL),
-(17, 'Pidgeotto', 'Normal', 'Volador', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\pidgeotto_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\pidgeotto_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Pidgeotto.mp3\"', 36, NULL),
-(18, 'Pidgeot', 'Normal', 'Volador', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\pidgeot_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\pidgeot_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Pidgeot.mp3\"', NULL, NULL),
-(19, 'Rattata', 'Normal', '', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\rattata_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\rattata_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Rattata.mp3\"', 20, NULL),
-(20, 'Raticate', 'Normal', '', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\raticate_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\raticate_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Raticate.mp3\"', NULL, NULL),
-(21, 'Exeggcute', 'Planta', 'Psiquico', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\exeggcute_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\exeggcute_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Exeggcute.mp3\"', 26, NULL),
-(22, 'Exeggutor', 'Planta', 'Psiquico', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\exeggutor_frente.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\exeggutor_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Exeggutor.mp3\"', NULL, NULL),
-(23, 'Pikachu', 'Electrico', NULL, 'E:\\imagenes de los pokemons\\pikachu_delante.png', 'E:\\imagenes de los pokemons\\pikachu_detras.png', 'E:\\imagenes de los pokemons\\pikachu_sonido.mp3', 24, NULL),
-(24, 'Raichu', 'Electrico', NULL, 'E:\\imagenes de los pokemons\\raichu_delante.png', 'E:\\imagenes de los pokemons\\raichu_detras.png', 'E:\\imagenes de los pokemons\\raichu_sonido.mp3', NULL, NULL),
-(25, 'Vulpix', 'Fuego', NULL, 'E:\\imagenes de los pokemons\\vulpix_delante.png', 'E:\\imagenes de los pokemons\\vulpix_detras.png', 'E:\\imagenes de los pokemons\\vulpix_sonido.mp3', 24, NULL),
-(26, 'Ninetales', 'Fuego', NULL, 'E:\\imagenes de los pokemons\\ninetales_delante.png', 'E:\\imagenes de los pokemons\\ninetales_detras.png', 'E:\\imagenes de los pokemons\\ninetales_sonido.mp3', NULL, NULL),
-(27, 'Oddish', 'Planta', 'Veneno', 'E:\\imagenes de los pokemons\\oddish_delante.png', 'E:\\imagenes de los pokemons\\oddish_detras.png', 'E:\\imagenes de los pokemons\\oddish_sonido.mp3', 21, NULL),
-(28, 'Gloom', 'Planta', 'Veneno', 'E:\\imagenes de los pokemons\\gloom_delante.png', 'E:\\imagenes de los pokemons\\gloom_detras.png', 'E:\\imagenes de los pokemons\\gloom_sonido.mp3', NULL, NULL),
-(29, 'Diglett', 'Tierra', NULL, 'E:\\imagenes de los pokemons\\diglett_delante.png', 'E:\\imagenes de los pokemons\\diglett_detras.png', 'E:\\imagenes de los pokemons\\diglett_sonido.mp3', 26, NULL),
-(30, 'Dugtrio', 'Tierra', NULL, 'E:\\imagenes de los pokemons\\dugtrio_delante.png', 'E:\\imagenes de los pokemons\\dugtrio_detras.png', 'E:\\imagenes de los pokemons\\dugtrio_sonido.mp3', NULL, NULL),
-(31, 'Meowth', 'Normal', NULL, 'E:\\imagenes de los pokemons\\meowth_delante.png', 'E:\\imagenes de los pokemons\\meowth_detras.png', 'E:\\imagenes de los pokemons\\meowth_sonido.mp3', 28, NULL),
-(32, 'Persian', 'Normal', NULL, 'E:\\imagenes de los pokemons\\persian_delante.png', 'E:\\imagenes de los pokemons\\persian_detras.png', 'E:\\imagenes de los pokemons\\persian_sonido.mp3', NULL, NULL),
-(33, 'Psyduck', 'Agua', NULL, 'E:\\imagenes de los pokemons\\psyduck_delante.png', 'E:\\imagenes de los pokemons\\psyduck_detras.png', 'E:\\imagenes de los pokemons\\psyduck_sonido.mp3', NULL, NULL),
-(34, 'Growlithe', 'Fuego', NULL, 'E:\\imagenes de los pokemons\\growlithe_delante.png', 'E:\\imagenes de los pokemons\\growlithe_detras.png', 'E:\\imagenes de los pokemons\\growlithe_sonido.mp3', 24, NULL),
-(35, 'Arcanine', 'Fuego', NULL, 'E:\\imagenes de los pokemons\\arcanine_delante.png', 'E:\\imagenes de los pokemons\\arcanine_detras.png', 'E:\\imagenes de los pokemons\\arcanine_sonido.mp3', NULL, NULL),
-(36, 'Abra', 'Psiquico', NULL, 'E:\\imagenes de los pokemons\\abra_delante.png', 'E:\\imagenes de los pokemons\\abra_detras.png', 'E:\\imagenes de los pokemons\\abra_sonido.mp3', 16, NULL),
-(37, 'Kadabra', 'Psiquico', NULL, 'E:\\imagenes de los pokemons\\kadabra_delante.png', 'E:\\imagenes de los pokemons\\kadabra_detras.png', 'E:\\imagenes de los pokemons\\kadabra_sonido.mp3', 26, NULL),
-(38, 'Alakazam', 'Psiquico', NULL, 'E:\\imagenes de los pokemons\\alakazam_delante.png', 'E:\\imagenes de los pokemons\\alakazam_detras.png', 'E:\\imagenes de los pokemons\\alakazam_sonido.mp3', NULL, NULL),
-(39, 'Gastly', 'Fantasma', 'Veneno', 'E:\\imagenes de los pokemons\\gastly_delante.png', 'E:\\imagenes de los pokemons\\gastly_detras.png', 'E:\\imagenes de los pokemons\\gastly_sonido.mp3', 23, NULL),
-(40, 'Haunter', 'Fantasma', 'Veneno', 'E:\\imagenes de los pokemons\\haunter_delante.png', 'E:\\imagenes de los pokemons\\haunter_detras.png', 'E:\\imagenes de los pokemons\\haunter_sonido.mp3', 30, NULL),
-(41, 'Gengar', 'Fantasma', 'Veneno', 'E:\\imagenes de los pokemons\\gengar_delante.png', 'E:\\imagenes de los pokemons\\gengar_detras.png', 'E:\\imagenes de los pokemons\\gengar_sonido.mp3', NULL, NULL),
-(42, 'Lapras', 'Agua', 'Hielo', 'E:\\imagenes de los pokemons\\lapras_delante.png', 'E:\\imagenes de los pokemons\\lapras_detras.png', 'E:\\imagenes de los pokemons\\lapras_sonido.mp3', NULL, NULL),
-(43, 'Snorlax', 'Normal', NULL, 'E:\\imagenes de los pokemons\\snorlax_delante.png', 'E:\\imagenes de los pokemons\\snorlax_detras.png', 'E:\\imagenes de los pokemons\\snorlax_sonido.mp3', NULL, NULL),
-(44, 'Machop', 'Lucha', NULL, 'E:\\imagenes de los pokemons\\machop_delante.png', 'E:\\imagenes de los pokemons\\machop_detras.png', 'E:\\imagenes de los pokemons\\machop_sonido.mp3', 28, NULL),
-(45, 'Machoke', 'Lucha', NULL, 'E:\\imagenes de los pokemons\\machoke_delante.png', 'E:\\imagenes de los pokemons\\machoke_detras.png', 'E:\\imagenes de los pokemons\\machoke_sonido.mp3', 34, NULL),
-(46, 'Machamp', 'Lucha', NULL, 'E:\\\\imagenes de los pokemons\\\\machamp_delante.png', '\"E:\\\\imagenes de los pokemons\\\\machamp_detras.png\"', '\"E:\\\\imagenes de los pokemons\\\\machamp_sonido.mp3\"', 0, NULL),
-(47, 'Magikarp', 'Agua', NULL, '\"E:\\\\imagenes de los pokemons\\\\magikarp_delante.png\"', '\"E:\\\\imagenes de los pokemons\\\\magikarp_detras.png\"', '\"E:\\\\imagenes de los pokemons\\\\magikarp_sonido.mp3\"', 30, NULL),
-(48, 'Gyarados', 'Agua', 'Volador', '\"E:\\\\imagenes de los pokemons\\\\gyarados_delante.png\"', '\"E:\\\\imagenes de los pokemons\\\\gyarados_detras.png\"', '\"E:\\\\imagenes de los pokemons\\\\gyarados_sonido.mp3\"', 0, NULL),
-(49, 'Scyther', 'Bicho', 'Volador', '\"E:\\\\imagenes de los pokemons\\\\scyther_delante.png\"', '\"E:\\\\imagenes de los pokemons\\\\scyther_detras.png\"', '\"E:\\\\imagenes de los pokemons\\\\scyther_sonido.mp3\"', 0, NULL),
-(50, 'Arceus', 'Normal', NULL, '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\arceus_delante.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\Sprites\\\\arceus_detras.png\"', '\"C:\\\\Users\\\\jorge\\\\Desktop\\\\Proyecto_Pokemon\\\\base_de_datos\\\\sonidos_pokemon\\\\Arceus.mp3\"', NULL, NULL);
+INSERT INTO `pokedex` (`NUM_POKEDEX`, `NOM_POKEMON`, `TIPO1`, `TIPO2`, `NIVEL_EVOLUCION`, `FK_NUM_POKEDEX_EVO`) VALUES
+(1, 'Bulbasaur', 'Planta', 'Veneno', 16, NULL),
+(2, 'Ivysaur', 'Planta', 'Veneno ', 32, NULL),
+(3, 'Venusaur', 'Planta', 'Veneno', NULL, NULL),
+(4, 'Charmander', 'Fuego', NULL, 16, NULL),
+(5, 'Charmeleon', 'Fuego', NULL, 36, NULL),
+(6, 'Charizard', 'Fuego', 'Volador', NULL, NULL),
+(7, 'Squirtle', 'Agua', NULL, 16, NULL),
+(8, 'Wartortle', 'Agua', NULL, 36, NULL),
+(9, 'Blastoise', 'Agua', NULL, NULL, NULL),
+(10, 'Caterpie', 'Bicho', NULL, 7, NULL),
+(11, 'Metapod', 'Bicho', NULL, 10, NULL),
+(12, 'Butterfree', 'Bicho', 'Volador', NULL, NULL),
+(13, 'Weedle', 'Bicho ', 'Veneno', 7, NULL),
+(14, 'Kakuna', 'Bicho ', 'Veneno ', 10, NULL),
+(15, 'Beedrill', 'Bicho', 'Veneno', NULL, NULL),
+(16, 'Pidgey', 'Normal', 'Volador', 18, NULL),
+(17, 'Pidgeotto', 'Normal', 'Volador', 36, NULL),
+(18, 'Pidgeot', 'Normal', 'Volador', NULL, NULL),
+(19, 'Rattata', 'Normal', '', 20, NULL),
+(20, 'Raticate', 'Normal', '', NULL, NULL),
+(21, 'Exeggcute', 'Planta', 'Psiquico', 26, NULL),
+(22, 'Exeggutor', 'Planta', 'Psiquico', NULL, NULL),
+(23, 'Pikachu', 'Electrico', NULL, 24, NULL),
+(24, 'Raichu', 'Electrico', NULL, NULL, NULL),
+(25, 'Vulpix', 'Fuego', NULL, 24, NULL),
+(26, 'Ninetales', 'Fuego', NULL, NULL, NULL),
+(27, 'Oddish', 'Planta', 'Veneno', 21, NULL),
+(28, 'Gloom', 'Planta', 'Veneno', NULL, NULL),
+(29, 'Diglett', 'Tierra', NULL, 26, NULL),
+(30, 'Dugtrio', 'Tierra', NULL, NULL, NULL),
+(31, 'Meowth', 'Normal', NULL, 28, NULL),
+(32, 'Persian', 'Normal', NULL, NULL, NULL),
+(33, 'Psyduck', 'Agua', NULL, NULL, NULL),
+(34, 'Growlithe', 'Fuego', NULL, 24, NULL),
+(35, 'Arcanine', 'Fuego', NULL, NULL, NULL),
+(36, 'Abra', 'Psiquico', NULL, 16, NULL),
+(37, 'Kadabra', 'Psiquico', NULL, 26, NULL),
+(38, 'Alakazam', 'Psiquico', NULL, NULL, NULL),
+(39, 'Gastly', 'Fantasma', 'Veneno', 23, NULL),
+(40, 'Haunter', 'Fantasma', 'Veneno', 30, NULL),
+(41, 'Gengar', 'Fantasma', 'Veneno', NULL, NULL),
+(42, 'Lapras', 'Agua', 'Hielo', NULL, NULL),
+(43, 'Snorlax', 'Normal', NULL, NULL, NULL),
+(44, 'Machop', 'Lucha', NULL, 28, NULL),
+(45, 'Machoke', 'Lucha', NULL, 34, NULL),
+(46, 'Machamp', 'Lucha', NULL, 0, NULL),
+(47, 'Magikarp', 'Agua', NULL, 30, NULL),
+(48, 'Gyarados', 'Agua', 'Volador', 0, NULL),
+(49, 'Scyther', 'Bicho', 'Volador', 0, NULL),
+(50, 'Arceus', 'Normal', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -273,7 +273,7 @@ CREATE TABLE `pokemon` (
   `ID_POKEMON` int(11) NOT NULL,
   `NUM_POKEDEX` int(11) DEFAULT NULL,
   `ID_ENTRENADOR` int(11) DEFAULT NULL,
-  `CAJA` int(11) NOT NULL,
+  `CAJA` int(11) NOT NULL DEFAULT 1,
   `NOMBRE` varchar(15) DEFAULT NULL,
   `MOTE` varchar(30) DEFAULT NULL,
   `SALUD` int(11) NOT NULL,
@@ -285,16 +285,21 @@ CREATE TABLE `pokemon` (
   `NIVEL` int(11) NOT NULL,
   `FERTILIDAD` int(11) NOT NULL,
   `SEXO` char(1) NOT NULL,
-  `ESTADO` varchar(20) NOT NULL,
+  `ESTADO` varchar(20) DEFAULT NULL,
   `EXPERIENCIA` int(11) NOT NULL,
   `MOVIMIENTO1` text DEFAULT NULL,
   `MOVIMIENTO2` text DEFAULT NULL,
   `MOVIMIENTO3` text DEFAULT NULL,
   `MOVIMIENTO4` text DEFAULT NULL,
-  `TIPO1` varchar(50) NOT NULL,
-  `TIPO2` varchar(50) NOT NULL,
   `ID_OBJETO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pokemon`
+--
+
+INSERT INTO `pokemon` (`ID_POKEMON`, `NUM_POKEDEX`, `ID_ENTRENADOR`, `CAJA`, `NOMBRE`, `MOTE`, `SALUD`, `ATAQUE`, `DEFENSA`, `VELOCIDAD`, `AT_ESPECIAL`, `DEF_ESPECIAL`, `NIVEL`, `FERTILIDAD`, `SEXO`, `ESTADO`, `EXPERIENCIA`, `MOVIMIENTO1`, `MOVIMIENTO2`, `MOVIMIENTO3`, `MOVIMIENTO4`, `ID_OBJETO`) VALUES
+(7, 30, 3, 1, 'Dugtrio', 'Dugtrio', 49, 12, 20, 15, 12, 14, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -383,7 +388,13 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT de la tabla `entrenador`
 --
 ALTER TABLE `entrenador`
-  MODIFY `ID_ENTRENADOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_ENTRENADOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `pokemon`
+--
+ALTER TABLE `pokemon`
+  MODIFY `ID_POKEMON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
