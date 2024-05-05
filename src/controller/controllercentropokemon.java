@@ -16,7 +16,7 @@ public class controllercentropokemon {
     }
     @FXML
     public void pc() {
-        // Método para capturar pokemon, aún no implementado
+    	
     }
     
     @FXML
