@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.Entrenador;
 import bbd.bbd;
 import java.io.IOException;
 import java.sql.Connection;
@@ -46,13 +47,17 @@ public class ControllerLogin {
     }
 
     private boolean checkCredentials(String username, String password) {
-        try (Connection connection = bbd.conexionBbd()) {
-            String query = "SELECT * FROM ENTRENADOR WHERE NOM_ENTRENADOR = ? AND PASS = ?";
+        try (Connection connection = bbd.getInstance().getConnetion() ) {
+            String query = "SELECT ID_ENTRENADOR, NOM_ENTRENADOR, POKEDOLLARS FROM ENTRENADOR WHERE NOM_ENTRENADOR = ? AND PASS = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, username);
                 statement.setString(2, password);
                 try (ResultSet resultSet = statement.executeQuery()) {
-                    return resultSet.next();
+                	boolean resultado = resultSet.next();
+                	if (resultado) {
+                		Entrenador.setEntrenadorActual(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3));
+                	}
+                    return resultado;
                 }
             }
         } catch (SQLException e) {
@@ -89,7 +94,7 @@ public class ControllerLogin {
     }
 
     private boolean registerUser(String username, String password) {
-        try (Connection connection = bbd.conexionBbd()) {
+        try (Connection connection = bbd.getInstance().getConnetion() ) {
             String query = "INSERT INTO ENTRENADOR (NOM_ENTRENADOR, PASS) VALUES (?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, username);
