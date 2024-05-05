@@ -50,17 +50,12 @@
                   <Image url="@../imagenes/fondos_pantallas/fondo_combate.png" />
                </image>
             </ImageView>
-            <Button layoutX="454.0" layoutY="531.0" mnemonicParsing="false" onAction="#pokemon" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Pokemon">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <Label layoutX="504.0" layoutY="540.0" prefHeight="28.0" prefWidth="92.0" text="pokemon">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="660.0" layoutY="474.0" mnemonicParsing="false" onAction="#mochila" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Mochila">
+            <Button layoutX="454.0" layoutY="531.0" mnemonicParsing="false" onAction="#pokemon" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Pokemon">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -70,7 +65,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="660.0" layoutY="531.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Huir">
+            <Button layoutX="660.0" layoutY="474.0" mnemonicParsing="false" onAction="#mochila" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Mochila">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -80,22 +75,28 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="568.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="454.0" layoutY="474.0" mnemonicParsing="false" onAction="#lucha" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Lucha">
+            <Button layoutX="660.0" layoutY="531.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Huir">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <ImageView fx:id="pokemonenemigo" fitHeight="203.0" fitWidth="215.0" layoutX="568.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="527.0" layoutY="483.0" prefHeight="30.0" prefWidth="58.0" text="lucha">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button layoutX="454.0" layoutY="474.0" mnemonicParsing="false" onAction="#lucha" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Lucha">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Label layoutX="33.0" layoutY="68.0" prefHeight="48.0" prefWidth="176.0" text="Dominguero">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
+            <ImageView fitHeight="203.0" fitWidth="215.0" layoutX="130.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" />
          </children>
     </AnchorPane>
   </children>
