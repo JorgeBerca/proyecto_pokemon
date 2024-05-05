@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class ControllerCaptura {
+public class Controllercaptura {
     @FXML
     private ImageView pokemonrandom; 
 
