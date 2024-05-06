@@ -8,7 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Entrenador;
-import bbd.bbd;
+import bbd.BD;
+import bbd.LoginBD;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,6 +31,8 @@ public class ControllerLogin {
     @FXML
     private TextField user1;
     
+    private LoginBD login = new LoginBD(BD.getConnetion());
+    
     // No necesitas crear una nueva instancia de bbd aquí
     // Puedes llamar al método conexionBbd() directamente
 
@@ -37,7 +41,7 @@ public class ControllerLogin {
         String username = user1.getText();
         String password = passw.getCharacters().toString();
 
-        boolean credentialsCorrect = checkCredentials(username, password);
+        boolean credentialsCorrect = login.checkCredentials(username, password);
 
         if (credentialsCorrect) {
             loadNextScene();
@@ -46,25 +50,6 @@ public class ControllerLogin {
         }
     }
 
-    private boolean checkCredentials(String username, String password) {
-        try (Connection connection = bbd.getInstance().getConnetion() ) {
-            String query = "SELECT ID_ENTRENADOR, NOM_ENTRENADOR, POKEDOLLARS FROM ENTRENADOR WHERE NOM_ENTRENADOR = ? AND PASS = ?";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, username);
-                statement.setString(2, password);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                	boolean resultado = resultSet.next();
-                	if (resultado) {
-                		Entrenador.setEntrenadorActual(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3));
-                	}
-                    return resultado;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false; 
-        }
-    }
 
     private void loadNextScene() {
         try {
@@ -84,27 +69,12 @@ public class ControllerLogin {
         String newUsername = user1.getText();
         String newPassword = passw.getCharacters().toString();
 
-        boolean registrationSuccessful = registerUser(newUsername, newPassword);
+        boolean registrationSuccessful = login.registerUser(newUsername, newPassword);
 
         if (registrationSuccessful) {
             showAlert("Registro exitoso", "Usuario registrado correctamente.");
         } else {
             showAlert("Error en el registro", "No se te pudo registrar como usuario. Inténtalo de nuevo más tarde.");
-        }
-    }
-
-    private boolean registerUser(String username, String password) {
-        try (Connection connection = bbd.getInstance().getConnetion() ) {
-            String query = "INSERT INTO ENTRENADOR (NOM_ENTRENADOR, PASS) VALUES (?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, username);
-                statement.setString(2, password);
-                int rowsAffected = statement.executeUpdate();
-                return rowsAffected > 0; 
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false; 
         }
     }
 

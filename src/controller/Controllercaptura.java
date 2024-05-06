@@ -3,7 +3,8 @@ package controller;
 import javafx.fxml.FXML;
 import java.util.List;
 import java.util.Random;
-import bbd.bbd;
+import bbd.BD;
+import bbd.PokedexBD;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.fxml.FXMLLoader;
@@ -54,7 +55,7 @@ public class Controllercaptura {
         	Entrenador entrenador = Entrenador.getEntrenadorActual();
         	try {
                 String mote = this.getText("Mote del pokémon:", pokemon.getNombre());
-        		Connection connection = bbd.getInstance().getConnetion();
+        		Connection connection = BD.getConnetion();
                 String sql = "INSERT INTO POKEMON (NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
                     statement.setInt(1, pokemon.getId()); 					// NUM_POKEDEX 
@@ -123,13 +124,15 @@ public class Controllercaptura {
     }
     
     private Pokemon getRadomPokemon() {
-    	bbd bd = bbd.getInstance();
-    	int cuantos = bd.getCuantosPokemonsHay();
+
+    	PokedexBD pokedex = new PokedexBD(BD.getConnetion());
+    	
+    	int cuantos = pokedex.getCuantosPokemonsHay();
     	
     	Random rand = new Random();
     	int seleccionado = rand.nextInt(cuantos);
 
-    	return bd.getPokemonById(seleccionado);
+    	return pokedex.getPokemonById(seleccionado);
     }
 }
 
