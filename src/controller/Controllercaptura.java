@@ -1,7 +1,5 @@
 package controller;
-
 import javafx.fxml.FXML;
-import java.util.List;
 import java.util.Random;
 import bbd.BD;
 import bbd.PokedexBD;
@@ -14,12 +12,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modelo.Entrenador;
 import modelo.Pokemon;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
