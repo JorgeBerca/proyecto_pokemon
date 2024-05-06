@@ -59,35 +59,185 @@
                     </cursor>
                 </Button>
             <ImageView fx:id="pokemon1" fitHeight="102.0" fitWidth="135.0" layoutX="39.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="39.0" layoutY="41.0" mnemonicParsing="false" onAction="#estadisticas1" opacity="0.0" prefHeight="102.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon2" fitHeight="102.0" fitWidth="135.0" layoutX="180.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="183.0" layoutY="41.0" mnemonicParsing="false" onAction="#estadisticas2" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon3" fitHeight="102.0" fitWidth="135.0" layoutX="321.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="324.0" layoutY="41.0" mnemonicParsing="false" onAction="#estadisticas3" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon4" fitHeight="102.0" fitWidth="135.0" layoutX="463.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="466.0" layoutY="41.0" mnemonicParsing="false" onAction="#estadisticas4" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon5" fitHeight="102.0" fitWidth="135.0" layoutX="604.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="607.0" layoutY="41.0" mnemonicParsing="false" onAction="#estadisticas5" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon6" fitHeight="102.0" fitWidth="135.0" layoutX="745.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="745.0" layoutY="41.0" mnemonicParsing="false" onAction="#estadisticas6" opacity="0.0" prefHeight="102.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon7" fitHeight="102.0" fitWidth="135.0" layoutX="39.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="39.0" layoutY="150.0" mnemonicParsing="false" onAction="#estadisticas7" opacity="0.0" prefHeight="102.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon8" fitHeight="102.0" fitWidth="135.0" layoutX="180.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="183.0" layoutY="150.0" mnemonicParsing="false" onAction="#estadisticas8" opacity="0.0" prefHeight="102.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon9" fitHeight="102.0" fitWidth="135.0" layoutX="321.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="324.0" layoutY="150.0" mnemonicParsing="false" onAction="#estadisticas9" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon10" fitHeight="102.0" fitWidth="135.0" layoutX="463.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="463.0" layoutY="150.0" mnemonicParsing="false" onAction="#estadisticas10" opacity="0.0" prefHeight="102.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon11" fitHeight="102.0" fitWidth="135.0" layoutX="604.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="607.0" layoutY="150.0" mnemonicParsing="false" onAction="#estadisticas11" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon12" fitHeight="102.0" fitWidth="135.0" layoutX="745.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="748.0" layoutY="150.0" mnemonicParsing="false" onAction="#estadisticas12" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon13" fitHeight="102.0" fitWidth="135.0" layoutX="39.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="39.0" layoutY="258.0" mnemonicParsing="false" onAction="#estadisticas13" opacity="0.0" prefHeight="102.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon14" fitHeight="102.0" fitWidth="135.0" layoutX="180.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="183.0" layoutY="258.0" mnemonicParsing="false" onAction="#estadisticas14" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon15" fitHeight="102.0" fitWidth="135.0" layoutX="321.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="324.0" layoutY="258.0" mnemonicParsing="false" onAction="#estadisticas15" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon16" fitHeight="102.0" fitWidth="135.0" layoutX="463.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="466.0" layoutY="258.0" mnemonicParsing="false" onAction="#estadisticas16" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon17" fitHeight="102.0" fitWidth="135.0" layoutX="604.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="604.0" layoutY="258.0" mnemonicParsing="false" onAction="#estadisticas17" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon18" fitHeight="102.0" fitWidth="135.0" layoutX="745.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="748.0" layoutY="258.0" mnemonicParsing="false" onAction="#estadisticas18" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon19" fitHeight="102.0" fitWidth="135.0" layoutX="39.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="46.0" layoutY="367.0" mnemonicParsing="false" onAction="#estadisticas19" opacity="0.0" prefHeight="96.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon20" fitHeight="102.0" fitWidth="135.0" layoutX="180.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="183.0" layoutY="367.0" mnemonicParsing="false" onAction="#estadisticas20" opacity="0.0" prefHeight="96.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon21" fitHeight="102.0" fitWidth="135.0" layoutX="321.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="324.0" layoutY="367.0" mnemonicParsing="false" onAction="#estadisticas21" opacity="0.0" prefHeight="96.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon22" fitHeight="102.0" fitWidth="135.0" layoutX="460.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="466.0" layoutY="367.0" mnemonicParsing="false" onAction="#estadisticas22" opacity="0.0" prefHeight="96.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon23" fitHeight="102.0" fitWidth="135.0" layoutX="604.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="607.0" layoutY="367.0" mnemonicParsing="false" onAction="#estadisticas23" opacity="0.0" prefHeight="96.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon24" fitHeight="102.0" fitWidth="135.0" layoutX="745.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="745.0" layoutY="367.0" mnemonicParsing="false" onAction="#estadisticas24" opacity="0.0" prefHeight="96.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon25" fitHeight="102.0" fitWidth="135.0" layoutX="39.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="39.0" layoutY="472.0" mnemonicParsing="false" onAction="#estadisticas25" opacity="0.0" prefHeight="96.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon26" fitHeight="102.0" fitWidth="135.0" layoutX="180.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="186.0" layoutY="472.0" mnemonicParsing="false" onAction="#estadisticas26" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon27" fitHeight="102.0" fitWidth="135.0" layoutX="321.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="324.0" layoutY="472.0" mnemonicParsing="false" onAction="#estadisticas27" opacity="0.0" prefHeight="102.0" prefWidth="135.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon28" fitHeight="102.0" fitWidth="135.0" layoutX="463.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="466.0" layoutY="472.0" mnemonicParsing="false" onAction="#estadisticas28" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon29" fitHeight="102.0" fitWidth="135.0" layoutX="604.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="607.0" layoutY="472.0" mnemonicParsing="false" onAction="#estadisticas29" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fx:id="pokemon30" fitHeight="102.0" fitWidth="135.0" layoutX="745.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="748.0" layoutY="472.0" mnemonicParsing="false" onAction="#estadisticas30" opacity="0.0" prefHeight="102.0" prefWidth="129.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             </children>
         </AnchorPane>
     </children>
