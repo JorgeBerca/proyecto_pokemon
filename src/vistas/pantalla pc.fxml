@@ -32,18 +32,30 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerPc">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
                   <Image url="@../imagenes/fondos_pantallas/fondo_pc.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="421.0" layoutY="524.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="72.0" prefWidth="83.0" text="Atrás">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="72.0" fitWidth="76.0" layoutX="425.0" layoutY="528.0">
+               <image>
+                  <Image url="@../imagenes/atras/atras.png" />
                </image>
             </ImageView>
          </children>
