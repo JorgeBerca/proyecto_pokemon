@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerequipo">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerequipo">
+   <children>
+      <AnchorPane>
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
@@ -26,43 +27,52 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="imageView1" fitHeight="151.0" fitWidth="163.0" layoutX="8.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#estadisticas1" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
+            <ImageView fx:id="imageView1" fitHeight="151.0" fitWidth="163.0" layoutX="11.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="16.0" layoutY="77.0" mnemonicParsing="false" onAction="#estadisticas1" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="imageView2" fitHeight="151.0" fitWidth="163.0" layoutX="8.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="14.0" layoutY="247.0" mnemonicParsing="false" onAction="#estadisticas2" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
+            <ImageView fx:id="imageView2" fitHeight="151.0" fitWidth="163.0" layoutX="10.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="15.0" layoutY="249.0" mnemonicParsing="false" onAction="#estadisticas2" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="imageView3" fitHeight="151.0" fitWidth="163.0" layoutX="8.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView3" fitHeight="151.0" fitWidth="163.0" layoutX="9.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="14.0" layoutY="422.0" mnemonicParsing="false" onAction="#estadisticas3" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="imageView4" fitHeight="151.0" fitWidth="163.0" layoutX="735.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="741.0" layoutY="74.0" mnemonicParsing="false" onAction="#estadisticas4" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
+            <ImageView fx:id="imageView4" fitHeight="151.0" fitWidth="163.0" layoutX="738.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="743.0" layoutY="76.0" mnemonicParsing="false" onAction="#estadisticas4" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="imageView5" fitHeight="151.0" fitWidth="163.0" layoutX="735.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="746.0" layoutY="247.0" mnemonicParsing="false" onAction="#estadisticas5" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
+            <ImageView fx:id="imageView5" fitHeight="151.0" fitWidth="163.0" layoutX="737.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="743.0" layoutY="249.0" mnemonicParsing="false" onAction="#estadisticas5" opacity="0.0" prefHeight="134.0" prefWidth="152.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="imageView6" fitHeight="151.0" fitWidth="163.0" layoutX="735.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="736.0" layoutY="422.0" mnemonicParsing="false" onAction="#estadisticas6" opacity="0.0" prefHeight="134.0" prefWidth="163.0" text="Button">
+            <ImageView fx:id="imageView6" fitHeight="151.0" fitWidth="163.0" layoutX="737.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="737.0" layoutY="422.0" mnemonicParsing="false" onAction="#estadisticas6" opacity="0.0" prefHeight="134.0" prefWidth="163.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <AnchorPane layoutX="214.0" layoutY="97.0" prefHeight="404.0" prefWidth="492.0" visible="false">
+               <children>
+                  <ImageView fitHeight="447.0" fitWidth="491.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/fondos_pantallas/fondo%20estadisticas.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
-    </AnchorPane>
-  </children>
+      </AnchorPane>
+   </children>
 </VBox>

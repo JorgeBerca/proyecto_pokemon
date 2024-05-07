@@ -18,10 +18,6 @@ public class controllerentrenamiento {
     public void pokemon() {
         // Método para capturar pokemon, aún no implementado
     }
-    @FXML
-    public void mochila() {
-        // Método para capturar pokemon, aún no implementado
-    }
  
 	
     @FXML

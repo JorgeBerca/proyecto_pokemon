@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import modelo.Pokemon;
+import modelo.PokemonFromDex;
 
 public class PokedexBD {
 	
@@ -32,7 +32,7 @@ public class PokedexBD {
         return cuantos;
 	}
 	
-	public Pokemon getPokemonById(int id) {
+	public PokemonFromDex getPokemonById(int id) {
         try {
             String query = "SELECT NUM_POKEDEX, NOM_POKEMON, TIPO1, TIPO2, NIVEL_EVOLUCION FROM POKEDEX WHERE NUM_POKEDEX=?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -42,7 +42,9 @@ public class PokedexBD {
                 		System.out.println("Pokemon "+id+" no encontrado.");
                 		return null;
                 	};
-                	Pokemon pokemon = new Pokemon(
+                	              	
+                	
+                	PokemonFromDex pokemon = new PokemonFromDex(
                 			resultSet.getInt(1),
                 			resultSet.getString(2),
                 			resultSet.getString(3),

@@ -269,64 +269,6 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="257.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../imagenes/objetos_tienda/pokeball.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="309.0" layoutY="300.0" text="POKEBALL:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="395.0" layoutY="300.0" text="50">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button layoutX="259.0" layoutY="291.0" mnemonicParsing="false" onAction="#pokeball" opacity="0.0" prefHeight="43.0" prefWidth="167.0" text="pokeball">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="257.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../imagenes/objetos_tienda/pocion.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="309.0" layoutY="444.0" text="POCION:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="377.0" layoutY="444.0" text="50">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button layoutX="262.0" layoutY="430.0" mnemonicParsing="false" onAction="#pocion" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="pocion">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="665.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../imagenes/objetos_tienda/pokeball.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="642.0" layoutY="298.0" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="665.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../imagenes/objetos_tienda/pocion.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="642.0" layoutY="442.0" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
             <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="430.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/atras/atras.png" />

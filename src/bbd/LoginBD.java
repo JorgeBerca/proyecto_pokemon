@@ -6,14 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modelo.Entrenador;
+import modelo.ListaPokemon;
+import modelo.Pokemon;
 
 public class LoginBD {
 
 	
-	private Connection connection;
+	private Connection connection;	
+	private PokemonBD pkBD;
 	
 	public LoginBD(Connection connetion) {
 		this.connection = connetion;
+		this.pkBD = new PokemonBD(this.connection);
 	}
 	
     public boolean checkCredentials(String username, String password) {
@@ -26,6 +30,9 @@ public class LoginBD {
                 	boolean resultado = resultSet.next();
                 	if (resultado) {
                 		Entrenador.setEntrenadorActual(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3));
+                		Pokemon[] misPokemons = pkBD.getListaPokemonEntrenador(Entrenador.getEntrenadorActual().getId());
+                		ListaPokemon lista = new ListaPokemon(misPokemons);
+                		Entrenador.getEntrenadorActual().setListaPokemons(lista);
                 	}
                     return resultado;
                 }

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import javafx.scene.control.Alert.AlertType;
 import modelo.Entrenador;
-import modelo.Pokemon;
+import modelo.PokemonFromDex;
 
 // bbd.getInstance().getConnection()
 

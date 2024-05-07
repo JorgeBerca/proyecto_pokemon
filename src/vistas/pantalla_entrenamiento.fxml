@@ -41,59 +41,47 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerentrenamiento">
 
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerentrenamiento">
+   <children>
+      <AnchorPane>
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
                   <Image url="@../imagenes/fondos_pantallas/fondo_entrenamiento.png" />
                </image>
             </ImageView>
-            <Label layoutX="757.0" layoutY="459.0" prefHeight="46.0" prefWidth="101.0" text="mochila">
+            <Label layoutX="774.0" layoutY="520.0" prefHeight="45.0" prefWidth="83.0" text="huir">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="695.0" layoutY="459.0" mnemonicParsing="false" onAction="#mochila" opacity="0.0" prefHeight="46.0" prefWidth="193.0" text="mochila">
+            <Button layoutX="698.0" layoutY="520.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="45.0" prefWidth="193.0" text="huir">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="775.0" layoutY="521.0" prefHeight="45.0" prefWidth="83.0" text="huir">
+            <Label layoutX="550.0" layoutY="519.0" prefHeight="46.0" prefWidth="90.0" text="pokemon">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="695.0" layoutY="521.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="45.0" prefWidth="193.0" text="huir">
+            <Button layoutX="490.0" layoutY="520.0" mnemonicParsing="false" onAction="#pokemon" opacity="0.0" prefHeight="45.0" prefWidth="193.0" text="pokemon">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="539.0" layoutY="521.0" prefHeight="46.0" prefWidth="90.0" text="pokemon">
+            <Label layoutX="559.0" layoutY="455.0" prefHeight="55.0" prefWidth="101.0" text="lucha">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="487.0" layoutY="521.0" mnemonicParsing="false" onAction="#pokemon" opacity="0.0" prefHeight="45.0" prefWidth="193.0" text="pokemon">
+            <Button layoutX="490.0" layoutY="460.0" mnemonicParsing="false" onAction="#lucha" opacity="0.0" prefHeight="46.0" prefWidth="193.0" text="luchar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="556.0" layoutY="455.0" prefHeight="55.0" prefWidth="101.0" text="lucha">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Button layoutX="486.0" layoutY="459.0" mnemonicParsing="false" onAction="#lucha" opacity="0.0" prefHeight="46.0" prefWidth="193.0" text="luchar">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <ImageView fitHeight="188.0" fitWidth="200.0" layoutX="140.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="188.0" fitWidth="193.0" layoutX="587.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
          </children>
-    </AnchorPane>
-  </children>
+      </AnchorPane>
+   </children>
 </VBox>

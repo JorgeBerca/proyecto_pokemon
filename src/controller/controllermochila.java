@@ -45,15 +45,6 @@ public class controllermochila {
         // Método para capturar pokemon, aún no implementado
     }
     
-    @FXML
-    public void pokeball() {
-        // Método para capturar pokemon, aún no implementado
-    }
-    
-    @FXML
-    public void pocion() {
-        // Método para capturar pokemon, aún no implementado
-    }
 
     @FXML
     public void atras(javafx.event.ActionEvent event) {

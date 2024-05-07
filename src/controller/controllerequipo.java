@@ -8,10 +8,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.Entrenador;
+import modelo.Pokemon;
+import util.UtilView;
 
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.util.Arrays;
 
 import bbd.BD;
 import bbd.PokemonBD;
@@ -20,8 +22,6 @@ import bbd.PokemonBD;
 
 public class controllerequipo {
     @FXML private ImageView imageView1, imageView2, imageView3, imageView4, imageView5, imageView6;
-
-    private PokemonBD pokemon = new PokemonBD(BD.getConnetion());
 
     public void initialize() {
         System.out.println("Iniciando carga de imágenes...");
@@ -34,17 +34,11 @@ public class controllerequipo {
     private void loadPokemonImages() {
         try {        	        	        	
             ImageView[] imageViews = {imageView1, imageView2, imageView3, imageView4, imageView5, imageView6};
-        	String[] equipoPokemons = pokemon.getByEntrenador(Entrenador.getEntrenadorActual().getId(), imageViews.length);
+            Pokemon equipo[] = Entrenador.getEntrenadorActual().getListaPokemons().getEquipo();
         	for (int index=0; index < imageViews.length; index++) {
-                String imageName = equipoPokemons[index];
-                String fullPath = "/imagenes/pokemon_delante/" + imageName + "_delante.png";
-                System.out.println("Cargando imagen desde: " + fullPath);
-                InputStream is = getClass().getResourceAsStream(fullPath);
-                if (is == null) {
-                    System.out.println("No se pudo encontrar la imagen: " + fullPath);
-                } else {
-                    Image image = new Image(is);
-                    imageViews[index].setImage(image);
+                if (index < equipo.length) {
+                	Image image = UtilView.getImagenDelante(equipo[index].getNombre());
+                	imageViews[index].setImage(image);
                 }        		
         	}        	
         } catch (Exception e) {

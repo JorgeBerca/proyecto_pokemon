@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import modelo.Entrenador;
+import modelo.Pokemon;
+import util.UtilView;
  
 public class ControllerPc {
     @FXML private AnchorPane tablero;
@@ -38,19 +40,11 @@ public class ControllerPc {
  
     private void loadPokemonImages() {
         try {
-        	int MAX_POKEMONS = 36;
-        	String[] misPokemons = pokemon.getByEntrenador(Entrenador.getEntrenadorActual().getId(), MAX_POKEMONS);        		
-        	for (int i = 6; i<MAX_POKEMONS; i++) {
-        		if (misPokemons[i] == null) continue;
-                String fullPath = "/imagenes/pokemon_delante/" + misPokemons[i] + "_delante.png";
-                InputStream is = getClass().getResourceAsStream(fullPath);
-                System.out.println("Cargado pokemon "+i);
-                if (is == null) {
-                    System.out.println("Image not found: " + fullPath);
-                } else {
-                	pokemonImages[-6+i].setImage(new Image(is));
-                }
-            }
+        	Pokemon pc[] = Entrenador.getEntrenadorActual().getListaPokemons().getPc();
+        	for (int index=0; index < pc.length; index++) {
+        		Image image = UtilView.getImagenDelante(pc[index].getNombre());
+            	pokemonImages[index].setImage(image);
+        	}
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error loading Pokémon images: " + e.getMessage());

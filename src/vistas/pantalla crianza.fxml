@@ -41,40 +41,42 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllercrianza">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllercrianza">
+   <children>
+      <AnchorPane>
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
                   <Image url="@../imagenes/fondos_pantallas/fondo_crianza.png" />
                </image>
             </ImageView>
-            <Label layoutX="543.0" layoutY="216.0" prefHeight="61.0" prefWidth="213.0" text="Dime que dos pokemon">
+            <Label layoutX="527.0" layoutY="222.0" prefHeight="61.0" prefWidth="213.0" text="Dime que dos pokemon">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="596.0" layoutY="262.0" text="quieres criar">
+            <Label layoutX="593.0" layoutY="268.0" text="quieres criar">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="596.0" layoutY="292.0" mnemonicParsing="false" opacity="0.0" prefHeight="129.0" prefWidth="108.0" text="criar">
+            <Button layoutX="593.0" layoutY="291.0" mnemonicParsing="false" opacity="0.0" prefHeight="129.0" prefWidth="108.0" text="criar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="806.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="846.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/atras/atras.png" />
                </image>
             </ImageView>
-            <Button layoutX="806.0" layoutY="505.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="60.0" prefWidth="60.0" text="atras">
+            <Button layoutX="846.0" layoutY="526.0" mnemonicParsing="false" onAction="#atras" opacity="0.0" prefHeight="60.0" prefWidth="60.0" text="atras">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+            </Button>
          </children>
-    </AnchorPane>
-  </children>
+      </AnchorPane>
+   </children>
 </VBox>

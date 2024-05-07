@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modelo.Entrenador;
-import modelo.Pokemon;
+import modelo.PokemonFromDex;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ import javafx.scene.control.TextInputDialog;
 public class Controllercaptura {
     @FXML
     private ImageView pokemonrandom;
-    Pokemon pokemon = null;
+    PokemonFromDex pokemon = null;
 
 
     @FXML
@@ -45,44 +45,21 @@ public class Controllercaptura {
     @FXML
     public void capturar() {
         Random rand = new Random();
-        boolean capturado = rand.nextBoolean();
+        boolean capturado = (rand.nextInt(101) <= 60); // 60 %
         
         if (capturado) {
-        	Entrenador entrenador = Entrenador.getEntrenadorActual();
-        	try {
-                String mote = this.getText("Mote del pokémon:", pokemon.getNombre());
-        		Connection connection = BD.getConnetion();
-                String sql = "INSERT INTO POKEMON (NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                    statement.setInt(1, pokemon.getId()); 					// NUM_POKEDEX 
-                    statement.setInt(2, entrenador.getId());				// ID_ENTRENADOR
-                    statement.setInt(3, 1);									// CAJA
-                    statement.setString(4, pokemon.getNombre());			// NOMBRE
-                    statement.setString(5, mote);							// MOTE
-                    statement.setInt(6, rand.nextInt(26) + 25); 			// SALUD (entre 25 y 50) 
-                    statement.setInt(7, rand.nextInt(11) + 10); 			// ATAQUE (entre 10 y 20) 
-                    statement.setInt(8, rand.nextInt(21) + 10); 			// DEFENSA (entre 20 y 30) 
-                    statement.setInt(9, rand.nextInt(16) + 5); 				// VELOCIDAD (entre 15 y 20) 
-                    statement.setInt(10, rand.nextInt(11) + 10); 			// AT_ESPECIAL (entre 15 y 20) 
-                    statement.setInt(11, rand.nextInt(21) + 10); 			// DEF_ESPECIAL (entre 20 y 30) 
-                    statement.setInt(12, 1); 								// NIVEL (1) 
-                    statement.setInt(13, 0); 								// FERTILIDAD (0)
-                    statement.setString (14, (rand.nextInt(2)==0)?"M":"H"); // SEXO (entre 'M' y 'H') 
-                    statement.setInt(15, 0); 								// EXPERIENCIA (0) 
-                    statement.executeUpdate();
-                    showAlert(AlertType.INFORMATION, "¡Captura exitosa!", "Has capturado exitosamente al Pokémon " + pokemon.getNombre() + " y ha sido guardado en la base de datos.");
-                }
-            } catch (SQLException e) {
-                showAlert(AlertType.ERROR, "Error de base de datos", "No se pudo guardar el Pokémon en la base de datos: " + e.getMessage());
-                e.printStackTrace();
-            }
-
-        	
+        	String mote = this.getText("Mote del pokémon:", pokemon.getNombre());
+        	boolean resu = Entrenador.getEntrenadorActual().capturaPokemon(pokemon,mote);
+        	if (resu)
+        		showAlert(AlertType.INFORMATION, "¡Captura exitosa!", "Has capturado exitosamente al Pokémon " + pokemon.getNombre() + " y ha sido guardado en la base de datos.");
+        	else
+                showAlert(AlertType.ERROR, "Captura fallida", "No se ha podido guardar el pokémon, ¿demasiados pokémons?.");
         	
         } else {
             showAlert(AlertType.ERROR, "Captura fallida", "El Pokémon ha escapado.");
             // Hacer que el Pokémon 'desaparezca' al escapar
         }
+        pokemon = null;
         pokemonrandom.setImage(null);  // Esto borrará la imagen actual mostrada
      
     }
@@ -119,7 +96,7 @@ public class Controllercaptura {
         }
     }
     
-    private Pokemon getRadomPokemon() {
+    private PokemonFromDex getRadomPokemon() {
 
     	PokedexBD pokedex = new PokedexBD(BD.getConnetion());
     	
