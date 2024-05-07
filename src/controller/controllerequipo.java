@@ -53,6 +53,37 @@ public class controllerequipo {
         }
     }
     
+	  @FXML
+      public void estadisticas1() {
+		  
+      } 
+    
+	  @FXML
+      public void estadisticas2() {
+		  
+      }
+	  
+	  @FXML
+      public void estadisticas3() {
+		  
+      }
+	  
+	  @FXML
+      public void estadisticas4() {
+		  
+      }
+	  
+	  @FXML
+      public void estadisticas5() {
+		  
+      }
+	  
+	  @FXML
+      public void estadisticas6() {
+		  
+      }
+	  
+	  
     @FXML
     public void atras(javafx.event.ActionEvent event) {
         try {
