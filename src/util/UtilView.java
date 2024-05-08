@@ -1,7 +1,13 @@
 package util;
 
+import java.io.IOException;
 import java.io.InputStream;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+
 import modelo.Entrenador;
 
 
@@ -33,6 +39,18 @@ public class UtilView {
 		Image image = new Image(is);
 	    return image;		
 	}
+	
+    public static void loadSceneInPanel(String fxml, Pane pane ) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Entrenador.getEntrenadorActual().getClass().getResource(fxml));
+            Parent newRoot = loader.load();
+            pane.getChildren().clear(); 
+            pane.getChildren().add(newRoot);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
 	
 	
 	

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+import util.UtilView;
 
 public class ControllerMenu {
 
@@ -19,7 +20,8 @@ public class ControllerMenu {
 
     @FXML
     public void equipo() {
-        loadScene("../vistas/pantalla equipo.fxml");
+    	UtilView.loadSceneInPanel("../vistas/pantalla equipo.fxml", mainContainer);
+        //loadScene("../vistas/pantalla equipo.fxml");
     }
 
     @FXML

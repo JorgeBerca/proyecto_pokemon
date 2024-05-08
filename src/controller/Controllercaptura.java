@@ -44,8 +44,9 @@ public class Controllercaptura {
 
     @FXML
     public void capturar() {
+    	if (pokemon == null) return;
         Random rand = new Random();
-        boolean capturado = (rand.nextInt(101) <= 60); // 60 %
+        boolean capturado = ((rand.nextInt(100)+1) <= 60); // 60 %
         
         if (capturado) {
         	String mote = this.getText("Mote del pokémon:", pokemon.getNombre());
@@ -103,7 +104,7 @@ public class Controllercaptura {
     	int cuantos = pokedex.getCuantosPokemonsHay();
     	
     	Random rand = new Random();
-    	int seleccionado = rand.nextInt(cuantos);
+    	int seleccionado = rand.nextInt(cuantos)+1;
 
     	return pokedex.getPokemonById(seleccionado);
     }

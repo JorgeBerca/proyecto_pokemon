@@ -4,9 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import bbd.BD;
+import bbd.MovimientoBD;
 import bbd.PokemonBD;
 import javafx.scene.control.Alert.AlertType;
 
@@ -15,6 +18,7 @@ public class Entrenador {
 	private static Entrenador entrenadorActual = null;
 	
 	PokemonBD pkBD = new PokemonBD(BD.getConnetion());
+	MovimientoBD mvBD = new MovimientoBD(BD.getConnetion());
 	
 	public static Entrenador getEntrenadorActual() {
 		return entrenadorActual;
@@ -78,6 +82,8 @@ public class Entrenador {
 			return false; // Demasiados pokemon
 		}
 		
+		
+	
         String sql = "INSERT INTO POKEMON (NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, pokemonCapturado.getId()); 			// NUM_POKEDEX 
@@ -94,11 +100,15 @@ public class Entrenador {
             statement.setInt(12, 1); 								// NIVEL (1) 
             statement.setInt(13, 0); 								// FERTILIDAD (0)
             statement.setString (14, (rand.nextInt(2)==0)?"M":"H"); // SEXO (entre 'M' y 'H') 
-            statement.setInt(15, 0);            
+            statement.setInt(15, 0);          						//nivel
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
             keys.next();
             pokemonId=keys.getInt(1);
+            
+            guardaMovimientosNuevoPokemon(pokemonId);
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -133,7 +143,32 @@ public class Entrenador {
 		recargaListaPokemon();
 	}
 	
+	public void guardaMovimientosNuevoPokemon(int id) {
+		Pokemon pokemon = this.pkBD.getPokemon(id);
+		Movimiento movNormales[] = mvBD.getMovimientosNivel(pokemon.getNivel(), "Normal");
+		Movimiento movTipo1[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo1() );
+		if ("Normal".equals(pokemon.getTipo1())) movTipo1 = new Movimiento[0];
+		Movimiento movTipo2[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo2() );
+		if ("Normal".equals(pokemon.getTipo2())) movTipo2 = new Movimiento[0];
+		Movimiento movimientos[] = Stream.concat(Stream.concat(Arrays.stream(movNormales), Arrays.stream(movTipo1)), Arrays.stream(movTipo2)).toArray(Movimiento[]::new);
+		for (int i=0; i<movimientos.length; i++) {
+			String activo = (i<4)? "S" : "N";
+			guardaMovimientoPokemon(movimientos[i].getIdMovimiento(), id, activo );			
+		}
+	}
 	
+	public void guardaMovimientoPokemon(int idMovimiento, int idPokemon, String activo) {
+        String sql = "INSERT INTO movimiento_pokemon (ID_MOVIMIENTO,ID_POKEMON, ACTIVO) VALUES (?,?,?)";
+        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
+            statement.setInt(1, idMovimiento); 
+            statement.setInt(2, idPokemon);
+            statement.setString(3, activo);
+            statement.executeUpdate();                        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		
+	}
 	
 }
 

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.ListaPokemon;
+import modelo.Movimiento;
 import modelo.Pokemon;
 import modelo.PokemonFromDex;
 
@@ -15,8 +16,11 @@ public class PokemonBD {
 
 	private Connection connection;
 	
+	MovimientosPokemonBD mpBD;
+	
 	public PokemonBD(Connection connetion) {
 		this.connection = connetion;
+		this.mpBD = new MovimientosPokemonBD(connetion);
 	}
 	
 	public String[] getByEntrenador(int idEntrenador, int cuantos) {
@@ -43,7 +47,12 @@ public class PokemonBD {
 	    try {
 	    	ArrayList<Pokemon>  lista = new ArrayList();
 	    	Statement stmt = connection.createStatement();
-		    ResultSet rs = stmt.executeQuery("SELECT * FROM pokemon WHERE ID_ENTRENADOR = "+idEntrenador+" ORDER BY ID_POKEMON");		    		    
+		    ResultSet rs = stmt.executeQuery("SELECT pokemon.*, pokedex.TIPO1, pokedex.TIPO2 "
+								    		+" FROM pokemon "
+								    		+" INNER JOIN pokedex ON pokedex.NUM_POKEDEX=pokemon.NUM_POKEDEX "
+								    		+" WHERE pokemon.ID_ENTRENADOR = " + idEntrenador
+								    		+" ORDER BY pokemon.ID_POKEMON"
+								    		+"");		    		    
 		    while (rs.next()) {
 		    	Pokemon pokemon = new Pokemon(
 		    			rs.getInt("ID_POKEMON"),
@@ -61,8 +70,11 @@ public class PokemonBD {
 		    			rs.getInt("NIVEL"),
 		    			rs.getInt("FERTILIDAD"),
 		    			rs.getString("SEXO"),
-		    			rs.getInt("ESTADO")		    			
-     			);		    			
+		    			rs.getInt("ESTADO"),		    			
+		    			rs.getString("TIPO1"),
+		    			rs.getString("TIPO2")
+     			);
+		    	cargaMovimientos(pokemon);
 		    	lista.add(pokemon);
 		    }		    
 		    Pokemon[] resultado = new Pokemon[lista.size()];
@@ -78,7 +90,11 @@ public class PokemonBD {
 	public Pokemon getPokemon(int idPokemon) {
 	    try {
 	    	Statement stmt = connection.createStatement();
-		    ResultSet rs = stmt.executeQuery("SELECT * FROM pokemon WHERE ID_POKEMON = "+idPokemon);		    		    
+		    ResultSet rs = stmt.executeQuery("SELECT pokemon.*, pokedex.TIPO1, pokedex.TIPO2 "
+								    		+" FROM pokemon "
+								    		+" INNER JOIN pokedex ON pokedex.NUM_POKEDEX=pokemon.NUM_POKEDEX "
+								    		+" WHERE pokemon.ID_POKEMON = " + idPokemon
+								    		+ "");		    		    
 		    if (!rs.next()) return null;
 	    	Pokemon pokemon = new Pokemon(
 	    			rs.getInt("ID_POKEMON"),
@@ -96,8 +112,11 @@ public class PokemonBD {
 	    			rs.getInt("NIVEL"),
 	    			rs.getInt("FERTILIDAD"),
 	    			rs.getString("SEXO"),
-	    			rs.getInt("ESTADO")		    			
+	    			rs.getInt("ESTADO"),		    			
+	    			rs.getString("TIPO1"),
+	    			rs.getString("TIPO2")
  			);		    			
+	    	cargaMovimientos(pokemon);
 		    return pokemon;
        } catch (Exception e) {
            e.printStackTrace();
@@ -139,6 +158,11 @@ public class PokemonBD {
         } catch (SQLException e) {
             e.printStackTrace();
         }		
+	}
+	
+	public void cargaMovimientos(Pokemon pokemon) {
+		pokemon.setMovimientosActivos(mpBD.getMovimientosActivosPokemon(pokemon.getIdPokemon()));
+		pokemon.setMovimientos(mpBD.getMovimientosPokemon(pokemon.getIdPokemon()));
 	}
 	
 	

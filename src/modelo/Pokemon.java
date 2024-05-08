@@ -23,15 +23,19 @@ public class Pokemon {
     private String movimiento3;
     private String movimiento4;
     private int idObjeto;
+    private String tipo1;
+	private String tipo2;
+	private Movimiento movimientosActivos[];
+	private Movimiento movimientos[];
 
     // (NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, 
     // VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA
 
     
-    // Constructor
+	// Constructor
     public Pokemon(int idPokemon, int numPokedex, int idEntrenador, int caja, String nombre, String mote, int salud,
                    int ataque, int defensa, int velocidad, int atEspecial, int defEspecial, int nivel, int fertilidad,
-                   String sexo, int experiencia) {
+                   String sexo, int experiencia, String tipo1, String tipo2) {
     			   // String estado, String movimiento1, String movimiento2,
                    // String movimiento3, String movimiento4, int idObjeto
         this.idPokemon = idPokemon;
@@ -50,6 +54,8 @@ public class Pokemon {
         this.fertilidad = fertilidad;
         this.sexo = sexo;
         this.experiencia = experiencia;
+        this.tipo1 = tipo1;
+        this.tipo2 = tipo2;
         // this.estado = estado;
         // this.movimiento1 = movimiento1;
         // this.movimiento2 = movimiento2;
@@ -250,7 +256,39 @@ public class Pokemon {
     	return (this.caja == 1);
     }
 
+    public String getTipo1() {
+		return tipo1;
+	}
 
+	public void setTipo1(String tipo1) {
+		this.tipo1 = tipo1;
+	}
+
+	public String getTipo2() {
+		return tipo2;
+	}
+
+	public void setTipo2(String tipo2) {
+		this.tipo2 = tipo2;
+	}
+
+	public Movimiento[] getMovimientosActivos() {
+		return movimientosActivos;
+	}
+
+	public void setMovimientosActivos(Movimiento[] movimientosActivos) {
+		this.movimientosActivos = movimientosActivos;
+	}
+
+    public Movimiento[] getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(Movimiento[] movimientos) {
+		this.movimientos = movimientos;
+	}
+
+	
     @Override
     public String toString() {
         return "Pokemon{" +

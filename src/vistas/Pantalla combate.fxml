@@ -46,6 +46,51 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
+            <AnchorPane fx:id="botonera" layoutX="43.0" layoutY="468.0" prefHeight="117.0" prefWidth="394.0">
+               <children>
+                  <Button layoutX="6.0" layoutY="11.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" text="Button" />
+                  <Button layoutX="203.0" layoutY="11.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" text="Button" />
+                  <Button layoutX="6.0" layoutY="69.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" text="Button" />
+                  <Button layoutX="203.0" layoutY="69.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" text="Button" />
+               </children></AnchorPane>
+            <AnchorPane fx:id="selector" layoutX="98.0" layoutY="33.0" prefHeight="198.0" prefWidth="360.0" visible="false">
+               <children>
+                  <ImageView fx:id="fondo" fitHeight="414.0" fitWidth="945.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/fondos_pantallas/fondo_elegir_pokemon.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="131.0" fitWidth="184.0" layoutX="24.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="131.0" fitWidth="184.0" layoutX="276.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="131.0" fitWidth="184.0" layoutX="519.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="131.0" fitWidth="184.0" layoutX="24.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="131.0" fitWidth="184.0" layoutX="276.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="131.0" fitWidth="184.0" layoutX="519.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children></AnchorPane>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
                   <Image url="@../imagenes/fondos_pantallas/fondo_combate.png" />
@@ -56,7 +101,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="454.0" layoutY="531.0" mnemonicParsing="false" onAction="#pokemon" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Pokemon">
+            <Button layoutX="454.0" layoutY="531.0" mnemonicParsing="false" onAction="#mostrarEquipo" opacity="0.0" prefHeight="48.0" prefWidth="191.0" text="Pokemon">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
