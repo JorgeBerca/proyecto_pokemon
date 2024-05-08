@@ -62,7 +62,7 @@ public class ControllerPc {
         @FXML
         public void estadisticas1() {
         	try {
-                Parent secondaryView = FXMLLoader.load(getClass().getResource("@../vistas/pantalla estadisticas.fxml"));
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
                 Scene secondaryScene = new Scene(secondaryView);
 
                 // Obtiene la ventana actual y establece la nueva escena

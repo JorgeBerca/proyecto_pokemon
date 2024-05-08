@@ -45,7 +45,7 @@
          <children>
             <ImageView fitHeight="380.0" fitWidth="520.0">
                <image>
-                  <Image url="@../imagenes/fondos_pantallas/fondo%20estadisticas.png" />
+                  <Image url="@../imagenes/fondos_pantallas/fondo estadisticas.png" />
                </image>
             </ImageView>
             <Label layoutX="26.0" layoutY="21.0" prefHeight="19.0" prefWidth="133.0" text="Nombre de pokemon" />
