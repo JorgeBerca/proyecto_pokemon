@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2024 a las 21:23:47
+-- Tiempo de generación: 08-05-2024 a las 21:43:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,12 +54,12 @@ INSERT INTO `entrenador` (`ID_ENTRENADOR`, `NOM_ENTRENADOR`, `PASS`, `POKEDOLLAR
 (1, 'abc', '123456', NULL),
 (2, 'Jorgito', '123', NULL),
 (3, '1', '1', NULL),
-(4, 'jaime', '123', NULL),
 (5, '123', '123', NULL),
 (6, 'Robelto', '123', NULL),
 (7, '', '', NULL),
 (8, '2', '2', NULL),
-(9, '2', '2', NULL);
+(9, '2', '2', NULL),
+(10, '3', '3', NULL);
 
 -- --------------------------------------------------------
 
@@ -164,7 +164,7 @@ INSERT INTO `movimientos` (`ID_MOVIMIENTO`, `NOM_MOVIMIENTO`, `POTENCIA`, `TIPO`
 (65, 'Escupir', 60, 'Normal', NULL, NULL, NULL, NULL, NULL, 19),
 (66, 'Chaleco bomba', 1000, 'Normal', NULL, NULL, NULL, NULL, NULL, 10),
 (67, 'Mochila bomba', 1000, 'Normal', NULL, NULL, NULL, NULL, NULL, 15),
-(68, 'Placaje', 40, 'Normal', NULL, NULL, NULL, NULL, NULL, 7),
+(68, 'Placaje', 40, 'Normal', NULL, NULL, NULL, NULL, NULL, 1),
 (69, 'Suspenso', 9999, 'Normal', NULL, NULL, NULL, NULL, NULL, 30),
 (70, 'Amego Segarro', NULL, 'Normal', 'Defensa', 55, NULL, NULL, NULL, 22);
 
@@ -179,6 +179,27 @@ CREATE TABLE `movimiento_pokemon` (
   `ID_POKEMON` int(11) NOT NULL,
   `ACTIVO` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `movimiento_pokemon`
+--
+
+INSERT INTO `movimiento_pokemon` (`ID_MOVIMIENTO`, `ID_POKEMON`, `ACTIVO`) VALUES
+(68, 80, 'S'),
+(68, 81, 'S'),
+(68, 82, 'S'),
+(68, 83, 'S'),
+(68, 84, 'S'),
+(68, 85, 'S'),
+(68, 86, 'S'),
+(68, 87, 'S'),
+(68, 88, 'S'),
+(68, 89, 'S'),
+(68, 90, 'S'),
+(68, 91, 'S'),
+(68, 92, 'S'),
+(68, 93, 'S'),
+(68, 94, 'S');
 
 -- --------------------------------------------------------
 
@@ -299,6 +320,31 @@ CREATE TABLE `pokemon` (
   `ID_OBJETO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `pokemon`
+--
+
+INSERT INTO `pokemon` (`ID_POKEMON`, `NUM_POKEDEX`, `ID_ENTRENADOR`, `CAJA`, `NOMBRE`, `MOTE`, `SALUD`, `ATAQUE`, `DEFENSA`, `VELOCIDAD`, `AT_ESPECIAL`, `DEF_ESPECIAL`, `NIVEL`, `FERTILIDAD`, `SEXO`, `ESTADO`, `EXPERIENCIA`, `MOVIMIENTO1`, `MOVIMIENTO2`, `MOVIMIENTO3`, `MOVIMIENTO4`, `ID_OBJETO`) VALUES
+(66, 45, 3, 0, 'Machoke', 'Machoke', 46, 11, 30, 19, 13, 13, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(67, 9, 3, 0, 'Blastoise', 'Blastoise', 47, 13, 20, 15, 15, 25, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(68, 22, 3, 0, 'Exeggutor', 'Exeggutor', 35, 13, 22, 20, 16, 12, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(69, 18, 3, 0, 'Pidgeot', 'Pidgeot', 26, 11, 23, 13, 17, 15, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(80, 44, 3, 1, 'Machop', 'Machop', 50, 10, 20, 15, 11, 11, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(81, 1, 3, 1, 'Bulbasaur', 'Bulbasaur', 30, 18, 14, 12, 12, 16, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(82, 40, 3, 1, 'Haunter', 'Haunter', 31, 14, 24, 5, 20, 18, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(83, 41, 10, 0, 'Gengar', 'Gengar', 47, 20, 15, 11, 19, 27, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(84, 42, 10, 0, 'Lapras', 'Lapras', 26, 18, 11, 19, 20, 20, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(85, 17, 10, 0, 'Pidgeotto', 'Pidgeotto', 35, 10, 14, 12, 16, 13, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(86, 50, 3, 1, 'Arceus', 'Arceus', 40, 18, 10, 11, 16, 11, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(87, 32, 10, 0, 'Persian', 'Persian', 48, 17, 16, 19, 10, 30, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(88, 31, 10, 0, 'Meowth', 'Meowth', 44, 11, 19, 17, 15, 30, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(89, 20, 10, 0, 'Raticate', 'Raticate', 25, 13, 16, 7, 12, 16, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(90, 13, 10, 1, 'Weedle', 'Weedle', 25, 13, 28, 15, 13, 18, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(91, 31, 10, 1, 'Meowth', 'Meowth', 33, 18, 12, 6, 17, 21, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(92, 20, 10, 1, 'Raticate', 'Raticate', 40, 18, 29, 7, 16, 21, 1, 0, 'H', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(93, 50, 10, 1, 'Arceus', 'Arceus', 30, 11, 15, 6, 20, 24, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(94, 31, 10, 1, 'Meowth', 'Meowth', 50, 15, 30, 10, 15, 16, 1, 0, 'M', NULL, 0, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -386,13 +432,13 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT de la tabla `entrenador`
 --
 ALTER TABLE `entrenador`
-  MODIFY `ID_ENTRENADOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_ENTRENADOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-  MODIFY `ID_POKEMON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `ID_POKEMON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- Restricciones para tablas volcadas
