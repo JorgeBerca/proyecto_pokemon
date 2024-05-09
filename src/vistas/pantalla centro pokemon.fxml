@@ -86,28 +86,28 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="166.0" fitWidth="224.0" layoutX="115.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/atras/enfermero.png" />
                </image>
             </ImageView>
-            <Label layoutX="91.0" layoutY="270.0" prefHeight="60.0" prefWidth="143.0" text="Yo te ayudare" textFill="RED">
+            <Label layoutX="74.0" layoutY="237.0" prefHeight="60.0" prefWidth="258.0" text="yo ayudare a tu pokemon" textFill="RED">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="241.0" prefHeight="157.0" prefWidth="411.0" text="a recordar movimientos.  " textFill="RED">
+            <Label layoutX="91.0" layoutY="270.0" prefHeight="60.0" prefWidth="258.0" text="a recordar movimientos.  " textFill="RED">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="108.0" layoutY="313.0" prefHeight="62.0" prefWidth="224.0" text="Haz clic en mi." textFill="RED">
+            <Label layoutX="125.0" layoutY="299.0" prefHeight="62.0" prefWidth="224.0" text="Haz clic en mi." textFill="RED">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
             <Button layoutX="399.0" layoutY="94.0" mnemonicParsing="false" onAction="#curar" opacity="0.0" prefHeight="314.0" prefWidth="143.0" text="curar" />
-            <Button layoutX="129.0" layoutY="161.0" mnemonicParsing="false" onAction="#recuerdaMovimientos" opacity="0.0" prefHeight="126.0" prefWidth="113.0" text="curar">
+            <Button layoutX="133.0" layoutY="130.0" mnemonicParsing="false" onAction="#recuerdaMovimientos" opacity="0.0" prefHeight="136.0" prefWidth="115.0" text="curar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
