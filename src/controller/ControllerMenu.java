@@ -1,10 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import modelo.Entrenador;
 import util.UtilView;
 
 public class ControllerMenu {
@@ -12,7 +16,17 @@ public class ControllerMenu {
     // Asumiendo que tienes un BorderPane en tu archivo FXML principal que actuará como contenedor principal
     @FXML
     private BorderPane mainContainer;
+    
+    @FXML
+    private Label txtDinero;
 
+    public void initialize() {
+    	int dinero = Entrenador.getEntrenadorActual().getDinero();
+    	txtDinero.setText("PokeDólares: "+UtilView.formateaDinero(dinero));
+    }
+    	
+    
+    
     @FXML
     public void captura() {
         loadScene("../vistas/pantalla captura.fxml");

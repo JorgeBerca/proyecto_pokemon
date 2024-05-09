@@ -126,7 +126,7 @@ public class PokemonBD {
 	}
 	
 	public void guarda(Pokemon pokemon) {
-        String sql = "UPDATE POKEMON SET NUM_POKEDEX=?, ID_ENTRENADOR=?, CAJA=?, NOMBRE=?, MOTE=?, SALUD=?, ATAQUE=?, DEFENSA=?, VELOCIDAD=?, AT_ESPECIAL=?, DEF_ESPECIAL=?, NIVEL=?, FERTILIDAD=?, SEXO=?, EXPERIENCIA=? WHERE POKEMON_ID=?";
+        String sql = "UPDATE POKEMON SET NUM_POKEDEX=?, ID_ENTRENADOR=?, CAJA=?, NOMBRE=?, MOTE=?, SALUD=?, ATAQUE=?, DEFENSA=?, VELOCIDAD=?, AT_ESPECIAL=?, DEF_ESPECIAL=?, NIVEL=?, FERTILIDAD=?, SEXO=?, EXPERIENCIA=? WHERE ID_POKEMON=?";
         try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
             statement.setInt(1, pokemon.getNumPokedex() ); 			// NUM_POKEDEX 
             statement.setInt(2, pokemon.getIdEntrenador());						// ID_ENTRENADOR
@@ -151,7 +151,16 @@ public class PokemonBD {
 	}
 
 	public void borra(Pokemon pokemon) {
-        String sql = "DELETE FROM POKEMON WHERE POKEMON_ID=?";
+		if (pokemon==null) return;
+        String sql;
+        sql = "DELETE FROM MOVIMIENTO_POKEMON WHERE ID_POKEMON=?";
+        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
+            statement.setInt(1, pokemon.getIdPokemon() );	            
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }		
+        sql = "DELETE FROM POKEMON WHERE ID_POKEMON=?";
         try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
             statement.setInt(1, pokemon.getIdPokemon() );	            
             statement.executeUpdate();
@@ -160,9 +169,23 @@ public class PokemonBD {
         }		
 	}
 	
+	
 	public void cargaMovimientos(Pokemon pokemon) {
 		pokemon.setMovimientosActivos(mpBD.getMovimientosActivosPokemon(pokemon.getIdPokemon()));
 		pokemon.setMovimientos(mpBD.getMovimientosPokemon(pokemon.getIdPokemon()));
+	}
+	
+	public void actualizaDineroEntrenador(int idEntrenador, int nuevoDinero) {
+        String sql = "UPDATE ENTRENADOR SET POKEDOLLARS=? WHERE ID_ENTRENADOR=?";
+        System.out.println("Update: "+idEntrenador+" dinero = "+nuevoDinero);
+        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
+            statement.setInt(1, nuevoDinero);
+            statement.setInt(2, idEntrenador ); 
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }		
+		
 	}
 	
 	

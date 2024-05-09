@@ -25,6 +25,7 @@ public class Entrenador {
 	}
 	
 	public static void setEntrenadorActual(int id, String nombre, int dinero) {
+		System.out.println("Dinero del entrenador "+nombre+" = "+dinero);
 		entrenadorActual = new Entrenador(id, nombre, dinero);		
 	}
 
@@ -34,6 +35,7 @@ public class Entrenador {
 	String nombre;
 	int dinero;
 	ListaPokemon listaPokemons;
+	Pokemon pokemonElegido;
 
 
 	public Entrenador(int id, String nombre, int dinero) {
@@ -65,6 +67,22 @@ public class Entrenador {
 
 	public void setListaPokemons(ListaPokemon listaPokemons) {
 		this.listaPokemons = listaPokemons;
+	}
+	
+	public Pokemon getPokemonElegido() {
+		return pokemonElegido;
+	}
+
+	public void setPokemonElegido(Pokemon pokemonElegido) {
+		this.pokemonElegido = pokemonElegido;
+	}
+	
+	public int getCuantosEquipo() {
+		return this.getListaPokemons().getEquipo().length;
+	}
+	
+	public int getCuantosPC() {
+		return this.getListaPokemons().getPc().length;		
 	}
 	
 	public boolean capturaPokemon(PokemonFromDex pokemonCapturado, String mote) {
@@ -127,20 +145,38 @@ public class Entrenador {
 		Entrenador.getEntrenadorActual().setListaPokemons(lista);		
 	}
 	
-	public void switchPokemon(int id) {
+	public boolean switchPokemon(int id) {
 		Pokemon pokemon = pkBD.getPokemon(id);
-		if (pokemon==null) return;
+		if (pokemon==null) return false;
+		int caja = pokemon.getCaja();
 		int nuevaCaja=0;
-		if (pokemon.getCaja()==0) nuevaCaja=1;
+		if (caja==0) nuevaCaja=1;		
+		if (nuevaCaja==0 && this.getCuantosEquipo()>=6) return false;
+		if (nuevaCaja==1 && this.getCuantosPC()>=30) return false;
 		pokemon.setCaja(nuevaCaja);
 		pkBD.guarda(pokemon);
 		recargaListaPokemon();
+		return true;
 	}
 	
-	public void soltarPokemon(int id) {
+	public void liberarPokemon(int id) {
 		Pokemon pokemon = pkBD.getPokemon(id);
 		pkBD.borra(pokemon);
 		recargaListaPokemon();
+	}
+
+	public int venderPokemon(int id) {
+		
+		Pokemon pokemon = pkBD.getPokemon(id);
+		pkBD.borra(pokemon);
+		recargaListaPokemon();
+
+		int precio = 1000;
+		this.dinero = this.dinero + precio;
+		
+		pkBD.actualizaDineroEntrenador(this.id, this.dinero);
+		return precio;
+		
 	}
 	
 	public void guardaMovimientosNuevoPokemon(int id) {
@@ -169,6 +205,7 @@ public class Entrenador {
         }
 		
 	}
+
 	
 }
 
