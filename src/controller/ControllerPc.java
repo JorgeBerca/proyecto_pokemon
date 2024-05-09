@@ -19,7 +19,10 @@ import modelo.Pokemon;
 import util.UtilView;
  
 public class ControllerPc {
-    @FXML private AnchorPane tablero;
+	
+	@FXML
+	private AnchorPane tablero;
+    
     private ImageView[] pokemonImages = new ImageView[30];
  
     private PokemonBD pokemon = new PokemonBD(BD.getConnetion());
@@ -76,125 +79,441 @@ public class ControllerPc {
         
         @FXML
         public void estadisticas2() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas3() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas4() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas5() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas6() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas7() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas8() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas9() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas10() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas11() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas12() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas13() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas14() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas15() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas16() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas17() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas18() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas19() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas20() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas21() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas22() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas23() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas24() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas25() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas26() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas27() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas28() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas29() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         @FXML
         public void estadisticas30() {
+        	try {
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Scene secondaryScene = new Scene(secondaryView);
+
+                // Obtiene la ventana actual y establece la nueva escena
+                Stage window = (Stage) ((Node) secondaryView).getScene().getWindow();
+                window.setScene(secondaryScene);
+                window.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
    
-        
-   
-    
-   
+
     @FXML 
     public void atras(javafx.event.ActionEvent event) {
         try {
