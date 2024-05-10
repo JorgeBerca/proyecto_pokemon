@@ -58,7 +58,6 @@ public class ControllerMenu {
     @FXML
     public void centropokemon() {
         loadScene("../vistas/pantalla centro pokemon.fxml");
-        playMusic;
     }
 
     @FXML
