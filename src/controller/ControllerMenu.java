@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -8,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import modelo.Entrenador;
 import util.UtilView;
 
@@ -25,7 +28,21 @@ public class ControllerMenu {
     	txtDinero.setText("PokeDólares: "+UtilView.formateaDinero(dinero));
     }
     	
-    
+    public void playMusic() {
+        try {
+            String path = "C:/Users/jorge/Documents/GitHub/proyecto_pokemon/sonidos/coralChorus.mp3";
+            File file = new File(path);
+            String mediaURL = file.toURI().toString();
+            Media sound = new Media(mediaURL);
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al reproducir música: " + e.getMessage());
+        }
+    }
+
     
     @FXML
     public void captura() {
@@ -41,6 +58,7 @@ public class ControllerMenu {
     @FXML
     public void centropokemon() {
         loadScene("../vistas/pantalla centro pokemon.fxml");
+        playMusic;
     }
 
     @FXML

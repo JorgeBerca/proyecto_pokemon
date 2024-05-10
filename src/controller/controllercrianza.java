@@ -15,7 +15,7 @@ public class controllercrianza {
 	@FXML
     public void criar (ActionEvent event) {
         try {
-            Parent pcView = FXMLLoader.load(getClass().getResource("../vistas/pantalla crianzaSecundaria.fxml"));
+            Parent pcView = FXMLLoader.load(getClass().getResource("../vistas/menu crianzaSecundaria.fxml"));
             
             // Obtener el escenario actual y establecer la nueva escena
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
