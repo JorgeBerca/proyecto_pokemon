@@ -65,7 +65,7 @@ public class Controllerestadisticas extends PokemonModalController {
 			Entrenador entrenador = Entrenador.getEntrenadorActual();
 			int dinero = entrenador.venderPokemon(pokemon.getIdPokemon());
 			int dineroEntrenador=Entrenador.getEntrenadorActual().getDinero();				
-			UtilView.showAlert("Proyecto Pokemon", "Has vendido el pokémon ahora esta encerrado, asustado y triste tu "+nombre+" te han dado por el "+UtilView.formateaDinero(dinero)+" PokeDólares. Ahora tienes "+UtilView.formateaDinero(dineroEntrenador)+" PokeDólares en tu monedero.");
+			UtilView.showAlert("Proyecto Pokemon", "Tu pokemon ha sido vendido. Ahora está encerrado, asustado y triste tu "+nombre+" te han dado por el "+UtilView.formateaDinero(dinero)+" PokeDólares. Ahora tienes "+UtilView.formateaDinero(dineroEntrenador)+" PokeDólares en tu monedero.");
 		}
 		cerrar();
 	}
