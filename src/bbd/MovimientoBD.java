@@ -21,7 +21,7 @@ public class MovimientoBD {
 	    try {
 	    	ArrayList<Movimiento>  lista = new ArrayList();
 	    	Statement stmt = connection.createStatement();
-	    	String sql = "SELECT * FROM movimientos WHERE TIPO='"+tipo+"' AND NIVEL_APRENDIZAJE<="+nivel+" ORDER BY ID_MOVIMIENTO";
+	    	String sql = "SELECT * FROM movimientos WHERE TIPO='"+tipo+"' AND NIVEL_APRENDIZAJE<="+nivel+" AND ESTADO IS NULL ORDER BY ID_MOVIMIENTO";
 		    ResultSet rs = stmt.executeQuery(sql);		    		    
 		    while (rs.next()) {
 		    	Movimiento movimiento = new Movimiento(
