@@ -46,38 +46,38 @@ public class ControllerMenu {
     
     @FXML
     public void captura() {
-        loadScene("../vistas/pantalla captura.fxml");
+        loadScene("../vistas/PantallaCaptura.fxml");
     }
 
     @FXML
     public void equipo() {
-    	UtilView.loadSceneInPanel("../vistas/pantalla equipo.fxml", mainContainer);
+    	UtilView.loadSceneInPanel("../vistas/PantallaEquipo.fxml", mainContainer);
         //loadScene("../vistas/pantalla equipo.fxml");
     }
 
     @FXML
     public void centropokemon() {
-        loadScene("../vistas/pantalla centro pokemon.fxml");
+        loadScene("../vistas/PantallaCentroPokemon.fxml");
     }
 
     @FXML
     public void combate() {
-        loadScene("../vistas/Pantalla combate.fxml");
+        loadScene("../vistas/PantallaCombate.fxml");
     }
 
     @FXML
     public void entrenamiento() {
-        loadScene("../vistas/pantalla_entrenamiento.fxml");
+        loadScene("../vistas/PantallaEntrenamiento.fxml");
     }
 
     @FXML
     public void crianza() {
-        loadScene("../vistas/pantalla crianza.fxml");
+        loadScene("../vistas/PantallaCrianza.fxml");
     }
 
     @FXML
     public void mochila() {
-        loadScene("../vistas/pantalla mochila tienda.fxml");
+        loadScene("../vistas/PantallaMochilaTienda.fxml");
     }
     
     private void loadScene(String fxml) {

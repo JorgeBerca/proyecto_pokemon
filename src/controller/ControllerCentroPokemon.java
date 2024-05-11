@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.UtilView;
 import javafx.event.ActionEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -38,7 +39,7 @@ public class ControllerCentroPokemon {
     public void pc(ActionEvent event) {
         try {
             // Cargar la vista para el PC de almacenamiento Pokémon
-            Parent pcView = FXMLLoader.load(getClass().getResource("../vistas/pantalla pc.fxml"));
+            Parent pcView = FXMLLoader.load(getClass().getResource("../vistas/PantallaPC.fxml"));
             
             // Obtener el escenario actual y establecer la nueva escena
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -54,7 +55,7 @@ public class ControllerCentroPokemon {
     @FXML
     public void recuerdaMovimientos(ActionEvent event) {
         try {
-            Parent menuView = FXMLLoader.load(getClass().getResource("/vistas/pantalla recuerda_movimientos.fxml"));
+            Parent menuView = FXMLLoader.load(getClass().getResource("/vistas/PantallaRecuerdaMovimientos.fxml"));
             
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(menuView));
@@ -70,17 +71,6 @@ public class ControllerCentroPokemon {
     
     @FXML
     public void atras(javafx.event.ActionEvent event) {
-        try {
-            // Cargar la vista del menú
-            Parent menuView = FXMLLoader.load(getClass().getResource("/vistas/menu_final.fxml"));
-            
-            // Obtener el escenario actual y establecer la nueva escena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(menuView));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al cargar la pantalla del menú: " + e.getMessage());
-        }
+    	UtilView.mostrarMenuPrincipal(((Node) event.getSource()).getScene());
     }
 }

@@ -12,15 +12,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../vistas/login_mediano_final.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../vistas/PantallaLogin.fxml"));
             Parent root = loader.load();
     		Scene scene = new Scene(root);
             primaryStage.setScene(scene);
     		primaryStage.setTitle("Proyecto Pokemon");
             primaryStage.setResizable(false);
-            
-           
-
             primaryStage.show();
         } catch(IOException e) {
             e.printStackTrace();

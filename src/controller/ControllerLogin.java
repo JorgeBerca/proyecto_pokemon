@@ -46,7 +46,7 @@ public class ControllerLogin {
 
     private void loadNextScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../vistas/menu_final.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../vistas/PantallaMenuPrincipal.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) user1.getScene().getWindow();

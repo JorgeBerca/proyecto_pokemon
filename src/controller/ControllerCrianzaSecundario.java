@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.UtilView;
 
 public class ControllerCrianzaSecundario {
 	
@@ -28,17 +29,6 @@ public class ControllerCrianzaSecundario {
 
     @FXML
     public void atras(javafx.event.ActionEvent event) {
-        try {
-            // Cargar la vista del menú
-            Parent menuView = FXMLLoader.load(getClass().getResource("../vistas/pantalla crianza.fxml"));
-            
-            // Obtener el escenario actual y establecer la nueva escena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(menuView));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al cargar la pantalla de crianza: " + e.getMessage());
-        }
+    	UtilView.mostrarPantalla("../vistas/PantallaCrianza.fxml",((Node) event.getSource()).getScene());
     }
 }

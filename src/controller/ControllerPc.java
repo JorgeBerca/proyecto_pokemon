@@ -82,7 +82,7 @@ public class ControllerPc {
         @FXML
         public void estadisticas1(MouseEvent event) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/PantallaEstadisticas.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -96,7 +96,7 @@ public class ControllerPc {
         @FXML
         public void estadisticas2(MouseEvent event) {
             try {
-                Parent secondaryView = FXMLLoader.load(getClass().getResource("../vistas/pantalla_estadisticas.fxml"));
+                Parent secondaryView = FXMLLoader.load(getClass().getResource("/vistas/PantallaEstadisticas.fxml"));
                 Scene secondaryScene = new Scene(secondaryView);
                 Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 window.setScene(secondaryScene);
@@ -118,22 +118,12 @@ public class ControllerPc {
 
     @FXML 
     public void atras(javafx.event.ActionEvent event) {
-        try {
-            // Cargar la vista del menú
-            Parent menuView = FXMLLoader.load(getClass().getResource("/vistas/menu_final.fxml"));
-            // Obtener el escenario actual y establecer la nueva escena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(menuView));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al cargar la pantalla del menú: " + e.getMessage());
-        }
+    	UtilView.mostrarMenuPrincipal(((Node) event.getSource()).getScene());
     }
 
 	public void mostrarEstadisticas(Pokemon pokemon) {
 		Entrenador.getEntrenadorActual().setPokemonElegido(pokemon);
-		UtilView.loadSceneModal("../vistas/pantalla_estadisticas.fxml","Estadísticas",pokemon);
+		UtilView.loadSceneModal("/vistas/PantallaEstadisticas.fxml","Estadísticas",pokemon);
     	loadPokemonImages();    			
 	}        
     

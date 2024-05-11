@@ -112,18 +112,7 @@ public class ControllerCombate {
 	
     @FXML
     public void atras(javafx.event.ActionEvent event) {
-        try {
-            // Cargar la vista del menú
-            Parent menuView = FXMLLoader.load(getClass().getResource("/vistas/menu_final.fxml"));
-            
-            // Obtener el escenario actual y establecer la nueva escena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(menuView));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al cargar la pantalla del menú: " + e.getMessage());
-        }
+    	UtilView.mostrarMenuPrincipal(((Node) event.getSource()).getScene());
     }
     
     // Maneja los clicks en los ImageViews
