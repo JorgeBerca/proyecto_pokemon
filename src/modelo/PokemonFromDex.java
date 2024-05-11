@@ -9,11 +9,11 @@ public class PokemonFromDex {
 	int		nivel;
 	
 	public PokemonFromDex(
-			int		id,
-			String 	nombre,
-			String	tipo1,
-			String 	tipo2,
-			int		nivel) {
+		int		id,
+		String 	nombre,
+		String	tipo1,
+		String 	tipo2,
+		int		nivel) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo1 = tipo1;

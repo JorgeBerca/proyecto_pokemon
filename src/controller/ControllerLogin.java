@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Entrenador;
+import util.UtilView;
 import bbd.BD;
 import bbd.LoginBD;
 
@@ -19,34 +20,26 @@ import java.sql.SQLException;
 
 public class ControllerLogin {
 
-    private Stage currentStage;
-
-    public void setCurrentStage(Stage stage) {
-        this.currentStage = stage;
-    }
-
     @FXML
     private PasswordField passw;
 
     @FXML
     private TextField user1;
     
-    private LoginBD login = new LoginBD(BD.getConnetion());
+    private LoginBD loginBD = new LoginBD(BD.getConnetion());
     
-    // No necesitas crear una nueva instancia de bbd aquí
-    // Puedes llamar al método conexionBbd() directamente
 
     @FXML
     void iniciar() {
         String username = user1.getText();
         String password = passw.getCharacters().toString();
 
-        boolean credentialsCorrect = login.checkCredentials(username, password);
+        boolean credentialsCorrect = loginBD.checkCredentials(username, password);
 
         if (credentialsCorrect) {
             loadNextScene();
         } else {
-            showAlert("Credenciales incorrectas", "El nombre de entrenador o la contraseña son incorrectos.");
+            UtilView.showError("Credenciales incorrectas", "El nombre de entrenador o la contraseña son incorrectos.");
         }
     }
 
@@ -69,20 +62,13 @@ public class ControllerLogin {
         String newUsername = user1.getText();
         String newPassword = passw.getCharacters().toString();
 
-        boolean registrationSuccessful = login.registerUser(newUsername, newPassword);
+        boolean registrationSuccessful = loginBD.registerUser(newUsername, newPassword);
 
         if (registrationSuccessful) {
-            showAlert("Registro exitoso", "Usuario registrado correctamente.");
+            UtilView.showAlert("Registro exitoso", "Usuario registrado correctamente.");
         } else {
-            showAlert("Error en el registro", "No se te pudo registrar como usuario. Inténtalo de nuevo más tarde.");
+            UtilView.showError("Error en el registro", "No se te pudo registrar como usuario.\nInténtalo de nuevo más tarde.");
         }
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
 }

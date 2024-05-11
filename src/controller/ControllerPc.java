@@ -133,8 +133,7 @@ public class ControllerPc {
 
 	public void mostrarEstadisticas(Pokemon pokemon) {
 		Entrenador.getEntrenadorActual().setPokemonElegido(pokemon);
-		System.out.println("mostrando: "+pokemon.getNombre());
-		UtilView.loadSceneModal("../vistas/pantalla_estadisticas.fxml","Estadísticas",pokemon,0);
+		UtilView.loadSceneModal("../vistas/pantalla_estadisticas.fxml","Estadísticas",pokemon);
     	loadPokemonImages();    			
 	}        
     

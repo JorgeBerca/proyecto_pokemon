@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.Optional;
 
-import controller.PokemonModalController;
+import controller.ControllerWithAttributes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -58,13 +58,12 @@ public class UtilView {
         }
     }
     
-    public static void loadSceneModal(String fxml, String title, Object data, int flag) {
+    public static void loadSceneModal(String fxml, String title, Object attributes) {
         try {
         	FXMLLoader fxmlLoader = new FXMLLoader(Entrenador.getEntrenadorActual().getClass().getResource(fxml));
             Parent pcView = fxmlLoader.load();
-            PokemonModalController controller = (PokemonModalController)fxmlLoader.getController();
-            controller.setData(data);
-            controller.setFlag(flag);
+            ControllerWithAttributes controller = (ControllerWithAttributes)fxmlLoader.getController();            
+            controller.initializeAttributes(attributes);
             Stage stage = new Stage();
             stage.setScene(new Scene(pcView));
     		stage.setTitle(title);
