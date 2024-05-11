@@ -126,7 +126,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="33.0" layoutY="68.0" prefHeight="48.0" prefWidth="176.0" text="Dominguero">
+            <Label fx:id="nombreRival" layoutX="33.0" layoutY="68.0" prefHeight="48.0" prefWidth="176.0" text="Dominguero">
                <font>
                   <Font size="30.0" />
                </font>
@@ -144,6 +144,11 @@
             <ImageView fx:id="tupokemon" fitHeight="203.0" fitWidth="215.0" layoutX="110.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
             <ProgressBar fx:id="vidaenemigo" layoutX="174.0" layoutY="125.0" prefHeight="17.0" prefWidth="184.0" progress="0.0" />
             <ProgressBar fx:id="vidatupokemon" layoutX="706.0" layoutY="363.0" prefHeight="17.0" prefWidth="191.0" progress="0.0" />
+            <Label fx:id="nombreTu" layoutX="563.0" layoutY="307.0" prefHeight="48.0" prefWidth="176.0" text="Entrenador">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children>
     </AnchorPane>
   </children>

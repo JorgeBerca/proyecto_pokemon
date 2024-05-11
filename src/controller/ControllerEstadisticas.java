@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Entrenador;
-import modelo.ListaPokemon;
 import modelo.Pokemon;
 import util.UtilView;
 
@@ -56,7 +55,7 @@ public class ControllerEstadisticas extends ControllerWithAttributes {
 		String nombre = pokemon.getMote();
 		String texto = (desdeEquipo==1)? "al PC" : "al equipo";
 		if (UtilView.confirmAlert("Mover Pokemon","¿Quieres mover a "+nombre+" "+texto+"?")) {
-			if (Entrenador.getEntrenadorActual().switchPokemon(pokemon.getIdPokemon()))
+			if (Entrenador.getEntrenadorActual().switchPokemon(pokemon))
 				UtilView.showInfo("Proyecto Pokemon", "Has movido tu pokemon "+texto+".");
 			else
 				UtilView.showError("Proyecto Pokemon", "No se ha podido mover tu pokemon "+texto+".");

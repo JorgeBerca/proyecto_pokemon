@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modelo.Entrenador;
-import modelo.ListaPokemon;
 import modelo.Pokemon;
 
 public class LoginBD {
@@ -31,8 +30,7 @@ public class LoginBD {
                 	if (resultado) {
                 		Entrenador.setEntrenadorActual(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3));
                 		Pokemon[] misPokemons = pkBD.getListaPokemonEntrenador(Entrenador.getEntrenadorActual().getId());
-                		ListaPokemon lista = new ListaPokemon(misPokemons);
-                		Entrenador.getEntrenadorActual().setListaPokemons(lista);
+                		Entrenador.getEntrenadorActual().setListaPokemon(misPokemons);
                 	}
                     return resultado;
                 }

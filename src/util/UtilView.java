@@ -63,6 +63,7 @@ public class UtilView {
     public static void loadSceneModal(String fxml, String title, Object attributes) {
         try {
         	FXMLLoader fxmlLoader = new FXMLLoader(Entrenador.getEntrenadorActual().getClass().getResource(fxml));
+        	System.out.println(fxml);
             Parent pcView = fxmlLoader.load();
             ControllerWithAttributes controller = (ControllerWithAttributes)fxmlLoader.getController();            
             controller.initializeAttributes(attributes);

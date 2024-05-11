@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.ListaPokemon;
-import modelo.Movimiento;
 import modelo.Pokemon;
-import modelo.Pokedex;
 
 public class PokemonBD {
 

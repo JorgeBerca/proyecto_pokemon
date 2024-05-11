@@ -47,7 +47,7 @@ public class ControllerEquipo {
     private void loadPokemonImages() {
     	limpiaTablero();
         try {
-        	Pokemon pc[] = Entrenador.getEntrenadorActual().getListaPokemons().getEquipo();
+        	Pokemon pc[] = Entrenador.getEntrenadorActual().getEquipo();
         	for (int index=0; index < pc.length; index++) {
         		Image image = UtilView.getImagenDelante(pc[index].getNombre());
             	pokemonImages[index].setImage(image);
@@ -73,9 +73,8 @@ public class ControllerEquipo {
 
     
 	public void mostrarEstadisticas(Pokemon pokemon) {
-		Entrenador.getEntrenadorActual().setPokemonElegido(pokemon);
 		System.out.println("mostrando: "+pokemon.getNombre());
-		UtilView.loadSceneModal("../vistas/PantallEstadisticas.fxml","Estadísticas",pokemon);
+		UtilView.loadSceneModal("/vistas/PantallaEstadisticas.fxml","Estadísticas",pokemon);
     	loadPokemonImages();    			
 	}        
 	  
