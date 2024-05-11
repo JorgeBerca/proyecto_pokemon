@@ -1,24 +1,21 @@
 package modelo;
 
-public class PokemonFromDex {	
+public class Pokedex {	
 	
 	int		id;
 	String 	nombre;
 	String	tipo1;
 	String 	tipo2;
-	int		nivel;
 	
-	public PokemonFromDex(
+	public Pokedex(
 		int		id,
 		String 	nombre,
 		String	tipo1,
-		String 	tipo2,
-		int		nivel) {
+		String 	tipo2) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo1 = tipo1;
 		this.tipo2 = tipo2;
-		this.nivel = nivel;				
 	}
 	
 	public int getId() {
@@ -35,10 +32,6 @@ public class PokemonFromDex {
 
 	public String getTipo2() {
 		return tipo2;
-	}
-
-	public int getNivel() {
-		return nivel;
 	}
 	
 	

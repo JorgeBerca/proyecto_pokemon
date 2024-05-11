@@ -11,12 +11,14 @@ import java.util.stream.Stream;
 import bbd.BD;
 import bbd.MovimientoBD;
 import bbd.PokemonBD;
+import bbd.PokedexBD;
 import javafx.scene.control.Alert.AlertType;
 
 public class Entrenador {
 	
 	private static Entrenador entrenadorActual = null;
 	
+	PokedexBD pdBD = new PokedexBD(BD.getConnetion());
 	PokemonBD pkBD = new PokemonBD(BD.getConnetion());
 	MovimientoBD mvBD = new MovimientoBD(BD.getConnetion());
 	
@@ -82,9 +84,8 @@ public class Entrenador {
 		return this.getListaPokemons().getPc().length;		
 	}
 	
-	public boolean capturaPokemon(PokemonFromDex pokemonCapturado, String mote) {
-		int pokemonId = 0;
-		Random rand = new Random();
+	
+	public Pokemon nuevoPokemon(Pokedex pokemonCapturado, String mote) {		
 		int cuantosEquipo = this.getListaPokemons().getEquipo().length;
 		int cuantosPc = this.getListaPokemons().getPc().length;
 		int valorCaja;
@@ -94,48 +95,77 @@ public class Entrenador {
 		} else if (cuantosPc<30) {
 			valorCaja=1;			
 		} else {
-			return false; // Demasiados pokemon
+			System.out.println("No caben más pokémons");
+			return null; // Demasiados pokemon
 		}
 		
+		Pokemon pokemon = this.creaPokemonAleatorio(pokemonCapturado);
+		pokemon.setIdEntrenador(id);
+		pokemon.setCaja(valorCaja);
+		pokemon.setMote(mote);
+		System.out.println(pokemon);
+		int pokemonId = pkBD.crea(pokemon);
+		if (pokemonId<=0) {
+			System.out.println("Error al guardar el nuevo pokémon en la base de datos");
+			return null;
+		}
 		
-	
-        String sql = "INSERT INTO POKEMON (NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, pokemonCapturado.getId()); 			// NUM_POKEDEX 
-            statement.setInt(2, this.getId());						// ID_ENTRENADOR
-            statement.setInt(3, valorCaja);							// CAJA
-            statement.setString(4, pokemonCapturado.getNombre());			// NOMBRE
-            statement.setString(5, mote);							// MOTE
-            statement.setInt(6, rand.nextInt(26) + 25); 			// SALUD (entre 25 y 50) 
-            statement.setInt(7, rand.nextInt(11) + 10); 			// ATAQUE (entre 10 y 20) 
-            statement.setInt(8, rand.nextInt(21) + 10); 			// DEFENSA (entre 20 y 30) 
-            statement.setInt(9, rand.nextInt(16) + 5); 				// VELOCIDAD (entre 15 y 20) 
-            statement.setInt(10, rand.nextInt(11) + 10); 			// AT_ESPECIAL (entre 15 y 20) 
-            statement.setInt(11, rand.nextInt(21) + 10); 			// DEF_ESPECIAL (entre 20 y 30) 
-            statement.setInt(12, 1); 								// NIVEL (1) 
-            statement.setInt(13, 0); 								// FERTILIDAD (0)
-            statement.setString (14, (rand.nextInt(2)==0)?"M":"H"); // SEXO (entre 'M' y 'H') 
-            statement.setInt(15, 0);          						//nivel
-            statement.executeUpdate();
-            ResultSet keys = statement.getGeneratedKeys();
-            keys.next();
-            pokemonId=keys.getInt(1);
+		System.out.println("Capturado: "+pokemonId+" es un "+pokemon.getNombre()+" y lo has llamado "+pokemon.getMote());
+		pokemon.setIdPokemon(pokemonId);
+		guardaMovimientosNuevoPokemon(pokemonId);
             
-            guardaMovimientosNuevoPokemon(pokemonId);
-            
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         if (pokemonId>0) {
         	this.recargaListaPokemon();
-    		return true;
+    		return pokemon;
         } else {
-        	return false;
+        	return null;
         }
 				
 	}
 	
+	
+	// Optiene un pokemon aleatorio desde pokedex
+	public Pokedex getRandomPokedex() {
+		Pokedex pokedexCompleto[] = pdBD.getAllPokedex();				
+		Random rnd = new Random();
+		int aleatorio = rnd.nextInt(pokedexCompleto.length);
+		return pokedexCompleto[aleatorio];
+	}
+
+
+	// Genera un pokemon con valores aleatorios
+	private Pokemon creaPokemonAleatorio(Pokedex pokedex) {
+		Random rand = new Random();
+		Pokemon pokemon = new Pokemon();
+		pokemon.setNumPokedex(pokedex.getId());
+		pokemon.setNombre(pokedex.getNombre());
+		pokemon.setMote(pokedex.getNombre());
+		pokemon.setSalud(rand.nextInt(26) + 25);
+		pokemon.setAtaque(rand.nextInt(11) + 10);
+		pokemon.setDefensa(rand.nextInt(21) + 10);
+		pokemon.setVelocidad(rand.nextInt(16) + 5);
+		pokemon.setAtEspecial(rand.nextInt(11) + 10);
+		pokemon.setDefEspecial(rand.nextInt(21) + 10);
+		pokemon.setSexo((rand.nextInt(2)==0)?"M":"H");		
+		pokemon.setNivel(1);		
+		pokemon.setFertilidad(5);		
+		return pokemon;
+	}
+
+	private void guardaMovimientosNuevoPokemon(int id) {
+		Pokemon pokemon = this.pkBD.getPokemon(id);
+		Movimiento movNormales[] = mvBD.getMovimientosNivel(pokemon.getNivel(), "Normal");
+		Movimiento movTipo1[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo1() );
+		if ("Normal".equals(pokemon.getTipo1())) movTipo1 = new Movimiento[0];
+		Movimiento movTipo2[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo2() );
+		if ("Normal".equals(pokemon.getTipo2())) movTipo2 = new Movimiento[0];
+		Movimiento movimientos[] = Stream.concat(Stream.concat(Arrays.stream(movNormales), Arrays.stream(movTipo1)), Arrays.stream(movTipo2)).toArray(Movimiento[]::new);
+		for (int i=0; i<movimientos.length; i++) {
+			String activo = (i<4)? "S" : "N";
+			pkBD.guardaMovimientoPokemon(movimientos[i].getIdMovimiento(), id, activo );			
+		}
+	}
+		
 	public void recargaListaPokemon() {
 		Pokemon[] misPokemons = pkBD.getListaPokemonEntrenador(Entrenador.getEntrenadorActual().getId());
 		ListaPokemon lista = new ListaPokemon(misPokemons);
@@ -176,33 +206,6 @@ public class Entrenador {
 		
 	}
 	
-	public void guardaMovimientosNuevoPokemon(int id) {
-		Pokemon pokemon = this.pkBD.getPokemon(id);
-		Movimiento movNormales[] = mvBD.getMovimientosNivel(pokemon.getNivel(), "Normal");
-		Movimiento movTipo1[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo1() );
-		if ("Normal".equals(pokemon.getTipo1())) movTipo1 = new Movimiento[0];
-		Movimiento movTipo2[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo2() );
-		if ("Normal".equals(pokemon.getTipo2())) movTipo2 = new Movimiento[0];
-		Movimiento movimientos[] = Stream.concat(Stream.concat(Arrays.stream(movNormales), Arrays.stream(movTipo1)), Arrays.stream(movTipo2)).toArray(Movimiento[]::new);
-		for (int i=0; i<movimientos.length; i++) {
-			String activo = (i<4)? "S" : "N";
-			guardaMovimientoPokemon(movimientos[i].getIdMovimiento(), id, activo );			
-		}
-	}
-	
-	public void guardaMovimientoPokemon(int idMovimiento, int idPokemon, String activo) {
-        String sql = "INSERT INTO movimiento_pokemon (ID_MOVIMIENTO,ID_POKEMON, ACTIVO) VALUES (?,?,?)";
-        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
-            statement.setInt(1, idMovimiento); 
-            statement.setInt(2, idPokemon);
-            statement.setString(3, activo);
-            statement.executeUpdate();                        
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-		
-	}
-
 	
 	public void moverPC(Pokemon pokemon) {
 		
@@ -216,20 +219,44 @@ public class Entrenador {
 		
 	}
 	
-	public Pokemon capturar() {
-		// TODO: copiar lógica aquí
-		return null;
+	public Pokemon capturar(Pokedex pokemonCapturado, String mote) {
+		return nuevoPokemon(pokemonCapturado, mote);
 	}
 	
 	public void combatir() {
 		
 	}
 	
-	public Pokemon criar(Pokemon padre, Pokemon madre) {
-		if (padre==null || madre==null) return null;
-		if (padre.getFertilidad()<=0 || padre.getFertilidad()<=0) return null;
-		// TODO: Es como capturar un pokemon
-		return null;
+	public Pokemon criar(Pokemon padre, Pokemon madre, String moteHijo) {
+		
+		// comprobar requisitos para criar
+		if (padre==null || madre==null) {
+			System.out.println("El padre o la madre no pueden ser nulos.");
+			return null;
+		}
+		if (padre.getFertilidad()<=0 || padre.getFertilidad()<=0) {
+			System.out.println("El padre y la madre tienen que tener puntos de fertilidad.");
+			return null;
+		}
+		if (padre.getSexo() == madre.getSexo()) {
+			System.out.println("El padre y la madre tienen que tener distinto sexo.");
+			return null;
+		}
+		if (padre.getNombre() != madre.getNombre()) {
+			System.out.println("El padre y la madre tienen que ser de la misma especie.");
+			return null;
+		}
+		
+		// generar nuevo pokemon aleatorio de la misma especie es lo mismo que capturar
+		Pokedex pokedex = pdBD.getPokedexPorNombre(padre.getNombre());
+		Pokemon hijo = nuevoPokemon(pokedex, moteHijo);		
+		
+		// quitar un punto de fertilidad al padre y a la madre
+		padre.setFertilidad(padre.getFertilidad()-1);
+		madre.setFertilidad(madre.getFertilidad()-1);
+		
+		return hijo;
+		
 	}
 	
 		

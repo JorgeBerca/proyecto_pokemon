@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import modelo.ListaPokemon;
 import modelo.Movimiento;
 import modelo.Pokemon;
-import modelo.PokemonFromDex;
+import modelo.Pokedex;
 
 public class PokemonBD {
 
@@ -54,37 +54,69 @@ public class PokemonBD {
 								    		+" ORDER BY pokemon.ID_POKEMON"
 								    		+"");		    		    
 		    while (rs.next()) {
-		    	Pokemon pokemon = new Pokemon(
-		    			rs.getInt("ID_POKEMON"),
-		    			rs.getInt("NUM_POKEDEX"),
-		    			rs.getInt("ID_ENTRENADOR"),
-		    			rs.getInt("CAJA"),
-		    			rs.getString("NOMBRE"),
-		    			rs.getString("MOTE"),
-		    			rs.getInt("SALUD"),
-		    			rs.getInt("ATAQUE"),
-		    			rs.getInt("DEFENSA"),
-		    			rs.getInt("VELOCIDAD"),
-		    			rs.getInt("AT_ESPECIAL"),
-		    			rs.getInt("DEF_ESPECIAL"),
-		    			rs.getInt("NIVEL"),
-		    			rs.getInt("FERTILIDAD"),
-		    			rs.getString("SEXO"),
-		    			rs.getInt("ESTADO"),		    			
-		    			rs.getString("TIPO1"),
-		    			rs.getString("TIPO2")
-     			);
+		    	Pokemon pokemon = creaPokemonRS(rs);
 		    	cargaMovimientos(pokemon);
 		    	lista.add(pokemon);
 		    }		    
-		    Pokemon[] resultado = new Pokemon[lista.size()];
-		    return lista.toArray(resultado);
+		    return lista.toArray(new Pokemon[lista.size()]);        		    
        } catch (Exception e) {
            e.printStackTrace();
            System.out.println("Error al obtener los pokemons del entrenador " + e.getMessage());
            return null;
        }
 	}
+	
+	public Pokemon[] getListaPokemonSexo(int idEntrenador, String sexo) {
+	    try {
+	    	ArrayList<Pokemon>  lista = new ArrayList();
+	    	String sql = "SELECT pokemon.*, pokedex.TIPO1, pokedex.TIPO2 "
+		    			+" FROM pokemon "
+		    			+" INNER JOIN pokedex ON pokedex.NUM_POKEDEX=pokemon.NUM_POKEDEX "
+		    			+" WHERE pokemon.ID_ENTRENADOR = ? " 
+		    			+"   AND pokemon.SEXO=? "
+		    			+" ORDER BY pokemon.ID_POKEMON "
+		    			+"";
+	    	PreparedStatement stmt = connection.prepareStatement(sql);
+		    stmt.setInt(1, idEntrenador);
+		    stmt.setString(2, sexo);
+	    	ResultSet rs = stmt.executeQuery();		    		    
+		    while (rs.next()) {
+		    	Pokemon pokemon = creaPokemonRS(rs);
+		    	cargaMovimientos(pokemon);
+		    	lista.add(pokemon);
+		    }		    
+		    return lista.toArray(new Pokemon[lista.size()]);        		    
+       } catch (Exception e) {
+           e.printStackTrace();
+           System.out.println("Error al obtener los pokemons por sexo " + e.getMessage());
+           return null;
+       }
+	}
+	
+	private Pokemon creaPokemonRS(ResultSet rs) throws SQLException  {
+    	Pokemon pokemon = new Pokemon(
+    			rs.getInt("ID_POKEMON"),
+    			rs.getInt("NUM_POKEDEX"),
+    			rs.getInt("ID_ENTRENADOR"),
+    			rs.getInt("CAJA"),
+    			rs.getString("NOMBRE"),
+    			rs.getString("MOTE"),
+    			rs.getInt("SALUD"),
+    			rs.getInt("ATAQUE"),
+    			rs.getInt("DEFENSA"),
+    			rs.getInt("VELOCIDAD"),
+    			rs.getInt("AT_ESPECIAL"),
+    			rs.getInt("DEF_ESPECIAL"),
+    			rs.getInt("NIVEL"),
+    			rs.getInt("FERTILIDAD"),
+    			rs.getString("SEXO"),
+    			rs.getInt("ESTADO"),		    			
+    			rs.getString("TIPO1"),
+    			rs.getString("TIPO2")
+			);
+    	return pokemon;
+	}
+	
 	
 
 	public Pokemon getPokemon(int idPokemon) {
@@ -96,26 +128,7 @@ public class PokemonBD {
 								    		+" WHERE pokemon.ID_POKEMON = " + idPokemon
 								    		+ "");		    		    
 		    if (!rs.next()) return null;
-	    	Pokemon pokemon = new Pokemon(
-	    			rs.getInt("ID_POKEMON"),
-	    			rs.getInt("NUM_POKEDEX"),
-	    			rs.getInt("ID_ENTRENADOR"),
-	    			rs.getInt("CAJA"),
-	    			rs.getString("NOMBRE"),
-	    			rs.getString("MOTE"),
-	    			rs.getInt("SALUD"),
-	    			rs.getInt("ATAQUE"),
-	    			rs.getInt("DEFENSA"),
-	    			rs.getInt("VELOCIDAD"),
-	    			rs.getInt("AT_ESPECIAL"),
-	    			rs.getInt("DEF_ESPECIAL"),
-	    			rs.getInt("NIVEL"),
-	    			rs.getInt("FERTILIDAD"),
-	    			rs.getString("SEXO"),
-	    			rs.getInt("ESTADO"),		    			
-	    			rs.getString("TIPO1"),
-	    			rs.getString("TIPO2")
- 			);		    			
+	    	Pokemon pokemon = creaPokemonRS(rs);
 	    	cargaMovimientos(pokemon);
 		    return pokemon;
        } catch (Exception e) {
@@ -150,6 +163,36 @@ public class PokemonBD {
         }		
 	}
 
+	// guarda en la base de datos el nuevo pokémon y devuelve el ID generado
+	public int crea(Pokemon pokemon) {
+        String sql = "INSERT INTO POKEMON(NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, pokemon.getNumPokedex() ); 		 
+            statement.setInt(2, pokemon.getIdEntrenador());
+            statement.setInt(3, pokemon.getCaja());			
+            statement.setString(4, pokemon.getNombre());	
+            statement.setString(5, pokemon.getMote());		
+            statement.setInt(6, pokemon.getSalud()); 		 
+            statement.setInt(7, pokemon.getAtaque()); 		 
+            statement.setInt(8, pokemon.getDefensa()); 		 
+            statement.setInt(9, pokemon.getVelocidad()); 	 
+            statement.setInt(10, pokemon.getAtEspecial()); 	 
+            statement.setInt(11, pokemon.getDefEspecial());  
+            statement.setInt(12, pokemon.getNivel()); 		 
+            statement.setInt(13, pokemon.getFertilidad()); 	
+            statement.setString (14, pokemon.getSexo()); 	 
+            statement.setInt(15, pokemon.getExperiencia());		            
+            statement.executeUpdate();
+            ResultSet keys = statement.getGeneratedKeys();
+            keys.next();
+            int pokemonId=keys.getInt(1);            
+            return pokemonId;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }		
+	}
+	
 	public void borra(Pokemon pokemon) {
 		if (pokemon==null) return;
         String sql;
@@ -186,6 +229,18 @@ public class PokemonBD {
             e.printStackTrace();
         }		
 		
+	}
+	
+	public void guardaMovimientoPokemon(int idMovimiento, int idPokemon, String activo) {
+        String sql = "INSERT INTO movimiento_pokemon (ID_MOVIMIENTO,ID_POKEMON, ACTIVO) VALUES (?,?,?)";
+        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
+            statement.setInt(1, idMovimiento); 
+            statement.setInt(2, idPokemon);
+            statement.setString(3, activo);
+            statement.executeUpdate();                        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }		
 	}
 	
 	

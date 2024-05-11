@@ -139,7 +139,11 @@ public class Pokemon {
 	}
 
 	public void setMote(String mote) {
-		this.mote = mote;
+		if (mote==null || mote.length()==0) {
+			this.mote = this.nombre;
+		} else {
+			this.mote = mote;
+		}
 	}
 
 	public int getSalud() {
