@@ -13,7 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class controllercentropokemon {
+public class ControllerCentroPokemon {
 	
 	public void playMusic() {
         try {

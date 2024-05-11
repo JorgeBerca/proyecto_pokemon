@@ -9,7 +9,7 @@ import modelo.ListaPokemon;
 import modelo.Pokemon;
 import util.UtilView;
 
-public class Controllerestadisticas extends ControllerWithAttributes {
+public class ControllerEstadisticas extends ControllerWithAttributes {
 	
 	@FXML VBox box;
 	@FXML Label nombre;

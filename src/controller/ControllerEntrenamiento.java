@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class controllerentrenamiento {
+public class ControllerEntrenamiento {
     @FXML
     public void lucha() {
         // Método para capturar pokemon, aún no implementado

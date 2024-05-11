@@ -21,7 +21,7 @@ import util.UtilView;
 
 
 
-public class controllercombate {
+public class ControllerCombate {
 	
 	Pokedex pokemon = null;
 	

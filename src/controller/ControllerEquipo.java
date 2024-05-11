@@ -24,7 +24,7 @@ import controller.ControllerPc.ManejaMousePokemon;
 
 
 
-public class controllerequipo {
+public class ControllerEquipo {
 
 	@FXML private AnchorPane tablero;
 

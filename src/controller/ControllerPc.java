@@ -6,7 +6,7 @@ import java.io.InputStream;
  
 import bbd.BD;
 import bbd.PokemonBD;
-import controller.controllercombate.ManejaMousePokemon;
+import controller.ControllerCombate.ManejaMousePokemon;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

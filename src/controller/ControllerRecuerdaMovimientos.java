@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class controllerrecuerdamovimientos {    
+public class ControllerRecuerdaMovimientos {    
 	@FXML
     public void atras(javafx.event.ActionEvent event) {
     try {
