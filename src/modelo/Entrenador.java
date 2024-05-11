@@ -1,9 +1,6 @@
 package modelo;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -12,7 +9,6 @@ import bbd.BD;
 import bbd.MovimientoBD;
 import bbd.PokemonBD;
 import bbd.PokedexBD;
-import javafx.scene.control.Alert.AlertType;
 
 public class Entrenador {
 	
@@ -33,14 +29,16 @@ public class Entrenador {
 	int id;
 	String nombre;
 	int dinero;
-	ListaPokemon listaPokemons;
-	Pokemon pokemonElegido;
+	ArrayList<Pokemon> equipo;
+	ArrayList<Pokemon> pc;
 
-
+	
 	public Entrenador(int id, String nombre, int dinero) {
 		this.id = id;
 		this.nombre = nombre;
 		this.dinero = dinero;
+		this.equipo = new ArrayList<Pokemon>();
+		this.pc =  new ArrayList<Pokemon>();
 	}
 	
 	public int getId() {
@@ -60,34 +58,28 @@ public class Entrenador {
 		
 	}
 
-	public ListaPokemon getListaPokemons() {
-		return listaPokemons;
-	}
-
-	public void setListaPokemons(ListaPokemon listaPokemons) {
-		this.listaPokemons = listaPokemons;
-	}
-	
-	public Pokemon getPokemonElegido() {
-		return pokemonElegido;
-	}
-
-	public void setPokemonElegido(Pokemon pokemonElegido) {
-		this.pokemonElegido = pokemonElegido;
-	}
-	
+		
 	public int getCuantosEquipo() {
-		return this.getListaPokemons().getEquipo().length;
+		return getEquipo().length;
 	}
 	
 	public int getCuantosPC() {
-		return this.getListaPokemons().getPc().length;		
+		return getPC().length;		
+	}
+	
+	public Pokemon[] getEquipo() {
+		return equipo.toArray(new Pokemon[0]);
+	}
+
+	public Pokemon[] getPC() {
+		return pc.toArray(new Pokemon[0]);
 	}
 	
 	
+	
 	public Pokemon nuevoPokemon(Pokedex pokemonCapturado, String mote) {		
-		int cuantosEquipo = this.getListaPokemons().getEquipo().length;
-		int cuantosPc = this.getListaPokemons().getPc().length;
+		int cuantosEquipo = getEquipo().length;
+		int cuantosPc = getPC().length;
 		int valorCaja;
 		
 		if (cuantosEquipo<6) {
@@ -102,24 +94,32 @@ public class Entrenador {
 		Pokemon pokemon = this.creaPokemonAleatorio(pokemonCapturado);
 		pokemon.setIdEntrenador(id);
 		pokemon.setCaja(valorCaja);
-		pokemon.setMote(mote);
-		System.out.println(pokemon);
-		int pokemonId = pkBD.crea(pokemon);
-		if (pokemonId<=0) {
-			System.out.println("Error al guardar el nuevo pokémon en la base de datos");
-			return null;
+		String nuevoMote = (mote==null)? pokemon.getNombre() : mote;
+		pokemon.setMote(nuevoMote);
+		int pokemonId;
+		if (id > 0) { // es un entrenador
+			pokemonId = pkBD.crea(pokemon);
+			if (pokemonId<=0) {
+				System.out.println("Error al guardar el nuevo pokémon en la base de datos");
+				return null;
+			}
+			pokemon.setIdPokemon(pokemonId);
+			System.out.println("Nuevo pokemon: "+pokemonId+" es un "+pokemon.getNombre()+" y lo has llamado "+pokemon.getMote());
+			guardaMovimientosNuevoPokemon(pokemon);
+	            
+	        if (pokemonId>0) {
+	        	this.recargaListaPokemon();
+	    		return pokemon;
+	        } else {
+	        	return null;
+	        }
+		} else { // es un rival
+			pokemonId=(this.getCuantosEquipo()+1)*(-1);			
+			equipo.add(pokemon);
+			System.out.println("Nuevo pokemon rival: "+pokemonId+" es un "+pokemon.getNombre()+" y se ha llamado "+pokemon.getMote());
+    		return pokemon;
 		}
 		
-		System.out.println("Capturado: "+pokemonId+" es un "+pokemon.getNombre()+" y lo has llamado "+pokemon.getMote());
-		pokemon.setIdPokemon(pokemonId);
-		guardaMovimientosNuevoPokemon(pokemonId);
-            
-        if (pokemonId>0) {
-        	this.recargaListaPokemon();
-    		return pokemon;
-        } else {
-        	return null;
-        }
 				
 	}
 	
@@ -140,40 +140,65 @@ public class Entrenador {
 		pokemon.setNumPokedex(pokedex.getId());
 		pokemon.setNombre(pokedex.getNombre());
 		pokemon.setMote(pokedex.getNombre());
-		pokemon.setSalud(rand.nextInt(26) + 25);
-		pokemon.setAtaque(rand.nextInt(11) + 10);
+		pokemon.setSexo((rand.nextInt(2)==0)?"M":"H");		
+		pokemon.setFertilidad(5);		
+		pokemon.setNivel(1);		
+		// valores aleatorios para e le nivel 1
+		pokemon.setSalud(rand.nextInt(26) + 25);			
+		pokemon.setAtaque(rand.nextInt(11) + 10);				
 		pokemon.setDefensa(rand.nextInt(21) + 10);
 		pokemon.setVelocidad(rand.nextInt(16) + 5);
 		pokemon.setAtEspecial(rand.nextInt(11) + 10);
 		pokemon.setDefEspecial(rand.nextInt(21) + 10);
-		pokemon.setSexo((rand.nextInt(2)==0)?"M":"H");		
-		pokemon.setNivel(1);		
-		pokemon.setFertilidad(5);		
 		return pokemon;
 	}
 
-	private void guardaMovimientosNuevoPokemon(int id) {
-		Pokemon pokemon = this.pkBD.getPokemon(id);
+	private void guardaMovimientosNuevoPokemon(Pokemon pokemon) {
 		Movimiento movNormales[] = mvBD.getMovimientosNivel(pokemon.getNivel(), "Normal");
 		Movimiento movTipo1[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo1() );
 		if ("Normal".equals(pokemon.getTipo1())) movTipo1 = new Movimiento[0];
 		Movimiento movTipo2[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo2() );
 		if ("Normal".equals(pokemon.getTipo2())) movTipo2 = new Movimiento[0];
 		Movimiento movimientos[] = Stream.concat(Stream.concat(Arrays.stream(movNormales), Arrays.stream(movTipo1)), Arrays.stream(movTipo2)).toArray(Movimiento[]::new);
-		for (int i=0; i<movimientos.length; i++) {
-			String activo = (i<4)? "S" : "N";
-			pkBD.guardaMovimientoPokemon(movimientos[i].getIdMovimiento(), id, activo );			
+		if (this.id>0) { // es un entrenador
+			for (int i=0; i<movimientos.length; i++) {
+				String activo = (i<4)? "S" : "N";
+				movimientos[i].setEstado(activo);
+				pkBD.guardaMovimientoPokemon(movimientos[i].getIdMovimiento(), pokemon.getIdPokemon(), activo ); 
+			}
+		}
+		else { // es un rival
+			for (int i=0; i<movimientos.length; i++) {
+				movimientos[i].setEstado("S");
+			}
+			pokemon.setMovimientosActivos(movimientos);
+			// todos activos porque luego es aletorio			
 		}
 	}
 		
-	public void recargaListaPokemon() {
-		Pokemon[] misPokemons = pkBD.getListaPokemonEntrenador(Entrenador.getEntrenadorActual().getId());
-		ListaPokemon lista = new ListaPokemon(misPokemons);
-		Entrenador.getEntrenadorActual().setListaPokemons(lista);		
+	public void recargaListaPokemon() {		
+		Pokemon[] pokemons = pkBD.getListaPokemonEntrenador(Entrenador.getEntrenadorActual().getId());
+		setListaPokemon(pokemons);
 	}
 	
-	public boolean switchPokemon(int id) {
-		Pokemon pokemon = pkBD.getPokemon(id);
+	public void setListaPokemon(Pokemon[] pokemons) {
+		// Busco los del equipo
+		equipo = new ArrayList<Pokemon>();
+		for (int i=0; i<pokemons.length; i++) {
+			if (pokemons[i].getCaja() == 0) {
+				equipo.add(pokemons[i]);
+			}
+		}
+		// Busco los del PC
+		pc = new ArrayList<Pokemon>();
+		for (int i=0; i<pokemons.length; i++) {
+			if (pokemons[i].getCaja() == 1) {
+				pc.add(pokemons[i]);
+			}
+		}		
+	}
+		
+	public boolean switchPokemon(Pokemon pokemon) {
 		if (pokemon==null) return false;
 		int caja = pokemon.getCaja();
 		int nuevaCaja=0;
@@ -208,24 +233,51 @@ public class Entrenador {
 	
 	
 	public void moverPC(Pokemon pokemon) {
-		
+		if (pokemon.getCaja()==0)
+			switchPokemon(pokemon);
 	}
 	
 	public void moverEquipo(Pokemon pokemon) {
-		
+		if (pokemon.getCaja()==1)
+			switchPokemon(pokemon);		
 	}
 	
-	public void entrenar(Pokemon pokemon) {
-		
+	public Pokemon entrenar(Pokemon pokemon) {
+		return subirExperiencia(pokemon);
+	}	
+	
+	private Pokemon subirExperiencia(Pokemon pokemon) {
+		Random rnd = new Random();
+		int experienciaActual = pokemon.getExperiencia();
+		int aumento = rnd.nextInt(5)+11; // 5 a 15
+		pokemon.setExperiencia(experienciaActual+aumento);
+		pkBD.guarda(pokemon);
+		return pokemon;
 	}
+
 	
 	public Pokemon capturar(Pokedex pokemonCapturado, String mote) {
 		return nuevoPokemon(pokemonCapturado, mote);
 	}
 	
 	public void combatir() {
+		Entrenador rival = generarOponente();
+		System.out.println(rival.getId()+" - "+rival.getNombre());
+		Pokemon lista[] = rival.getEquipo();
+		for (int i=0; i<lista.length; i++) {
+			System.out.println(lista[i].toString());	
+		}
 		
 	}
+	
+	public Entrenador generarOponente() {
+		Entrenador rival = new Entrenador(-1,"Domingureo", 0);
+		for (int i=0; i<6; i++) {
+			rival.nuevoPokemon(this.getRandomPokedex(), null);
+		}
+		return rival;
+	}
+	
 	
 	public Pokemon criar(Pokemon padre, Pokemon madre, String moteHijo) {
 		
