@@ -12,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -73,21 +75,25 @@ public class UtilView {
             System.out.println("Error al cargar la pantalla: " + e.getMessage());
         }    	
     }
-    
-    public static void showAlert(String title, String content) {
+
+    private static void internalAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
     }
+    
+    public static void showInfo(String title, String content) {
+    	internalAlert(Alert.AlertType.INFORMATION, title, content);
+    }
 
+    public static void showAlert(String title, String content) {
+    	internalAlert(Alert.AlertType.WARNING, title, content);
+    }
+    
     public static void showError(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+    	internalAlert(Alert.AlertType.ERROR, title, content);
     }
     
     public static boolean confirmAlert(String title, String content) {
@@ -101,6 +107,15 @@ public class UtilView {
         }        
         return false;
     }
+    
+    public static String getText(String title, String defaultValue) {
+    	TextInputDialog td = new TextInputDialog(defaultValue);
+    	td.setTitle(title);
+    	td.setHeaderText("");
+        td.showAndWait(); 
+        return td.getEditor().getText();         		
+    }
+    
     
     
     public static String formateaDinero(int dinero) {

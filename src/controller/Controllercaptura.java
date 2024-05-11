@@ -11,7 +11,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modelo.Entrenador;
-import modelo.PokemonFromDex;
+import modelo.Pokedex;
+import modelo.Pokemon;
+import util.UtilView;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,15 +27,15 @@ import javafx.scene.control.TextInputDialog;
 public class Controllercaptura {
     @FXML
     private ImageView pokemonrandom;
-    PokemonFromDex pokemon = null;
+    Pokedex pokedex = null;
 
 
     @FXML
     public void cambiar() {   	
         try {
-        	pokemon = this.getRadomPokemon();
-        	System.out.println("Pokemon encontado: "+pokemon.getId() + " - "+ pokemon.getNombre());
-        	String randomImage=pokemon.getNombre().toLowerCase()+"_delante.png";
+        	pokedex = this.getRadomPokemon();
+        	System.out.println("Pokemon encontado: "+pokedex.getId() + " - "+ pokedex.getNombre());
+        	String randomImage=pokedex.getNombre().toLowerCase()+"_delante.png";
 
             // Actualizar la imagen en la interfaz
             pokemonrandom.setImage(new Image("file:src/imagenes/pokemon_delante/" + randomImage));
@@ -44,42 +47,27 @@ public class Controllercaptura {
 
     @FXML
     public void capturar() {
-    	if (pokemon == null) return;
+    	if (pokedex == null) return;
         Random rand = new Random();
         boolean capturado = ((rand.nextInt(100)+1) <= 60); // 60 %
         
         if (capturado) {
-        	String mote = this.getText("Mote del pokémon:", pokemon.getNombre());
-        	boolean resu = Entrenador.getEntrenadorActual().capturaPokemon(pokemon,mote);
-        	if (resu)
-        		showAlert(AlertType.INFORMATION, "¡Captura exitosa!", "Has capturado exitosamente al Pokémon " + pokemon.getNombre() + " y ha sido guardado en la base de datos.");
+        	String mote = UtilView.getText("Mote del pokémon:", pokedex.getNombre());
+        	Entrenador.getEntrenadorActual().capturar(pokedex,mote);
+        	if (capturado)
+        		UtilView.showInfo("¡Captura exitosa!", "Has capturado exitosamente al Pokémon " + pokedex.getNombre() + " y ha sido guardado en la base de datos.");
         	else
-                showAlert(AlertType.ERROR, "Captura fallida", "No se ha podido guardar el pokémon, ¿demasiados pokémons?.");
+                UtilView.showError("Captura fallida", "No se ha podido guardar el pokémon, ¿demasiados pokémons?.");
         	
         } else {
-            showAlert(AlertType.ERROR, "Captura fallida", "El Pokémon ha escapado.");
+        	UtilView.showError("Captura fallida", "El Pokémon ha escapado.");
             // Hacer que el Pokémon 'desaparezca' al escapar
         }
-        pokemon = null;
+        pokedex = null;
         pokemonrandom.setImage(null);  // Esto borrará la imagen actual mostrada
      
     }
 
-    private void showAlert(AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-    
-    private String getText(String title, String defaultValue) {
-    	TextInputDialog td = new TextInputDialog(defaultValue);
-    	td.setTitle(title);
-    	td.setHeaderText("");
-        td.showAndWait(); 
-        return td.getEditor().getText();         		
-    }
 
     @FXML
     public void atras(javafx.event.ActionEvent event) {
@@ -97,16 +85,8 @@ public class Controllercaptura {
         }
     }
     
-    private PokemonFromDex getRadomPokemon() {
-
-    	PokedexBD pokedex = new PokedexBD(BD.getConnetion());
-    	
-    	int cuantos = pokedex.getCuantosPokemonsHay();
-    	
-    	Random rand = new Random();
-    	int seleccionado = rand.nextInt(cuantos)+1;
-
-    	return pokedex.getPokemonById(seleccionado);
+    private Pokedex getRadomPokemon() {
+    	return Entrenador.getEntrenadorActual().getRandomPokedex();
     }
 }
 

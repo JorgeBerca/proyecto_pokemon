@@ -16,14 +16,14 @@ import javafx.stage.Stage;
 import modelo.Entrenador;
 import modelo.Movimiento;
 import modelo.Pokemon;
-import modelo.PokemonFromDex;
+import modelo.Pokedex;
 import util.UtilView;
 
 
 
 public class controllercombate {
 	
-	PokemonFromDex pokemon = null;
+	Pokedex pokemon = null;
 	
 	Pokemon equipo[];
 	Pokemon paladin;

@@ -57,7 +57,7 @@ public class Controllerestadisticas extends ControllerWithAttributes {
 		String texto = (desdeEquipo==1)? "al PC" : "al equipo";
 		if (UtilView.confirmAlert("Mover Pokemon","¿Quieres mover a "+nombre+" "+texto+"?")) {
 			if (Entrenador.getEntrenadorActual().switchPokemon(pokemon.getIdPokemon()))
-				UtilView.showAlert("Proyecto Pokemon", "Has movido tu pokemon "+texto+".");
+				UtilView.showInfo("Proyecto Pokemon", "Has movido tu pokemon "+texto+".");
 			else
 				UtilView.showError("Proyecto Pokemon", "No se ha podido mover tu pokemon "+texto+".");
 		}		
@@ -72,7 +72,7 @@ public class Controllerestadisticas extends ControllerWithAttributes {
 			Entrenador entrenador = Entrenador.getEntrenadorActual();
 			int dinero = entrenador.venderPokemon(pokemon.getIdPokemon());
 			int dineroEntrenador=Entrenador.getEntrenadorActual().getDinero();				
-			UtilView.showAlert("Proyecto Pokemon", "Tu pokemon ha sido vendido. Ahora está encerrado, asustado y triste tu "+nombre+" te han dado por el "+UtilView.formateaDinero(dinero)+" PokeDólares. Ahora tienes "+UtilView.formateaDinero(dineroEntrenador)+" PokeDólares en tu monedero.");
+			UtilView.showInfo("Proyecto Pokemon", "Tu pokemon ha sido vendido. Ahora está encerrado, asustado y triste tu "+nombre+" te han dado por el "+UtilView.formateaDinero(dinero)+" PokeDólares. Ahora tienes "+UtilView.formateaDinero(dineroEntrenador)+" PokeDólares en tu monedero.");
 		}
 		cerrar();
 	}
@@ -82,7 +82,7 @@ public class Controllerestadisticas extends ControllerWithAttributes {
 		String nombre = pokemon.getMote();
 		if (UtilView.confirmAlert("Liberar Pokemon","¿Quieres liberar a "+nombre+"?")) {
 			Entrenador.getEntrenadorActual().liberarPokemon(pokemon.getIdPokemon());
-			UtilView.showAlert("Proyecto Pokemon", "Se ha liberado el pokémon "+nombre);
+			UtilView.showInfo("Proyecto Pokemon", "Se ha liberado el pokémon "+nombre);
 		}
 		cerrar();
 	}

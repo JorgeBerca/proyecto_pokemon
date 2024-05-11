@@ -65,7 +65,7 @@ public class ControllerLogin {
         boolean registrationSuccessful = loginBD.registerUser(newUsername, newPassword);
 
         if (registrationSuccessful) {
-            UtilView.showAlert("Registro exitoso", "Usuario registrado correctamente.");
+            UtilView.showInfo("Registro exitoso", "Usuario registrado correctamente.");
         } else {
             UtilView.showError("Error en el registro", "No se te pudo registrar como usuario.\nInténtalo de nuevo más tarde.");
         }
