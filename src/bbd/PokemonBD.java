@@ -172,7 +172,7 @@ public class PokemonBD {
 	
 	public void cargaMovimientos(Pokemon pokemon) {
 		pokemon.setMovimientosActivos(mpBD.getMovimientosActivosPokemon(pokemon.getIdPokemon()));
-		pokemon.setMovimientos(mpBD.getMovimientosPokemon(pokemon.getIdPokemon()));
+		pokemon.setMovimientosAprendidos(mpBD.getMovimientosPokemon(pokemon.getIdPokemon()));
 	}
 	
 	public void actualizaDineroEntrenador(int idEntrenador, int nuevoDinero) {

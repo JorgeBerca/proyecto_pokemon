@@ -25,12 +25,9 @@ public class Entrenador {
 	}
 	
 	public static void setEntrenadorActual(int id, String nombre, int dinero) {
-		System.out.println("Dinero del entrenador "+nombre+" = "+dinero);
 		entrenadorActual = new Entrenador(id, nombre, dinero);		
 	}
 
-	
-	
 	int id;
 	String nombre;
 	int dinero;
@@ -207,6 +204,35 @@ public class Entrenador {
 	}
 
 	
+	public void moverPC(Pokemon pokemon) {
+		
+	}
+	
+	public void moverEquipo(Pokemon pokemon) {
+		
+	}
+	
+	public void entrenar(Pokemon pokemon) {
+		
+	}
+	
+	public Pokemon capturar() {
+		// TODO: copiar lógica aquí
+		return null;
+	}
+	
+	public void combatir() {
+		
+	}
+	
+	public Pokemon criar(Pokemon padre, Pokemon madre) {
+		if (padre==null || madre==null) return null;
+		if (padre.getFertilidad()<=0 || padre.getFertilidad()<=0) return null;
+		// TODO: Es como capturar un pokemon
+		return null;
+	}
+	
+		
 }
 
 

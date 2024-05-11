@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Random;
+
 public class Pokemon {
     private int idPokemon;
     private int numPokedex;
@@ -11,60 +13,86 @@ public class Pokemon {
     private int ataque;
     private int defensa;
     private int velocidad;
-	private int atEspecial;
-    private int defEspecial;
+	private int ataqueEspecial;
+    private int defensaEspecial;
     private int nivel;
     private int fertilidad;
     private String sexo;
     private int experiencia;
     private String estado;
-    private String movimiento1;
-    private String movimiento2;
-    private String movimiento3;
-    private String movimiento4;
-    private int idObjeto;
     private String tipo1;
 	private String tipo2;
+    private Objeto objeto; 
 	private Movimiento movimientosActivos[];
-	private Movimiento movimientos[];
+	private Movimiento movimientosAprendidos[];
 
     // (NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, 
     // VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA
 
+	// Constructor vacío
+	public Pokemon() {
+	    this.idPokemon=0;
+	    this.numPokedex=0;
+	    this.idEntrenador=0;
+	    this.caja=0;
+	    this.nombre="";
+	    this.mote="";
+	    this.salud=1;
+	    this.ataque=1;
+	    this.defensa=1;
+	    this.velocidad=1;
+	    this.ataqueEspecial=1;
+	    this.defensaEspecial=1;
+	    this.nivel=1;
+	    this.fertilidad=5;
+	    this.sexo="H";
+	    this.experiencia=1;
+	    this.estado="";
+	    this.objeto=null;
+	    this.tipo1="";
+	    this.tipo2="";
+	    this.movimientosActivos=null;
+	    this.movimientosAprendidos=null;
+	}
+	
     
-	// Constructor
-    public Pokemon(int idPokemon, int numPokedex, int idEntrenador, int caja, String nombre, String mote, int salud,
-                   int ataque, int defensa, int velocidad, int atEspecial, int defEspecial, int nivel, int fertilidad,
-                   String sexo, int experiencia, String tipo1, String tipo2) {
-    			   // String estado, String movimiento1, String movimiento2,
-                   // String movimiento3, String movimiento4, int idObjeto
+	// Constructor básico 
+    public Pokemon(int idPokemon, int numPokedex, int idEntrenador, int caja, String nombre, String mote) {
         this.idPokemon = idPokemon;
         this.numPokedex = numPokedex;
         this.idEntrenador = idEntrenador;
         this.caja = caja;
         this.nombre = nombre;
         this.mote = mote;
-        this.salud = salud;
-        this.ataque = ataque;
-        this.defensa = defensa;
-        this.velocidad = velocidad;
-        this.atEspecial = atEspecial;
-        this.defEspecial = defEspecial;
-        this.nivel = nivel;
-        this.fertilidad = fertilidad;
-        this.sexo = sexo;
-        this.experiencia = experiencia;
-        this.tipo1 = tipo1;
-        this.tipo2 = tipo2;
-        // this.estado = estado;
-        // this.movimiento1 = movimiento1;
-        // this.movimiento2 = movimiento2;
-        // this.movimiento3 = movimiento3;
-        // this.movimiento4 = movimiento4;
-        // this.idObjeto = idObjeto;
-        // this.enEquipo = enEquipo;
     }
 
+    // Constructor completo BD
+    public Pokemon(int idPokemon, int numPokedex, int idEntrenador, int caja, String nombre, String mote,
+    		       int salud, int ataque, int defensa, int velocidad, int ataqueEspecial, int defensaEspecial,
+    		       int nivel, int fertilidad, String sexo, int estado, String tipo1, String tipo2) {
+        this.idPokemon = idPokemon;
+        this.numPokedex = numPokedex;
+        this.idEntrenador = idEntrenador;
+        this.caja = caja;
+        this.nombre = nombre;
+        this.mote = mote;
+	    this.salud=salud;
+	    this.ataque=ataque;
+	    this.defensa=defensa;
+	    this.velocidad=velocidad;
+	    this.ataqueEspecial=ataqueEspecial;
+	    this.defensaEspecial=defensaEspecial;
+	    this.nivel=nivel;
+	    this.fertilidad=fertilidad;
+	    this.sexo=sexo;
+	    this.experiencia=1;
+	    this.estado="";
+	    this.objeto=null;
+	    this.tipo1=tipo1;
+	    this.tipo2=tipo2;        
+    }
+    
+    
     // Getters and setters
     public int getIdPokemon() {
         return idPokemon;
@@ -147,19 +175,19 @@ public class Pokemon {
 	}
 
 	public int getAtEspecial() {
-		return atEspecial;
+		return ataqueEspecial;
 	}
 
 	public void setAtEspecial(int atEspecial) {
-		this.atEspecial = atEspecial;
+		this.ataqueEspecial = atEspecial;
 	}
 
 	public int getDefEspecial() {
-		return defEspecial;
+		return defensaEspecial;
 	}
 
 	public void setDefEspecial(int defEspecial) {
-		this.defEspecial = defEspecial;
+		this.defensaEspecial = defEspecial;
 	}
 
 	public int getNivel() {
@@ -202,46 +230,15 @@ public class Pokemon {
 		this.estado = estado;
 	}
 
-	public String getMovimiento1() {
-		return movimiento1;
+
+	public Objeto getObjeto() {
+		return objeto;
 	}
 
-	public void setMovimiento1(String movimiento1) {
-		this.movimiento1 = movimiento1;
+	public void setObjeto(Objeto idObjeto) {
+		this.objeto = idObjeto;
+		// TODO: falta aplicar aumeta y disminuye
 	}
-
-	public String getMovimiento2() {
-		return movimiento2;
-	}
-
-	public void setMovimiento2(String movimiento2) {
-		this.movimiento2 = movimiento2;
-	}
-
-	public String getMovimiento3() {
-		return movimiento3;
-	}
-
-	public void setMovimiento3(String movimiento3) {
-		this.movimiento3 = movimiento3;
-	}
-
-	public String getMovimiento4() {
-		return movimiento4;
-	}
-
-	public void setMovimiento4(String movimiento4) {
-		this.movimiento4 = movimiento4;
-	}
-
-	public int getIdObjeto() {
-		return idObjeto;
-	}
-
-	public void setIdObjeto(int idObjeto) {
-		this.idObjeto = idObjeto;
-	}
-
     
     
     public void meterPC() {
@@ -280,14 +277,46 @@ public class Pokemon {
 		this.movimientosActivos = movimientosActivos;
 	}
 
-    public Movimiento[] getMovimientos() {
-		return movimientos;
+	public Movimiento[] getMovimientosAprendidos() {
+		return movimientosAprendidos;
 	}
 
-	public void setMovimientos(Movimiento[] movimientos) {
-		this.movimientos = movimientos;
+	public void setMovimientosAprendidos(Movimiento[] movimientosAprendidos) {
+		this.movimientosAprendidos = movimientosAprendidos;
 	}
-
+	
+	// Comprueba si puede subir de nivel y lo sube 
+	public void subirNivel() {
+		Random rnd = new Random();
+		while ( experiencia >= 10*nivel ) {
+			salud = salud + rnd.nextInt(5)+1;
+			ataque = ataque + rnd.nextInt(5)+1;
+			defensa = defensa + rnd.nextInt(5)+1;
+			ataqueEspecial = ataqueEspecial + rnd.nextInt(5)+1;
+			defensaEspecial = defensaEspecial + rnd.nextInt(5)+1;
+			velocidad = velocidad + rnd.nextInt(5)+1;
+			nivel++;
+			// TODO: Cada tres niveles puede aprender un ataque nuevo
+		}
+	}
+	
+	// TODO: Atacar a otro pokemon, falta ataque y actualizar
+	public void atacar(Pokemon rival) {
+		
+	}
+	
+	// TODO: Comprueba ventaja según tipos con el rival (NEUTRO / VENTAJA / DOBLE_VENTAJA / DESVENTAJA)
+	public String ventaja(Pokemon rival) {
+		return null;
+	}
+	
+	// TODO: Aprender un movimiento de los posibles lo debe poner en la lista activa si hay sitio si no en los aprendidos
+	public void aprenderMovimiento() {
+		
+	}
+	
+	// TODO: Mover movimientos
+	
 	
     @Override
     public String toString() {
@@ -302,18 +331,16 @@ public class Pokemon {
                 ", ataque=" + ataque +
                 ", defensa=" + defensa +
                 ", velocidad=" + velocidad +
-                ", atEspecial=" + atEspecial +
-                ", defEspecial=" + defEspecial +
+                ", atEspecial=" + ataqueEspecial +
+                ", defEspecial=" + defensaEspecial +
                 ", nivel=" + nivel +
                 ", fertilidad=" + fertilidad +
                 ", sexo=" + sexo +
                 ", estado='" + estado + '\'' +
                 ", experiencia=" + experiencia +
-                ", movimiento1='" + movimiento1 + '\'' +
-                ", movimiento2='" + movimiento2 + '\'' +
-                ", movimiento3='" + movimiento3 + '\'' +
-                ", movimiento4='" + movimiento4 + '\'' +
-                ", idObjeto=" + idObjeto +
+                //", idObjeto=" + idObjeto +
                 '}';
     }
+    
+   
 }

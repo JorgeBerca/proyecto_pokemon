@@ -9,7 +9,7 @@ import modelo.ListaPokemon;
 import modelo.Pokemon;
 import util.UtilView;
 
-public class Controllerestadisticas extends PokemonModalController {
+public class Controllerestadisticas extends ControllerWithAttributes {
 	
 	@FXML VBox box;
 	@FXML Label nombre;
@@ -30,6 +30,13 @@ public class Controllerestadisticas extends PokemonModalController {
     public void initialize() {
     	//if (pokemon==null) pokemon = Entrenador.getEntrenadorActual().getPokemonElegido();    
     }
+
+	@Override
+	public void initializeAttributes(Object data) {
+    	this.pokemon =(Pokemon)data;
+    	this.desdeEquipo = pokemon.getCaja();
+		actualizaDatos();		
+	}    
 
     public Pokemon getPokemon() {
 		return pokemon;
@@ -96,17 +103,4 @@ public class Controllerestadisticas extends PokemonModalController {
 		sexo.setText(pokemon.getSexo());	
 	}
 	
-
-	@Override
-	public void setData(Object data) {
-		this.pokemon=(Pokemon)data;
-		actualizaDatos();
-	}
-
-	@Override
-	public void setFlag(int flag) {
-		this.desdeEquipo = flag;
-		System.out.println("DesdeEquipo: "+this.desdeEquipo);		
-	}
-
 }

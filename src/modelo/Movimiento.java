@@ -4,13 +4,19 @@ public class Movimiento {
     private int idMovimiento;
     private String nomMovimiento;
     private Integer potencia;
-    private String tipo;
+    private String tipo; 
     private String estado;
     private Integer quita;
     private Integer turnos;
     private String mejora;
     private Integer cantMejora;
     private int nivelAprendizaje;
+    // TODO: ¿cómo poner los usos?
+    //       Podemos guardar en la BD solo id y usos
+    // TODO: No tenemos el tipo de movimiento
+    //private int usos;
+    
+    // TODO: Método regenerar usos
 
     public Movimiento(int idMovimiento, String nomMovimiento, Integer potencia, String tipo, String estado,
                       Integer quita, Integer turnos, String mejora, Integer cantMejora, int nivelAprendizaje) {
