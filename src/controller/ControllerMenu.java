@@ -27,22 +27,6 @@ public class ControllerMenu {
     	int dinero = Entrenador.getEntrenadorActual().getDinero();
     	txtDinero.setText("PokeDólares: "+UtilView.formateaDinero(dinero));
     }
-    	
-    public void playMusic() {
-        try {
-            String path = "C:/Users/jorge/Documents/GitHub/proyecto_pokemon/sonidos/coralChorus.mp3";
-            File file = new File(path);
-            String mediaURL = file.toURI().toString();
-            Media sound = new Media(mediaURL);
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error al reproducir música: " + e.getMessage());
-        }
-    }
-
     
     @FXML
     public void captura() {
