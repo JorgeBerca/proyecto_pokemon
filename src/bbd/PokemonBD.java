@@ -99,6 +99,7 @@ public class PokemonBD {
     			rs.getString("NOMBRE"),
     			rs.getString("MOTE"),
     			rs.getInt("SALUD"),
+    			rs.getInt("SALUD_MAXIMA"),
     			rs.getInt("ATAQUE"),
     			rs.getInt("DEFENSA"),
     			rs.getInt("VELOCIDAD"),
@@ -136,7 +137,7 @@ public class PokemonBD {
 	}
 	
 	public void guarda(Pokemon pokemon) {
-        String sql = "UPDATE POKEMON SET NUM_POKEDEX=?, ID_ENTRENADOR=?, CAJA=?, NOMBRE=?, MOTE=?, SALUD=?, ATAQUE=?, DEFENSA=?, VELOCIDAD=?, AT_ESPECIAL=?, DEF_ESPECIAL=?, NIVEL=?, FERTILIDAD=?, SEXO=?, EXPERIENCIA=? WHERE ID_POKEMON=?";
+        String sql = "UPDATE POKEMON SET NUM_POKEDEX=?, ID_ENTRENADOR=?, CAJA=?, NOMBRE=?, MOTE=?, SALUD=?, SALUD_MAXIMA=?, ATAQUE=?, DEFENSA=?, VELOCIDAD=?, AT_ESPECIAL=?, DEF_ESPECIAL=?, NIVEL=?, FERTILIDAD=?, SEXO=?, EXPERIENCIA=? WHERE ID_POKEMON=?";
         try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
             statement.setInt(1, pokemon.getNumPokedex() ); 			// NUM_POKEDEX 
             statement.setInt(2, pokemon.getIdEntrenador());						// ID_ENTRENADOR
@@ -144,16 +145,17 @@ public class PokemonBD {
             statement.setString(4, pokemon.getNombre());			// NOMBRE
             statement.setString(5, pokemon.getMote());							// MOTE
             statement.setInt(6, pokemon.getSalud()); 			// SALUD (entre 25 y 50) 
-            statement.setInt(7, pokemon.getAtaque()); 			// ATAQUE (entre 10 y 20) 
-            statement.setInt(8, pokemon.getDefensa()); 			// DEFENSA (entre 20 y 30) 
-            statement.setInt(9, pokemon.getVelocidad()); 				// VELOCIDAD (entre 15 y 20) 
-            statement.setInt(10, pokemon.getAtEspecial()); 			// AT_ESPECIAL (entre 15 y 20) 
-            statement.setInt(11, pokemon.getDefEspecial()); 			// DEF_ESPECIAL (entre 20 y 30) 
-            statement.setInt(12, pokemon.getNivel()); 								// NIVEL (1) 
-            statement.setInt(13, pokemon.getFertilidad()); 								// FERTILIDAD (0)
-            statement.setString (14, pokemon.getSexo()); 				// SEXO (entre 'M' y 'H') 
-            statement.setInt(15, pokemon.getNivel());					// NIVEL            
-            statement.setInt(16, pokemon.getIdPokemon() );					// POKEMON_ID            
+            statement.setInt(7, pokemon.getSaludMaxima()); 			// SALUD (entre 25 y 50) 
+            statement.setInt(8, pokemon.getAtaque()); 			// ATAQUE (entre 10 y 20) 
+            statement.setInt(9, pokemon.getDefensa()); 			// DEFENSA (entre 20 y 30) 
+            statement.setInt(10, pokemon.getVelocidad()); 				// VELOCIDAD (entre 15 y 20) 
+            statement.setInt(11, pokemon.getAtEspecial()); 			// AT_ESPECIAL (entre 15 y 20) 
+            statement.setInt(12, pokemon.getDefEspecial()); 			// DEF_ESPECIAL (entre 20 y 30) 
+            statement.setInt(13, pokemon.getNivel()); 								// NIVEL (1) 
+            statement.setInt(14, pokemon.getFertilidad()); 								// FERTILIDAD (0)
+            statement.setString (15, pokemon.getSexo()); 				// SEXO (entre 'M' y 'H') 
+            statement.setInt(16, pokemon.getNivel());					// NIVEL            
+            statement.setInt(17, pokemon.getIdPokemon() );					// POKEMON_ID            
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -162,7 +164,7 @@ public class PokemonBD {
 
 	// guarda en la base de datos el nuevo pokémon y devuelve el ID generado
 	public int crea(Pokemon pokemon) {
-        String sql = "INSERT INTO POKEMON(NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO POKEMON(NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, SALUD_MAXIMA, ATAQUE, DEFENSA, VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, pokemon.getNumPokedex() ); 		 
             statement.setInt(2, pokemon.getIdEntrenador());
@@ -170,15 +172,16 @@ public class PokemonBD {
             statement.setString(4, pokemon.getNombre());	
             statement.setString(5, pokemon.getMote());		
             statement.setInt(6, pokemon.getSalud()); 		 
-            statement.setInt(7, pokemon.getAtaque()); 		 
-            statement.setInt(8, pokemon.getDefensa()); 		 
-            statement.setInt(9, pokemon.getVelocidad()); 	 
-            statement.setInt(10, pokemon.getAtEspecial()); 	 
-            statement.setInt(11, pokemon.getDefEspecial());  
-            statement.setInt(12, pokemon.getNivel()); 		 
-            statement.setInt(13, pokemon.getFertilidad()); 	
-            statement.setString (14, pokemon.getSexo()); 	 
-            statement.setInt(15, pokemon.getExperiencia());		            
+            statement.setInt(7, pokemon.getSaludMaxima()); 		 
+            statement.setInt(8, pokemon.getAtaque()); 		 
+            statement.setInt(9, pokemon.getDefensa()); 		 
+            statement.setInt(10, pokemon.getVelocidad()); 	 
+            statement.setInt(11, pokemon.getAtEspecial()); 	 
+            statement.setInt(12, pokemon.getDefEspecial());  
+            statement.setInt(13, pokemon.getNivel()); 		 
+            statement.setInt(14, pokemon.getFertilidad()); 	
+            statement.setString (15, pokemon.getSexo()); 	 
+            statement.setInt(16, pokemon.getExperiencia());		            
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
             keys.next();

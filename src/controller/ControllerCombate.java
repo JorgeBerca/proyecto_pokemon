@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -35,18 +36,25 @@ public class ControllerCombate {
 	
     public void initialize() {
     	combate = new Combate(Entrenador.getEntrenadorActual());
+    	refrescaEntrenador();
+    	refrescaEnemigo();
+    }
+    
+	
+    private void refrescaEntrenador() {
     	tupokemon.setImage(UtilView.getImagenDetras(combate.getPaladin().getNombre()));
-    	pokemonenemigo.setImage(UtilView.getImagenDelante(combate.getRival().getNombre()));
-    	refrescaPorcentajeSalud();
     	nombreTu.setText(combate.getPaladin().getMote());
-    	nombreRival.setText(combate.getRival().getNombre());
-    }
-	
-    private void refrescaPorcentajeSalud() {
     	vidatupokemon.setProgress(combate.getPorcentajeSaludEntrenador());
-    	vidaenemigo.setProgress(combate.getPorcentajeSaludRival());
     }
-	
+
+    
+    private void refrescaEnemigo() {
+    	pokemonenemigo.setImage(UtilView.getImagenDelante(combate.getRival().getNombre()));
+    	vidaenemigo.setProgress(combate.getPorcentajeSaludRival());
+    	nombreRival.setText(combate.getRival().getNombre());    	
+    }
+
+    
 	@FXML
 	public void mostrarEquipo() {
 		selector.toFront();
@@ -57,13 +65,17 @@ public class ControllerCombate {
         	if (nodoId == null) { // es hueco para mostrar un pokemon
         		ImageView imageView = ((ImageView)nodo);
         		Pokemon equipo[] = combate.getEntrenador().getEquipo();
+        		imageView.setImage(null);
+        		imageView.setOnMouseClicked(null);
         		if (index <= equipo.length -1) {
         			Pokemon pokemon = equipo[index];
-        			Image image = UtilView.getImagenDelante(pokemon.getNombre());
-        			imageView.setImage(image);
-        			imageView.setUserData(index);
-        			imageView.setOnMouseClicked(new ManejaMousePokemon(index));
-        		}
+        			Image image;
+    				image = UtilView.getImagenDelante(pokemon.getNombre());
+        			if (pokemon.getSalud()>=0) { // está vivo
+	        			imageView.setImage(image);
+	        			imageView.setOnMouseClicked(new ManejaMousePokemon(index));
+        			}
+        		}        			
         		index++;
         	}			
 		} 		
@@ -72,18 +84,21 @@ public class ControllerCombate {
 	public void setPaladin(int index) {
 		Pokemon equipo[] = combate.getEntrenador().getEquipo();
 		if (index >= equipo.length) return;
-    	combate.setPaladin(equipo[index]);
-    	Image image = UtilView.getImagenDetras(equipo[index].getNombre());    	    	
-    	tupokemon.setImage(image); 
-    	nombreTu.setText(combate.getPaladin().getMote());
+		Pokemon nuevoPaladin = equipo[index];
+		if (nuevoPaladin.getSalud()<=0) {
+			UtilView.showError("Combate", "Tu pokémon "+nuevoPaladin.getMote()+" está muerto.\nNo lo puedes volver a utilizar.");
+		}
+    	combate.setPaladin(nuevoPaladin);
+    	refrescaEntrenador();
     	//TODO: Hacer imagen más grande    	
 	}
 	
-	public void eligeNuevoPaladin(int index) {
+	public void eligeNuevoPaladin(int index) {		
 		setPaladin(index);
 		selector.toBack();
 		selector.setVisible(false);
 	}
+	
 	
     @FXML
     public void lucha() {
@@ -96,7 +111,7 @@ public class ControllerCombate {
     		if (index < movimientos.length ) {
     			boton.setText(movimientos[index].getNomMovimiento());
     			boton.setVisible(true);
-    			//boton.setOnAction();
+    			boton.setOnAction(new ManejaMovimientoLucha(movimientos[index]));
     		} else {
     			boton.setVisible(false);
     		}
@@ -143,5 +158,52 @@ public class ControllerCombate {
         }
     };        			
     
+    // Maneja los clicks en los botones de movimientos de lucha
+    class ManejaMovimientoLucha implements EventHandler<ActionEvent> {
+    	
+    	Movimiento movimiento;    	
+    	
+    	public ManejaMovimientoLucha(Movimiento movimiento) {
+			this.movimiento = movimiento;
+		}
+
+		@Override
+		public void handle(ActionEvent event) {
+	            
+				System.out.println("Has elegido el movimiento "+movimiento.getNomMovimiento());	            
+	            combate.movimientoEntrenador(movimiento);
+	            refrescaEnemigo();
+	            if (combate.getPorcentajeSaludRival()<=0) {
+	            	UtilView.showInfo("Combate", "Has matado a "+combate.getRival().getNombre());
+	            	if (combate.getGanador()==null) {
+	            		combate.siguientePokemonRival();
+	            		refrescaEnemigo();
+	            	}
+	            } else {	           
+		            Movimiento movimientoRival = combate.getMovimientoRival();
+		            System.out.println("El rival ha elegido el movimiento "+movimiento.getNomMovimiento());	            
+		            combate.movimientoRival(movimientoRival);
+		            refrescaEntrenador();
+		            if (combate.getPorcentajeSaludEntrenador()<=0) {
+		            	UtilView.showInfo("Combate", "Tu pokémon "+combate.getPaladin().getMote()+" ha muerto.");
+		            	if (combate.getGanador()==null)
+		            		mostrarEquipo();
+		            }
+	            }
+	            Entrenador ganador = combate.getGanador();
+	            if (ganador!=null) {
+	            	if (ganador.getId() == -1) {
+	            		UtilView.showInfo("Combate", "\n\nHas perdido :(\n\n");
+	            	} else {
+	            		combate.subirExperienciaEntrenador();
+	            		UtilView.showInfo("Combate", "\n¡¡¡ Has gandado !!!\n\nLos pokemon de tu equipo han ganado experiencia.\nComprueba en las estadísticas sin ha subido de nivel.\n");	            		
+	            	}
+	            	UtilView.mostrarMenuPrincipal(((Node) event.getSource()).getScene());
+	            }
+	            event.consume();			
+		}
+
+
+    };        			
 
 }

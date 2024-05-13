@@ -10,6 +10,7 @@ public class Pokemon {
     private String nombre;
     private String mote;
     private int salud;
+    private int saludMaxima;
     private int ataque;
     private int defensa;
     private int velocidad;
@@ -68,7 +69,7 @@ public class Pokemon {
 
     // Constructor completo BD
     public Pokemon(int idPokemon, int numPokedex, int idEntrenador, int caja, String nombre, String mote,
-    		       int salud, int ataque, int defensa, int velocidad, int ataqueEspecial, int defensaEspecial,
+    		       int salud, int saludMaxima, int ataque, int defensa, int velocidad, int ataqueEspecial, int defensaEspecial,
     		       int nivel, int fertilidad, String sexo, int estado, String tipo1, String tipo2) {
         this.idPokemon = idPokemon;
         this.numPokedex = numPokedex;
@@ -77,6 +78,7 @@ public class Pokemon {
         this.nombre = nombre;
         this.mote = mote;
 	    this.salud=salud;
+	    this.saludMaxima=saludMaxima;
 	    this.ataque=ataque;
 	    this.defensa=defensa;
 	    this.velocidad=velocidad;
@@ -245,7 +247,37 @@ public class Pokemon {
 	}
     
     
-    public void meterPC() {
+    public int getSaludMaxima() {
+		return saludMaxima;
+	}
+
+
+	public void setSaludMaxima(int saludMaxima) {
+		this.saludMaxima = saludMaxima;
+	}
+
+
+	public int getAtaqueEspecial() {
+		return ataqueEspecial;
+	}
+
+
+	public void setAtaqueEspecial(int ataqueEspecial) {
+		this.ataqueEspecial = ataqueEspecial;
+	}
+
+
+	public int getDefensaEspecial() {
+		return defensaEspecial;
+	}
+
+
+	public void setDefensaEspecial(int defensaEspecial) {
+		this.defensaEspecial = defensaEspecial;
+	}
+
+
+	public void meterPC() {
     	this.caja = 1;
     }
     
@@ -293,15 +325,22 @@ public class Pokemon {
 	public void subirNivel() {
 		Random rnd = new Random();
 		while ( experiencia >= 10*nivel ) {
-			salud = salud + rnd.nextInt(5)+1;
+			int sumar = rnd.nextInt(5)+11;  // salud sube entre 11 y 15
+			salud = salud + sumar;
+			saludMaxima = saludMaxima + sumar;
 			ataque = ataque + rnd.nextInt(5)+1;
 			defensa = defensa + rnd.nextInt(5)+1;
 			ataqueEspecial = ataqueEspecial + rnd.nextInt(5)+1;
 			defensaEspecial = defensaEspecial + rnd.nextInt(5)+1;
 			velocidad = velocidad + rnd.nextInt(5)+1;
 			nivel++;
-			// TODO: Cada tres niveles puede aprender un ataque nuevo
+			// TODO: hay que cargar nuevos movimientos del nivel
 		}
+	}
+	
+	public void subirExperiencia() {
+		setExperiencia(experiencia+7);
+		subirNivel();
 	}
 	
 	// TODO: Atacar a otro pokemon, falta ataque y actualizar
@@ -315,8 +354,12 @@ public class Pokemon {
 	}
 	
 	// TODO: Aprender un movimiento de los posibles lo debe poner en la lista activa si hay sitio si no en los aprendidos
-	public void aprenderMovimiento() {
-		
+	public void aprenderMovimiento() {		
+	
+	}
+	
+	public void curar() {
+		this.salud = this.saludMaxima;
 	}
 	
 	// TODO: Mover movimientos
@@ -332,6 +375,7 @@ public class Pokemon {
                 ", nombre='" + nombre + '\'' +
                 ", mote='" + mote + '\'' +
                 ", salud=" + salud +
+                ", saludMaxima=" + saludMaxima +
                 ", ataque=" + ataque +
                 ", defensa=" + defensa +
                 ", velocidad=" + velocidad +

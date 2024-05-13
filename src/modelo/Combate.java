@@ -1,8 +1,13 @@
 package modelo;
 
-import java.util.ArrayList;
+import java.util.Random;
+
+import bbd.BD;
+import bbd.PokemonBD;
 
 public class Combate {
+
+	PokemonBD pkBD = new PokemonBD(BD.getConnetion());
 	
 	Entrenador entrenador;
 	Entrenador dominguero; // random
@@ -11,12 +16,6 @@ public class Combate {
 	Pokemon rival;
 	int numRival;
 		
-	Entrenador ganador;
-	ArrayList<Turno> turnos;
-	int numTurno;
-	int jugadorKO;
-	int rivalKO;
-	
 	int saludInicialPaladin;
 	int saludInicialRival;
 	
@@ -24,12 +23,14 @@ public class Combate {
 	public Combate(Entrenador entrenador) {
 		this.entrenador = entrenador;
 		this.dominguero = entrenador.generarOponente();
-		this.turnos = new ArrayList<Turno>();
 		this.paladin = entrenador.getEquipo()[0];
+		//this.paladin.setSalud(100000);
 		this.numRival=0;
 		this.rival = dominguero.getEquipo()[numRival];
 		this.saludInicialPaladin = this.paladin.getSalud();
 		this.saludInicialRival = this.rival.getSalud();
+		System.out.println(this.rival);
+		System.out.println(this.rival.getMovimientosActivos());
 	}
 
 	public Entrenador getEntrenador() {
@@ -55,6 +56,7 @@ public class Combate {
 	public void setPaladin(Pokemon paladin) {
 		System.out.println("Nuevo paladín: "+paladin.getNombre());
 		this.paladin = paladin;
+		this.setSaludInicialPaladin(paladin.getSalud());
 	}
 
 	public Pokemon getRival() {
@@ -63,6 +65,7 @@ public class Combate {
 
 	public void setRival(Pokemon rival) {
 		this.rival = rival;
+		this.setSaludInicialRival(rival.getSalud());
 	}
 
 	public int getNumRival() {
@@ -71,46 +74,6 @@ public class Combate {
 
 	public void setNumRival(int numRival) {
 		this.numRival = numRival;
-	}
-
-	public Entrenador getGanador() {
-		return ganador;
-	}
-
-	public void setGanador(Entrenador ganador) {
-		this.ganador = ganador;
-	}
-
-	public ArrayList<Turno> getTurnos() {
-		return turnos;
-	}
-
-	public void setTurnos(ArrayList<Turno> turnos) {
-		this.turnos = turnos;
-	}
-
-	public int getNumTurno() {
-		return numTurno;
-	}
-
-	public void setNumTurno(int numTurno) {
-		this.numTurno = numTurno;
-	}
-
-	public int getJugadorKO() {
-		return jugadorKO;
-	}
-
-	public void setJugadorKO(int jugadorKO) {
-		this.jugadorKO = jugadorKO;
-	}
-
-	public int getRivalKO() {
-		return rivalKO;
-	}
-
-	public void setRivalKO(int rivalKO) {
-		this.rivalKO = rivalKO;
 	}
 
 	public int getSaludInicialPaladin() {
@@ -141,6 +104,72 @@ public class Combate {
 		return ahora/inicial;
 	}
 	
+	public void movimientoEntrenador(Movimiento movimiento) {
+		int potencia = movimiento.getPotencia();
+		int salud = rival.getSalud() - potencia;		
+		rival.setSalud(salud);
+		System.out.println("La salud del "+rival.getNombre()+" rival es "+salud);
+	}
+	
+	public void movimientoRival(Movimiento movimiento) {
+		int potencia = movimiento.getPotencia();
+		int salud = paladin.getSalud() - potencia;
+		paladin.setSalud(salud);
+		System.out.println("La salud de tu "+paladin.getMote()+" es "+salud);
+	}
+	
+	// movimiento aleatorio del rival
+	public Movimiento getMovimientoRival() {
+		Random rnd = new Random();
+		int index = rnd.nextInt(rival.getMovimientosActivos().length);
+		return rival.getMovimientosActivos()[index];		
+	}
 	
 	
+	public boolean siguientePokemonRival() {
+		if (numRival++>=5) return false; // no le quedan más pokémons al rival		
+		this.rival = dominguero.getEquipo()[numRival];
+		this.saludInicialPaladin = this.paladin.getSalud();
+		this.saludInicialRival = this.rival.getSalud();
+		System.out.println(this.rival);
+		System.out.println(this.rival.getMovimientosActivos());
+		return true;		
+	}
+	
+	public boolean quedanRivales() {
+		Pokemon equipo[] = dominguero.getEquipo();
+		for (int i=0; i<equipo.length;i++) {
+			if (equipo[i].getSalud()>0) 
+				return true;
+		}
+		return false;
+	}
+
+	public boolean quedanPaladines() {
+		Pokemon equipo[] = entrenador.getEquipo();
+		for (int i=0; i<equipo.length;i++) {
+			if (equipo[i].getSalud()>0) 
+				return true;
+		}
+		return false;
+	}
+	
+	public Entrenador getGanador() {
+		if (!quedanRivales()) {
+			return entrenador;
+		}
+		if (!quedanPaladines()) {
+			return dominguero;
+		}
+		return null;
+	}
+	
+	public void subirExperienciaEntrenador() {
+		for (int i=0; i<entrenador.getCuantosEquipo(); i++ ) {
+			Pokemon pokemon = entrenador.getEquipo()[i];
+			pokemon.subirExperiencia();
+			pkBD.guarda(pokemon);
+		}
+	}
+
 }

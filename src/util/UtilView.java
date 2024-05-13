@@ -78,7 +78,7 @@ public class UtilView {
     }
 
     private static void internalAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);

@@ -65,12 +65,15 @@
                   <Font size="22.0" />
                </font>
             </Label>
+            <Button layoutX="389.0" layoutY="84.0" mnemonicParsing="false" onAction="#curar" opacity="0.0" prefHeight="314.0" prefWidth="143.0" text="curar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Label layoutX="332.0" layoutY="398.0" prefHeight="93.0" prefWidth="274.0" text="haz clic en mi si quieres" textFill="RED">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button layoutX="389.0" layoutY="84.0" mnemonicParsing="false" onAction="#curar" opacity="0.0" prefHeight="314.0" prefWidth="143.0" text="curar" />
             <Label layoutX="357.0" layoutY="445.0" prefHeight="62.0" prefWidth="224.0" text="curar tus pokemon" textFill="RED">
                <font>
                   <Font size="22.0" />
@@ -106,8 +109,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button layoutX="399.0" layoutY="94.0" mnemonicParsing="false" onAction="#curar" opacity="0.0" prefHeight="314.0" prefWidth="143.0" text="curar" />
-            <Button layoutX="133.0" layoutY="130.0" mnemonicParsing="false" onAction="#recuerdaMovimientos" opacity="0.0" prefHeight="136.0" prefWidth="115.0" text="curar">
+            <Button layoutX="133.0" layoutY="130.0" mnemonicParsing="false" onAction="#recuerdaMovimientos" opacity="0.0" prefHeight="136.0" prefWidth="115.0" text="recuerda">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
