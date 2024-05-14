@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2024 a las 08:42:44
+-- Tiempo de generación: 14-05-2024 a las 21:36:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -53,7 +53,7 @@ CREATE TABLE `entrenador` (
 INSERT INTO `entrenador` (`ID_ENTRENADOR`, `NOM_ENTRENADOR`, `PASS`, `POKEDOLLARS`) VALUES
 (1, 'abc', '123456', NULL),
 (2, 'Jorgito', '123', NULL),
-(3, '1', '1', 14000),
+(3, '1', '1', 14500),
 (5, '123', '123', NULL),
 (6, 'Robelto', '123', NULL),
 (8, '2', '2', NULL),
@@ -182,14 +182,6 @@ CREATE TABLE `movimiento_pokemon` (
   `ACTIVO` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `movimiento_pokemon`
---
-
-INSERT INTO `movimiento_pokemon` (`ID_MOVIMIENTO`, `ID_POKEMON`, `ACTIVO`) VALUES
-(68, 149, 'S'),
-(68, 150, 'S');
-
 -- --------------------------------------------------------
 
 --
@@ -308,14 +300,6 @@ CREATE TABLE `pokemon` (
   `SALUD_MAXIMA` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `pokemon`
---
-
-INSERT INTO `pokemon` (`ID_POKEMON`, `NUM_POKEDEX`, `ID_ENTRENADOR`, `CAJA`, `NOMBRE`, `MOTE`, `SALUD`, `ATAQUE`, `DEFENSA`, `VELOCIDAD`, `AT_ESPECIAL`, `DEF_ESPECIAL`, `NIVEL`, `FERTILIDAD`, `SEXO`, `ESTADO`, `EXPERIENCIA`, `MOVIMIENTO1`, `MOVIMIENTO2`, `MOVIMIENTO3`, `MOVIMIENTO4`, `ID_OBJETO`, `SALUD_MAXIMA`) VALUES
-(149, 9, 3, 0, 'Blastoise', 'Blastoise', 48, 18, 22, 16, 15, 25, 1, 5, 'M', NULL, 1, NULL, NULL, NULL, NULL, NULL, 48),
-(150, 39, 3, 0, 'Gastly', 'Gastly', 25, 19, 28, 19, 17, 11, 1, 5, 'M', NULL, 1, NULL, NULL, NULL, NULL, NULL, 25);
-
 -- --------------------------------------------------------
 
 --
@@ -408,7 +392,7 @@ ALTER TABLE `entrenador`
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-  MODIFY `ID_POKEMON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `ID_POKEMON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- Restricciones para tablas volcadas
