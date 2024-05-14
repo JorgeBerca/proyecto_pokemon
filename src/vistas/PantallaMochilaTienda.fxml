@@ -204,7 +204,7 @@
                   <Image url="@../imagenes/objetos_tienda/anillo unico.gif" />
                </image>
             </ImageView>
-            <Label layoutX="763.0" layoutY="137.0" text="0">
+            <Label fx:id="labelAnillo" layoutX="763.0" layoutY="137.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>

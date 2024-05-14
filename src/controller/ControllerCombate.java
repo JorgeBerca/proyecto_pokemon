@@ -196,7 +196,7 @@ public class ControllerCombate {
 	            		UtilView.showInfo("Combate", "\n\nHas perdido :(\n\n");
 	            	} else {
 	            		combate.subirExperienciaEntrenador();
-	            		UtilView.showInfo("Combate", "\n¡¡¡ Has gandado !!!\n\nLos pokemon de tu equipo han ganado experiencia.\nComprueba en las estadísticas sin ha subido de nivel.\n");	            		
+	            		UtilView.showInfo("Combate", "\n¡¡¡ Has gandado !!!\n\nLos pokemon de tu equipo han ganado experiencia.\nComprueba en las estadísticas si han subido de nivel.\n");	            		
 	            	}
 	            	UtilView.mostrarMenuPrincipal(((Node) event.getSource()).getScene());
 	            }

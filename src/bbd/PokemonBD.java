@@ -218,18 +218,30 @@ public class PokemonBD {
 		pokemon.setMovimientosAprendidos(mpBD.getMovimientosPokemon(pokemon.getIdPokemon()));
 	}
 	
-	public void actualizaDineroEntrenador(int idEntrenador, int nuevoDinero) {
-        String sql = "UPDATE ENTRENADOR SET POKEDOLLARS=? WHERE ID_ENTRENADOR=?";
-        System.out.println("Update: "+idEntrenador+" dinero = "+nuevoDinero);
-        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
-            statement.setInt(1, nuevoDinero);
-            statement.setInt(2, idEntrenador ); 
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }		
+	//public void actualizaDineroEntrenador(int idEntrenador, int nuevoDinero) {
+        //String sql = "UPDATE ENTRENADOR SET POKEDOLLARS=? WHERE ID_ENTRENADOR=?";
+        //System.out.println("Update: "+idEntrenador+" dinero = "+nuevoDinero);
+        //try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
+            //statement.setInt(1, nuevoDinero);
+            //statement.setInt(2, idEntrenador ); 
+            //statement.executeUpdate();
+        //} catch (SQLException e) {
+            //e.printStackTrace();
+        //}		
 		
+	//}
+	
+	public void actualizaDineroEntrenador(int idEntrenador, int nuevoSaldo) {
+	    try (Connection conn = BD.getConnetion();
+	         PreparedStatement pstmt = conn.prepareStatement("UPDATE ENTRENADOR SET POKEDOLLARS=? WHERE ID_ENTRENADOR=?")) {
+	        pstmt.setInt(1, nuevoSaldo);
+	        pstmt.setInt(2, idEntrenador);
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
+
 	
 	public void guardaMovimientoPokemon(int idMovimiento, int idPokemon, String activo) {
         String sql = "INSERT INTO movimiento_pokemon (ID_MOVIMIENTO,ID_POKEMON, ACTIVO) VALUES (?,?,?)";

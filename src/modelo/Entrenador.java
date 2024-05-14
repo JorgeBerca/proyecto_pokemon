@@ -237,6 +237,13 @@ public class Entrenador {
 		
 	}
 	
+	public void actualizaDineroEntrenador() {
+	    PokemonBD pkBD = new PokemonBD(BD.getConnetion());
+	    pkBD.actualizaDineroEntrenador(this.id, this.dinero);
+	}
+
+
+	
 	
 	public void moverPC(Pokemon pokemon) {
 		if (pokemon.getCaja()==0)

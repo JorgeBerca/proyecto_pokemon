@@ -1,5 +1,15 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.Stream;
+
+import bbd.BD;
+import bbd.MovimientoBD;
+import bbd.PokemonBD;
+import bbd.PokedexBD;
+
 public class Objeto {
 	
 	private int idObjeto;
@@ -12,13 +22,14 @@ public class Objeto {
 
 	public Objeto(int idObjeto, String nombre, 
 			      int ataque, int ataqueEspecial,
-			      int defensa, int defensaEspecial) {
+			      int defensa, int defensaEspecial, int precio) {
 		this.idObjeto = idObjeto;
 		this.nombre = nombre;
 		this.ataque = ataque;
 		this.ataqueEspecial = ataqueEspecial;
 		this.defensa = defensa;
 		this.defensaEspecial = defensaEspecial;
+		this.precio = precio;
 	}
 	
 	public int getIdObjeto() {
@@ -77,5 +88,7 @@ public class Objeto {
 		this.precio = precio;
 	}
 	
+		
+		
 	
 }
