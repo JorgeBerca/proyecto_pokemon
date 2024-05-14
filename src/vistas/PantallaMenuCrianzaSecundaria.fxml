@@ -46,7 +46,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerCrianzaSecundario">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <ImageView fitHeight="600.0" fitWidth="920.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -62,16 +62,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="511.0" layoutY="161.0" mnemonicParsing="false" onAction="#criarMacho" opacity="0.0" prefHeight="214.0" prefWidth="215.0" text="criarMacho">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="520.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/atras/botonMacho.png" />
                </image>
             </ImageView>
+            <Button layoutX="511.0" layoutY="161.0" mnemonicParsing="false" onAction="#criarMacho" opacity="0.0" prefHeight="214.0" prefWidth="215.0" text="criarMacho">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fitHeight="200.0" fitWidth="195.0" layoutX="150.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/atras/botonHembra.png" />

@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import modelo.Entrenador;
 import util.UtilView;
 import javafx.event.ActionEvent;
 import javafx.scene.media.Media;
@@ -18,8 +19,10 @@ public class ControllerCentroPokemon {
 	
 	@FXML
     public void curar() {
-        // Método para capturar pokemon, aún no implementado
+		Entrenador.getEntrenadorActual().curarEquipo();
+        UtilView.showInfo("Centro Pokémon", "Se han curado todos los pokemons de tu equipo.");
     }
+	
     @FXML
     public void pc(ActionEvent event) {
         try {

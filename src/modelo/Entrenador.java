@@ -114,7 +114,9 @@ public class Entrenador {
 	        	return null;
 	        }
 		} else { // es un rival
-			pokemonId=(this.getCuantosEquipo()+1)*(-1);			
+			pokemonId=(this.getCuantosEquipo()+1)*(-1);
+			pokemon.setIdPokemon(pokemonId);
+			guardaMovimientosNuevoPokemon(pokemon);
 			equipo.add(pokemon);
 			System.out.println("Nuevo pokemon rival: "+pokemonId+" es un "+pokemon.getNombre()+" y se ha llamado "+pokemon.getMote());
     		return pokemon;
@@ -145,11 +147,15 @@ public class Entrenador {
 		pokemon.setNivel(1);		
 		// valores aleatorios para e le nivel 1
 		pokemon.setSalud(rand.nextInt(26) + 25);			
+		pokemon.setSaludMaxima(pokemon.getSalud());			
 		pokemon.setAtaque(rand.nextInt(11) + 10);				
 		pokemon.setDefensa(rand.nextInt(21) + 10);
 		pokemon.setVelocidad(rand.nextInt(16) + 5);
 		pokemon.setAtEspecial(rand.nextInt(11) + 10);
 		pokemon.setDefEspecial(rand.nextInt(21) + 10);
+		System.out.println("------------------");
+		System.out.println(pokemon);
+		System.out.println("------------------");
 		return pokemon;
 	}
 
@@ -269,11 +275,26 @@ public class Entrenador {
 		}
 		
 	}
+
+	public int getNivelEquipo() {
+		Pokemon equipo[] = getEquipo();
+		int nivel=0;
+		for (int i=0; i<equipo.length; i++) {
+			int nuevoNivel = equipo[i].getNivel();
+			if (nuevoNivel>nivel)
+				nivel=nuevoNivel;
+		}
+		return nivel;
+	}
 	
 	public Entrenador generarOponente() {
 		Entrenador rival = new Entrenador(-1,"Domingureo", 0);
+		int nivel=getNivelEquipo();
 		for (int i=0; i<6; i++) {
-			rival.nuevoPokemon(this.getRandomPokedex(), null);
+			Pokemon nuevo = rival.nuevoPokemon(this.getRandomPokedex(), null);
+			nuevo.setExperiencia((nivel-1)*10);
+			nuevo.subirNivel(); 
+			System.out.println(nivel+" <--> "+nuevo.getNivel()+"        "+(nivel-1)*10);
 		}
 		return rival;
 	}
@@ -309,6 +330,14 @@ public class Entrenador {
 		
 		return hijo;
 		
+	}
+	
+	public void curarEquipo() {
+		Pokemon equipo[] = getEquipo();
+		for (int i=0; i<equipo.length; i++) {
+			equipo[i].curar();
+			pkBD.guarda(equipo[i]);
+		}
 	}
 	
 		
