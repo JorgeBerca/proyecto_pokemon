@@ -17,27 +17,28 @@ public class BD {
 	
 	
 	public static Connection getConnetion() {
-		if (connection == null) {
-			connection = nuevaConexionBD();
+		try {
+			if (connection == null || connection.isClosed()) {
+				connection = nuevaConexionBD();
+			}
+			return connection;
+		} catch (SQLException e) {
+		    System.out.println("Error al conectar a la base de datos:");
+		    e.printStackTrace();
+		    return null;
 		}
-		return connection;
 	}
 	
-	private static Connection nuevaConexionBD() {
+	private static Connection nuevaConexionBD() throws SQLException {
         // Datos de la conexión a BBD
         String url = "jdbc:mysql://localhost:3306/proyecto_pokemon";
         String usuario = "root";
         String contraseña = "";
 
         Connection conexion = null;
-        try {
-            // Establecer la conexión
-            conexion = DriverManager.getConnection(url, usuario, contraseña);
-            System.out.println("¡Conexión exitosa!");
-        } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos:");
-            e.printStackTrace();
-        }
+        // Establecer la conexión
+        conexion = DriverManager.getConnection(url, usuario, contraseña);
+        System.out.println("¡Conexión exitosa!");
         return conexion;
     }
 	
