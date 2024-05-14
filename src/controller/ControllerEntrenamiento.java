@@ -12,11 +12,11 @@ import util.UtilView;
 
 public class ControllerEntrenamiento {
     @FXML
-    public void lucha() {
+    public void entrenar() {
         // Método para capturar pokemon, aún no implementado
     }
     @FXML
-    public void pokemon() {
+    public void cambiarPokemon() {
         // Método para capturar pokemon, aún no implementado
     }
  
