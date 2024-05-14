@@ -29,7 +29,7 @@ public class ControllerEquipo {
 	@FXML private AnchorPane tablero;
 
     private ImageView[] pokemonImages = new ImageView[6];    
-    private PokemonBD pkBD = new PokemonBD(BD.getConnetion());
+    private PokemonBD pkBD = new PokemonBD();
     
     
     public void initialize() {

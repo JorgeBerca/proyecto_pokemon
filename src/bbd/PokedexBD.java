@@ -11,17 +11,12 @@ import modelo.Pokedex;
 
 public class PokedexBD {
 	
-	private Connection connection;
-	
-	public PokedexBD(Connection connetion) {
-		this.connection = connetion;
-	}
 
 	public int getCuantosPokemonsHay() {
 		int cuantos = 0;
         try {
             String query = "SELECT COUNT(*) FROM POKEDEX";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = BD.getConnetion().prepareStatement(query)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
                 	resultSet.next();
                     cuantos = resultSet.getInt(1);
@@ -37,7 +32,7 @@ public class PokedexBD {
 	public Pokedex getPokedex(int id) {
         try {
             String query = "SELECT NUM_POKEDEX, NOM_POKEMON, TIPO1, TIPO2 FROM POKEDEX WHERE NUM_POKEDEX=?";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = BD.getConnetion().prepareStatement(query)) {
                 statement.setInt(1, id);
                 try (ResultSet resultSet = statement.executeQuery()) {
                 	if (!resultSet.next()) {
@@ -63,7 +58,7 @@ public class PokedexBD {
         try {
 	    	ArrayList<Pokedex>  lista = new ArrayList();        	
             String query = "SELECT * FROM POKEDEX ORDER BY NUM_POKEDEX";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = BD.getConnetion().prepareStatement(query)) {
                 try (ResultSet rs = statement.executeQuery()) {
         		    while (rs.next()) {
         		    	Pokedex pokedex = new Pokedex(
@@ -86,7 +81,7 @@ public class PokedexBD {
 	public Pokedex getPokedexPorNombre(String nombre) {
         try {
             String query = "SELECT NUM_POKEDEX, NOM_POKEMON, TIPO1, TIPO2 FROM POKEDEX WHERE NOM_POKEMON=?";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = BD.getConnetion().prepareStatement(query)) {
                 statement.setString(1, nombre);
                 try (ResultSet resultSet = statement.executeQuery()) {
                 	if (!resultSet.next()) {

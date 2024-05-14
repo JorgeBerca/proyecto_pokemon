@@ -53,7 +53,7 @@ public class ControllerEstadisticas extends ControllerWithAttributes {
 	@FXML
 	public void addEquipo() {		
 		String nombre = pokemon.getMote();
-		String texto = (desdeEquipo==1)? "al PC" : "al equipo";
+		String texto = (desdeEquipo==0)? "al PC" : "al equipo";
 		if (UtilView.confirmAlert("Mover Pokemon","¿Quieres mover a "+nombre+" "+texto+"?")) {
 			if (Entrenador.getEntrenadorActual().switchPokemon(pokemon))
 				UtilView.showInfo("Proyecto Pokemon", "Has movido tu pokemon "+texto+".");

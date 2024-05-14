@@ -11,12 +11,6 @@ public class Movimiento {
     private String mejora;
     private Integer cantMejora;
     private int nivelAprendizaje;
-    // TODO: ¿cómo poner los usos?
-    //       Podemos guardar en la BD solo id y usos
-    // TODO: No tenemos el tipo de movimiento
-    //private int usos;
-    
-    // TODO: Método regenerar usos
 
     public Movimiento(int idMovimiento, String nomMovimiento, Integer potencia, String tipo, String estado,
                       Integer quita, Integer turnos, String mejora, Integer cantMejora, int nivelAprendizaje) {
@@ -31,7 +25,7 @@ public class Movimiento {
         this.cantMejora = cantMejora;
         this.nivelAprendizaje = nivelAprendizaje;
     }
-
+    
     // Getters and Setters
     public int getIdMovimiento() {
         return idMovimiento;
@@ -127,5 +121,13 @@ public class Movimiento {
                 ", cantMejora=" + cantMejora +
                 ", nivelAprendizaje=" + nivelAprendizaje +
                 '}';
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+    	if (this == object) return true;
+    	if (!(object instanceof Movimiento)) return false;
+    	Movimiento movimiento= (Movimiento)object;
+    	return (this.idMovimiento  == movimiento.getIdMovimiento());
     }
 }

@@ -9,19 +9,15 @@ import modelo.Movimiento;
 
 public class MovimientosPokemonBD {
 
-	private Connection connection;
-		
-	public MovimientosPokemonBD(Connection connetion) {
-		this.connection = connetion;
-	}
 	
-	public Movimiento[] getMovimientosPokemon(int idPokemon) {
+	private ArrayList<Movimiento> getMovimientosTipoPokemon(int idPokemon, String activo) {
 	    try {
 	    	ArrayList<Movimiento>  lista = new ArrayList();
-	    	Statement stmt = connection.createStatement();
+	    	Statement stmt = BD.getConnetion().createStatement();
 	    	String sql = "SELECT movimientos.* FROM movimientos "
 	    			+ "INNER JOIN movimiento_pokemon ON movimiento_pokemon.ID_MOVIMIENTO = movimientos.ID_MOVIMIENTO "
 	    			+ "WHERE movimiento_pokemon.ID_POKEMON="+ idPokemon+ " "
+	    			+ "  AND movimiento_pokemon.ACTIVO='"+activo+"' "
 	    			+ "ORDER BY movimientos.ID_MOVIMIENTO "
 	    			+ "";
 	    	// 	    			+ "  AND movimiento_pokemon.ACTIVO='N "
@@ -41,8 +37,7 @@ public class MovimientosPokemonBD {
      			);		    			
 		    	lista.add(movimiento);
 		    }		    
-		    Movimiento[] resultado = new Movimiento[lista.size()];
-		    return lista.toArray(resultado);
+		    return lista;
        } catch (Exception e) {
            e.printStackTrace();
            System.out.println("Error al obtener los movimientos del pokemon " + idPokemon);
@@ -50,10 +45,12 @@ public class MovimientosPokemonBD {
        }
 	}
 	
-	public Movimiento[] getMovimientosActivosPokemon(int idPokemon) {
+	public ArrayList<Movimiento> getMovimientosActivosPokemon(int idPokemon) {
+		return getMovimientosTipoPokemon(idPokemon,"S");
+		/*
 	    try {
 	    	ArrayList<Movimiento>  lista = new ArrayList();
-	    	Statement stmt = connection.createStatement();
+	    	Statement stmt = BD.getConnetion().createStatement();
 	    	String sql = "SELECT movimientos.* FROM movimientos "
 	    			+ "INNER JOIN movimiento_pokemon ON movimiento_pokemon.ID_MOVIMIENTO = movimientos.ID_MOVIMIENTO "
 	    			+ "WHERE movimiento_pokemon.ID_POKEMON="+ idPokemon+ " "
@@ -76,14 +73,16 @@ public class MovimientosPokemonBD {
      			);		    			
 		    	lista.add(movimiento);
 		    }		    
-		    Movimiento[] resultado = new Movimiento[lista.size()];
-		    return lista.toArray(resultado);
+		    return lista;
        } catch (Exception e) {
            e.printStackTrace();
            System.out.println("Error al obtener los movimientos del pokemon " + idPokemon);
            return null;
        }
+       */
 	}
 
-
+	public ArrayList<Movimiento> getMovimientosAprendidosPokemon(int idPokemon) {
+		return getMovimientosTipoPokemon(idPokemon,"N");
+	}
 }

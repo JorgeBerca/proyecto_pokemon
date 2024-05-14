@@ -26,7 +26,7 @@ public class ControllerLogin {
     @FXML
     private TextField user1;
     
-    private LoginBD loginBD = new LoginBD(BD.getConnetion());
+    private LoginBD loginBD = new LoginBD();
     
 
     @FXML

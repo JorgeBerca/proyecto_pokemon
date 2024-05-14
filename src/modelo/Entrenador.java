@@ -1,9 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.Stream;
 
 import bbd.BD;
 import bbd.MovimientoBD;
@@ -14,9 +12,9 @@ public class Entrenador {
 	
 	private static Entrenador entrenadorActual = null;
 	
-	PokedexBD pdBD = new PokedexBD(BD.getConnetion());
-	PokemonBD pkBD = new PokemonBD(BD.getConnetion());
-	MovimientoBD mvBD = new MovimientoBD(BD.getConnetion());
+	PokedexBD pdBD = new PokedexBD();
+	PokemonBD pkBD = new PokemonBD();
+	MovimientoBD mvBD = new MovimientoBD();
 	
 	public static Entrenador getEntrenadorActual() {
 		return entrenadorActual;
@@ -96,6 +94,8 @@ public class Entrenador {
 		pokemon.setCaja(valorCaja);
 		String nuevoMote = (mote==null)? pokemon.getNombre() : mote;
 		pokemon.setMote(nuevoMote);
+		pokemon.setTipo1(pokemonCapturado.getTipo1());
+		pokemon.setTipo2(pokemonCapturado.getTipo2());
 		int pokemonId;
 		if (id > 0) { // es un entrenador
 			pokemonId = pkBD.crea(pokemon);
@@ -105,7 +105,7 @@ public class Entrenador {
 			}
 			pokemon.setIdPokemon(pokemonId);
 			System.out.println("Nuevo pokemon: "+pokemonId+" es un "+pokemon.getNombre()+" y lo has llamado "+pokemon.getMote());
-			guardaMovimientosNuevoPokemon(pokemon);
+			pokemon.aprendeNuevosMovimientos();
 	            
 	        if (pokemonId>0) {
 	        	this.recargaListaPokemon();
@@ -116,7 +116,7 @@ public class Entrenador {
 		} else { // es un rival
 			pokemonId=(this.getCuantosEquipo()+1)*(-1);
 			pokemon.setIdPokemon(pokemonId);
-			guardaMovimientosNuevoPokemon(pokemon);
+			pokemon.aprendeNuevosMovimientos();
 			equipo.add(pokemon);
 			System.out.println("Nuevo pokemon rival: "+pokemonId+" es un "+pokemon.getNombre()+" y se ha llamado "+pokemon.getMote());
     		return pokemon;
@@ -159,26 +159,14 @@ public class Entrenador {
 		return pokemon;
 	}
 
-	private void guardaMovimientosNuevoPokemon(Pokemon pokemon) {
-		Movimiento movNormales[] = mvBD.getMovimientosNivel(pokemon.getNivel(), "Normal");
-		Movimiento movTipo1[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo1() );
-		if ("Normal".equals(pokemon.getTipo1())) movTipo1 = new Movimiento[0];
-		Movimiento movTipo2[] = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo2() );
-		if ("Normal".equals(pokemon.getTipo2())) movTipo2 = new Movimiento[0];
-		Movimiento movimientos[] = Stream.concat(Stream.concat(Arrays.stream(movNormales), Arrays.stream(movTipo1)), Arrays.stream(movTipo2)).toArray(Movimiento[]::new);
-		if (this.id>0) { // es un entrenador
-			for (int i=0; i<movimientos.length; i++) {
-				String activo = (i<4)? "S" : "N";
-				movimientos[i].setEstado(activo);
-				pkBD.guardaMovimientoPokemon(movimientos[i].getIdMovimiento(), pokemon.getIdPokemon(), activo ); 
-			}
-		}
-		else { // es un rival
-			for (int i=0; i<movimientos.length; i++) {
-				movimientos[i].setEstado("S");
-			}
-			pokemon.setMovimientosActivos(movimientos);
-			// todos activos porque luego es aletorio			
+	public void addNuevosMovimientos(Pokemon pokemon) {
+		System.out.println(pokemon);
+		ArrayList<Movimiento> movimientos = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo1(), pokemon.getTipo2());
+		for (Movimiento movimiento: movimientos) {
+			String activo = pokemon.aprenderMovimiento(movimiento);
+			if (activo!=null && pokemon.getIdPokemon()>0) { // el rival no guarda movimientos
+				pkBD.guardaMovimientoPokemon(movimiento.getIdMovimiento(), pokemon.getIdPokemon(), activo );				
+			};
 		}
 	}
 		
@@ -238,7 +226,7 @@ public class Entrenador {
 	}
 	
 	public void actualizaDineroEntrenador() {
-	    PokemonBD pkBD = new PokemonBD(BD.getConnetion());
+	    PokemonBD pkBD = new PokemonBD();
 	    pkBD.actualizaDineroEntrenador(this.id, this.dinero);
 	}
 

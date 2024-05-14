@@ -11,19 +11,17 @@ import modelo.Pokemon;
 
 public class PokemonBD {
 
-	private Connection connection;
 	
 	MovimientosPokemonBD mpBD;
 	
-	public PokemonBD(Connection connetion) {
-		this.connection = connetion;
-		this.mpBD = new MovimientosPokemonBD(connetion);
+	public PokemonBD() {
+		this.mpBD = new MovimientosPokemonBD();
 	}
 	
 	public String[] getByEntrenador(int idEntrenador, int cuantos) {
 	    String[] resultado = new String[cuantos];
 	    try {
-	    	Statement stmt = connection.createStatement();
+	    	Statement stmt = BD.getConnetion().createStatement();
 		    ResultSet rs = stmt.executeQuery("SELECT NOMBRE FROM pokemon WHERE ID_ENTRENADOR = "+idEntrenador+" ORDER BY ID_POKEMON LIMIT "+cuantos);
 		    int index = 0; 
 		    while (rs.next()) {
@@ -43,7 +41,7 @@ public class PokemonBD {
 	public Pokemon[] getListaPokemonEntrenador(int idEntrenador) {
 	    try {
 	    	ArrayList<Pokemon>  lista = new ArrayList();
-	    	Statement stmt = connection.createStatement();
+	    	Statement stmt = BD.getConnetion().createStatement();
 		    ResultSet rs = stmt.executeQuery("SELECT pokemon.*, pokedex.TIPO1, pokedex.TIPO2 "
 								    		+" FROM pokemon "
 								    		+" INNER JOIN pokedex ON pokedex.NUM_POKEDEX=pokemon.NUM_POKEDEX "
@@ -52,6 +50,7 @@ public class PokemonBD {
 								    		+"");		    		    
 		    while (rs.next()) {
 		    	Pokemon pokemon = creaPokemonRS(rs);
+		    	System.out.println("DEBUG - getListaPokemon - "+pokemon.getNombre()+" experiencia:"+pokemon.getExperiencia());
 		    	cargaMovimientos(pokemon);
 		    	lista.add(pokemon);
 		    }		    
@@ -73,7 +72,7 @@ public class PokemonBD {
 		    			+"   AND pokemon.SEXO=? "
 		    			+" ORDER BY pokemon.ID_POKEMON "
 		    			+"";
-	    	PreparedStatement stmt = connection.prepareStatement(sql);
+	    	PreparedStatement stmt = BD.getConnetion().prepareStatement(sql);
 		    stmt.setInt(1, idEntrenador);
 		    stmt.setString(2, sexo);
 	    	ResultSet rs = stmt.executeQuery();		    		    
@@ -110,7 +109,8 @@ public class PokemonBD {
     			rs.getString("SEXO"),
     			rs.getInt("ESTADO"),		    			
     			rs.getString("TIPO1"),
-    			rs.getString("TIPO2")
+    			rs.getString("TIPO2"),
+    			rs.getInt("EXPERIENCIA")
 			);
     	return pokemon;
 	}
@@ -119,7 +119,7 @@ public class PokemonBD {
 
 	public Pokemon getPokemon(int idPokemon) {
 	    try {
-	    	Statement stmt = connection.createStatement();
+	    	Statement stmt = BD.getConnetion().createStatement();
 		    ResultSet rs = stmt.executeQuery("SELECT pokemon.*, pokedex.TIPO1, pokedex.TIPO2 "
 								    		+" FROM pokemon "
 								    		+" INNER JOIN pokedex ON pokedex.NUM_POKEDEX=pokemon.NUM_POKEDEX "
@@ -154,7 +154,7 @@ public class PokemonBD {
             statement.setInt(13, pokemon.getNivel()); 								// NIVEL (1) 
             statement.setInt(14, pokemon.getFertilidad()); 								// FERTILIDAD (0)
             statement.setString (15, pokemon.getSexo()); 				// SEXO (entre 'M' y 'H') 
-            statement.setInt(16, pokemon.getNivel());					// NIVEL            
+            statement.setInt(16, pokemon.getExperiencia());					// EXPERIENCIA            
             statement.setInt(17, pokemon.getIdPokemon() );					// POKEMON_ID            
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -215,21 +215,8 @@ public class PokemonBD {
 	
 	public void cargaMovimientos(Pokemon pokemon) {
 		pokemon.setMovimientosActivos(mpBD.getMovimientosActivosPokemon(pokemon.getIdPokemon()));
-		pokemon.setMovimientosAprendidos(mpBD.getMovimientosPokemon(pokemon.getIdPokemon()));
+		pokemon.setMovimientosAprendidos(mpBD.getMovimientosAprendidosPokemon(pokemon.getIdPokemon()));
 	}
-	
-	//public void actualizaDineroEntrenador(int idEntrenador, int nuevoDinero) {
-        //String sql = "UPDATE ENTRENADOR SET POKEDOLLARS=? WHERE ID_ENTRENADOR=?";
-        //System.out.println("Update: "+idEntrenador+" dinero = "+nuevoDinero);
-        //try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
-            //statement.setInt(1, nuevoDinero);
-            //statement.setInt(2, idEntrenador ); 
-            //statement.executeUpdate();
-        //} catch (SQLException e) {
-            //e.printStackTrace();
-        //}		
-		
-	//}
 	
 	public void actualizaDineroEntrenador(int idEntrenador, int nuevoSaldo) {
 	    try (Connection conn = BD.getConnetion();
@@ -255,5 +242,17 @@ public class PokemonBD {
         }		
 	}
 	
+	public void actualizaMovimientoPokemon(int idMovimiento, int idPokemon, String activo) {
+        String sql = "UPDATE movimiento_pokemon SET ACTIVO=? WHERE ID_MOVIMIENTO=? AND ID_POKEMON=?";
+        try (PreparedStatement statement = BD.getConnetion().prepareStatement(sql)) {
+            statement.setString(1, activo);
+            statement.setInt(2, idMovimiento); 
+            statement.setInt(3, idPokemon);
+            statement.executeUpdate();                        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }		
+		
+	}
 	
 }

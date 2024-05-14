@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Pokemon {
@@ -24,8 +25,8 @@ public class Pokemon {
     private String tipo1;
 	private String tipo2;
     private Objeto objeto; 
-	private Movimiento movimientosActivos[];
-	private Movimiento movimientosAprendidos[];
+	private ArrayList<Movimiento> movimientosActivos;
+	private ArrayList<Movimiento> movimientosAprendidos;
 
     // (NUM_POKEDEX,ID_ENTRENADOR, CAJA, NOMBRE, MOTE, SALUD, ATAQUE, DEFENSA, 
     // VELOCIDAD, AT_ESPECIAL, DEF_ESPECIAL, NIVEL, FERTILIDAD, SEXO, EXPERIENCIA
@@ -52,8 +53,8 @@ public class Pokemon {
 	    this.objeto=null;
 	    this.tipo1="";
 	    this.tipo2="";
-	    this.movimientosActivos=null;
-	    this.movimientosAprendidos=null;
+		this.movimientosActivos=new ArrayList<Movimiento>();
+		this.movimientosAprendidos=new ArrayList<Movimiento>();		
 	}
 	
     
@@ -65,12 +66,14 @@ public class Pokemon {
         this.caja = caja;
         this.nombre = nombre;
         this.mote = mote;
+		this.movimientosActivos=new ArrayList<Movimiento>();
+		this.movimientosAprendidos=new ArrayList<Movimiento>();		        
     }
 
     // Constructor completo BD
     public Pokemon(int idPokemon, int numPokedex, int idEntrenador, int caja, String nombre, String mote,
     		       int salud, int saludMaxima, int ataque, int defensa, int velocidad, int ataqueEspecial, int defensaEspecial,
-    		       int nivel, int fertilidad, String sexo, int estado, String tipo1, String tipo2) {
+    		       int nivel, int fertilidad, String sexo, int estado, String tipo1, String tipo2, int experiencia) {
         this.idPokemon = idPokemon;
         this.numPokedex = numPokedex;
         this.idEntrenador = idEntrenador;
@@ -92,6 +95,9 @@ public class Pokemon {
 	    this.objeto=null;
 	    this.tipo1=tipo1;
 	    this.tipo2=tipo2;        
+	    this.experiencia=experiencia;
+		this.movimientosActivos=new ArrayList<Movimiento>();
+		this.movimientosAprendidos=new ArrayList<Movimiento>();		
     }
     
     
@@ -305,24 +311,25 @@ public class Pokemon {
 		this.tipo2 = tipo2;
 	}
 
-	public Movimiento[] getMovimientosActivos() {
+	public ArrayList<Movimiento> getMovimientosActivos() {
 		return movimientosActivos;
 	}
 
-	public void setMovimientosActivos(Movimiento[] movimientosActivos) {
+	public void setMovimientosActivos(ArrayList<Movimiento> movimientosActivos) {
 		this.movimientosActivos = movimientosActivos;
 	}
 
-	public Movimiento[] getMovimientosAprendidos() {
+	public ArrayList<Movimiento> getMovimientosAprendidos() {
 		return movimientosAprendidos;
 	}
 
-	public void setMovimientosAprendidos(Movimiento[] movimientosAprendidos) {
+	public void setMovimientosAprendidos(ArrayList<Movimiento> movimientosAprendidos) {
 		this.movimientosAprendidos = movimientosAprendidos;
 	}
 	
 	// Comprueba si puede subir de nivel y lo sube 
 	public void subirNivel() {
+		if (nivel>=100) return;
 		Random rnd = new Random();
 		while ( experiencia >= 10*nivel ) {
 			int sumar = rnd.nextInt(5)+11;  // salud sube entre 11 y 15
@@ -334,13 +341,18 @@ public class Pokemon {
 			defensaEspecial = defensaEspecial + rnd.nextInt(5)+1;
 			velocidad = velocidad + rnd.nextInt(5)+1;
 			nivel++;
-			// TODO: hay que cargar nuevos movimientos del nivel
 		}
+		this.aprendeNuevosMovimientos();
 	}
+	
+	public void aprendeNuevosMovimientos() {
+		Entrenador.getEntrenadorActual().addNuevosMovimientos(this);
+	}
+	
 	
 	public void subirExperiencia() {
 		setExperiencia(experiencia+7);
-		subirNivel();
+		subirNivel();		
 	}
 	
 	// TODO: Atacar a otro pokemon, falta ataque y actualizar
@@ -348,18 +360,60 @@ public class Pokemon {
 		
 	}
 	
-	// TODO: Comprueba ventaja según tipos con el rival (NEUTRO / VENTAJA / DOBLE_VENTAJA / DESVENTAJA)
-	public String ventaja(Pokemon rival) {
-		return null;
+	
+	// activo - S / N - null
+	public String aprenderMovimiento(Movimiento movimiento) {
+		if (movimiento==null) return null;
+		if (movimientosActivos.contains(movimiento)) return null;
+		if (movimientosAprendidos.contains(movimiento)) return null;
+		if (this.movimientosActivos.size()<4) {
+			this.movimientosActivos.add(movimiento);
+			return "S";
+		} else {
+			this.movimientosAprendidos.add(movimiento);
+			return "N";
+		}
 	}
-	
-	// TODO: Aprender un movimiento de los posibles lo debe poner en la lista activa si hay sitio si no en los aprendidos
-	public void aprenderMovimiento() {		
-	
+
+	// activo - S / N - null
+	public String activaDesactivaMovimiento(Movimiento movimiento) {
+		if (this.getMovimientosActivos().contains(movimiento)) 
+			if (desactivaMovimiento(movimiento))
+				return "N";
+			else
+				return null;
+		else
+			if (activaMovimiento(movimiento))
+				return "S";
+			else
+				return null;			
 	}
+
 	
+	public boolean activaMovimiento(Movimiento movimiento) {
+		if (!this.getMovimientosAprendidos().contains(movimiento)) return false;
+		if (this.getMovimientosActivos().size()>=4) return false;
+		this.getMovimientosActivos().add(movimiento);
+		this.getMovimientosAprendidos().remove(movimiento);
+		return true;
+	}
+
+	
+	public boolean desactivaMovimiento(Movimiento movimiento) {
+		if (!this.getMovimientosActivos().contains(movimiento)) return false;
+		this.getMovimientosAprendidos().add(movimiento);
+		this.getMovimientosActivos().remove(movimiento);
+		return true;
+	}
+
 	public void curar() {
 		this.salud = this.saludMaxima;
+	}
+	
+	public void entrenar() {
+		Random rnd = new Random();
+		this.experiencia = this.experiencia + rnd.nextInt(11) + 5;
+		this.subirNivel();
 	}
 	
 	// TODO: Mover movimientos

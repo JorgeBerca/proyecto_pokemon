@@ -140,8 +140,8 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <ImageView fx:id="pokemonenemigo" fitHeight="203.0" fitWidth="215.0" layoutX="568.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="tupokemon" fitHeight="203.0" fitWidth="215.0" layoutX="110.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pokemonenemigo" fitHeight="203.0" fitWidth="223.0" layoutX="571.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="tupokemon" fitHeight="220.0" fitWidth="267.0" layoutX="91.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
             <ProgressBar fx:id="vidaenemigo" layoutX="174.0" layoutY="125.0" prefHeight="17.0" prefWidth="184.0" progress="0.0" />
             <ProgressBar fx:id="vidatupokemon" layoutX="706.0" layoutY="363.0" prefHeight="17.0" prefWidth="191.0" progress="0.0" />
             <Label fx:id="nombreTu" layoutX="563.0" layoutY="307.0" prefHeight="48.0" prefWidth="176.0" text="Entrenador">

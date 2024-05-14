@@ -7,7 +7,7 @@ import bbd.PokemonBD;
 
 public class Combate {
 
-	PokemonBD pkBD = new PokemonBD(BD.getConnetion());
+	PokemonBD pkBD = new PokemonBD();
 	
 	Entrenador entrenador;
 	Entrenador dominguero; // random
@@ -121,8 +121,8 @@ public class Combate {
 	// movimiento aleatorio del rival
 	public Movimiento getMovimientoRival() {
 		Random rnd = new Random();
-		int index = rnd.nextInt(rival.getMovimientosActivos().length);
-		return rival.getMovimientosActivos()[index];		
+		int index = rnd.nextInt(rival.getMovimientosActivos().size());
+		return rival.getMovimientosActivos().get(index);		
 	}
 	
 	
@@ -170,6 +170,12 @@ public class Combate {
 			pokemon.subirExperiencia();
 			pkBD.guarda(pokemon);
 		}
+	}
+	
+	public void robarCartera() {
+		int nuevoDinero = entrenador.getDinero()+500; // fijo
+		entrenador.setDinero(nuevoDinero);
+		pkBD.actualizaDineroEntrenador(entrenador.getId(),entrenador.getDinero());
 	}
 
 }

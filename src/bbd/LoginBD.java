@@ -1,6 +1,5 @@
 package bbd;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,18 +10,16 @@ import modelo.Pokemon;
 public class LoginBD {
 
 	
-	private Connection connection;	
 	private PokemonBD pkBD;
 	
-	public LoginBD(Connection connetion) {
-		this.connection = connetion;
-		this.pkBD = new PokemonBD(this.connection);
+	public LoginBD() {
+		this.pkBD = new PokemonBD();
 	}
 	
     public boolean checkCredentials(String username, String password) {
         try {
             String query = "SELECT ID_ENTRENADOR, NOM_ENTRENADOR, POKEDOLLARS FROM ENTRENADOR WHERE NOM_ENTRENADOR = ? AND PASS = ?";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = BD.getConnetion().prepareStatement(query)) {
                 statement.setString(1, username);
                 statement.setString(2, password);
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -44,7 +41,7 @@ public class LoginBD {
     public boolean exists(String username) {
         try {
             String query = "SELECT * FROM ENTRENADOR WHERE UPPER(TRIM(NOM_ENTRENADOR)) = UPPER(TRIM(?))";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = BD.getConnetion().prepareStatement(query)) {
                 statement.setString(1, username);
                 try (ResultSet resultSet = statement.executeQuery()) {
                 	boolean resultado = resultSet.next();
@@ -74,7 +71,7 @@ public class LoginBD {
     	}
         try {
             String query = "INSERT INTO ENTRENADOR (NOM_ENTRENADOR, PASS) VALUES (?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = BD.getConnetion().prepareStatement(query)) {
                 statement.setString(1, username.trim());
                 statement.setString(2, password.trim());
                 int rowsAffected = statement.executeUpdate();

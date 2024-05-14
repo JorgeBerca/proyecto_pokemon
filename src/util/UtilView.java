@@ -16,6 +16,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Entrenador;
 
@@ -68,6 +69,8 @@ public class UtilView {
             ControllerWithAttributes controller = (ControllerWithAttributes)fxmlLoader.getController();            
             controller.initializeAttributes(attributes);
             Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(pcView));
     		stage.setTitle(title);
             stage.showAndWait();

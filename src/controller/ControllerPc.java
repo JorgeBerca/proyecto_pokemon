@@ -33,7 +33,7 @@ public class ControllerPc {
 	
     private ImageView[] pokemonImages = new ImageView[30];
  
-    private PokemonBD pokemon = new PokemonBD(BD.getConnetion());
+    private PokemonBD pokemon = new PokemonBD();
     
     
     public void initialize() {
@@ -136,7 +136,7 @@ public class ControllerPc {
 			this.pokemon = pokemon;
 		}
 
-        @Override
+    	@Override
         public void handle(MouseEvent event) {
         	if (pokemon == null) return;
             System.out.println("Se ha pulsado el pokemon "+pokemon.getNombre());
