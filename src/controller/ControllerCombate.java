@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import application.Main;
+import bbd.PokemonBD;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +26,8 @@ import util.UtilView;
 
 public class ControllerCombate {
 
+	PokemonBD pkBD = new PokemonBD();
+	
 	Combate combate;
 	
 	@FXML ImageView tupokemon;
@@ -66,8 +69,7 @@ public class ControllerCombate {
     
 	@FXML
 	public void mostrarEquipo() {
-		selector.toFront();
-		selector.setVisible(true);
+		int cuantos = 0;
 		int index = 0;
 		for (Node nodo : selector.getChildren()) {
         	String nodoId = nodo.getId();
@@ -83,11 +85,18 @@ public class ControllerCombate {
         			if (pokemon.getSalud()>=0) { // está vivo
 	        			imageView.setImage(image);
 	        			imageView.setOnMouseClicked(new ManejaMousePokemon(index));
+	        			cuantos++;
         			}
         		}        			
         		index++;
         	}			
 		} 		
+		if (cuantos>0){
+			selector.toFront();
+			selector.setVisible(true);			
+		} else {
+			UtilView.showAlert("Combate", "No tienes pokemons con vida en tu equipo.");
+		}
 	}
 		
 	public void setPaladin(int index) {
@@ -111,8 +120,12 @@ public class ControllerCombate {
 	
     @FXML
     public void lucha() {
+		if (combate.getPaladin()==null) {
+			UtilView.showAlert("Combate", "Debes seleccionar un pokémon de tu equipo");
+			return;
+		}
 		botonera.toFront();
-		botonera.setVisible(true);		
+		botonera.setVisible(true);
 		ArrayList<Movimiento> movimientos = combate.getPaladin().getMovimientosActivos();
 		int index = 0;
 		for (Node nodo : botonera.getChildren()) {
@@ -130,21 +143,6 @@ public class ControllerCombate {
 	}     
     
     
-    @FXML
-    public void pokemon() {
-    	
-    }
-    @FXML
-    public void mochila() {
-    	
-    }
-    
-    @FXML
-    public void estadisticas() {
-   		UtilView.loadSceneModal("/vistas/PantallaEstadisticas.fxml","Estadísticas",combate.getPaladin());
-    }
-    
- 
 	
     @FXML
     public void atras(javafx.event.ActionEvent event) {
@@ -182,6 +180,7 @@ public class ControllerCombate {
             Movimiento movimientoRival = combate.getMovimientoRival();
             System.out.println("El rival ha elegido el movimiento "+movimiento.getNomMovimiento());	            
             combate.movimientoRival(movimientoRival);
+            pkBD.guarda(combate.getPaladin());
             refrescaEntrenador();
             if (combate.getPorcentajeSaludEntrenador()<=0) {
             	UtilView.showInfo("Combate", "Tu pokémon "+combate.getPaladin().getMote()+" ha muerto.");

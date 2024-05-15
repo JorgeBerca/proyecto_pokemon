@@ -23,10 +23,12 @@ public class Combate {
 	public Combate(Entrenador entrenador) {
 		this.entrenador = entrenador;
 		this.dominguero = entrenador.generarOponente();
+		/*
 		if (entrenador.getCuantosEquipo()>0) {
 			this.paladin = entrenador.getEquipo()[0];
 			this.saludInicialPaladin = this.paladin.getSalud();
 		}
+		*/
 		//this.paladin.setSalud(100000);
 		this.numRival=0;
 		this.rival = dominguero.getEquipo()[numRival];
@@ -54,9 +56,14 @@ public class Combate {
 	}
 
 	public void setPaladin(Pokemon paladin) {
-		System.out.println("Nuevo paladín: "+paladin.getNombre());
-		this.paladin = paladin;
-		this.setSaludInicialPaladin(paladin.getSalud());
+		if (paladin.getSalud()<=0) {
+			System.out.println("El paladín seleccionado no tiene salud.");
+			paladin=null;
+		} else {
+			System.out.println("Nuevo paladín: "+paladin.getNombre()+" con nivel: "+paladin.getNivel()+"  salud: "+paladin.getSalud()); 
+			this.paladin = paladin;
+			this.setSaludInicialPaladin(paladin.getSalud());			
+		}
 	}
 
 	public Pokemon getRival() {
@@ -93,12 +100,14 @@ public class Combate {
 	}
 	
 	public double getPorcentajeSaludEntrenador() {
+		if (this.paladin==null) return 0;
 		double ahora = this.paladin.getSalud();
 		double inicial = this.saludInicialPaladin;
 		return ahora/inicial;
 	}
 	
 	public double getPorcentajeSaludRival() {
+		if (this.rival==null) return 0;
 		double ahora = this.rival.getSalud();
 		double inicial = this.saludInicialRival;
 		return ahora/inicial;

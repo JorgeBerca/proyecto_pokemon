@@ -30,7 +30,7 @@ public class ControllerEntrenamiento {
 		if (pokemon!=null)
 			pokemonEquipo.setImage(UtilView.getImagenDetras(pokemon.getNombre()));
 		else
-			pokemonRival.setImage(null);
+			pokemonEquipo.setImage(null);
 
 		
 		if (rival!=null)
@@ -61,10 +61,7 @@ public class ControllerEntrenamiento {
     	Pokemon[] resultado=new Pokemon[1];
     	UtilView.loadSceneModal("/vistas/PantallaElegirEquipo.fxml", "Elige un Pokémon",resultado);
     	pokemon=resultado[0];
-    	if (pokemon!=null) {
-    		refrescaVista();
-    	}
-    		
+  		refrescaVista();    		
     }
     
 
