@@ -24,7 +24,7 @@ public class Pokemon {
     private String estado;
     private String tipo1;
 	private String tipo2;
-    private Objeto objeto; 
+    private ObjetoEntrenador objeto; 
 	private ArrayList<Movimiento> movimientosActivos;
 	private ArrayList<Movimiento> movimientosAprendidos;
 
@@ -243,11 +243,11 @@ public class Pokemon {
 	}
 
 
-	public Objeto getObjeto() {
+	public ObjetoEntrenador getObjeto() {
 		return objeto;
 	}
 
-	public void setObjeto(Objeto idObjeto) {
+	public void setObjeto(ObjetoEntrenador idObjeto) {
 		this.objeto = idObjeto;
 		// TODO: falta aplicar aumeta y disminuye
 	}

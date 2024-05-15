@@ -43,7 +43,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerMochila">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="padre" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fitHeight="600.0" fitWidth="920.0">
                <image>
@@ -204,7 +204,7 @@
                   <Image url="@../imagenes/objetos_tienda/anillo unico.gif" />
                </image>
             </ImageView>
-            <Label fx:id="labelAnillo" layoutX="763.0" layoutY="137.0" text="0">
+            <Label fx:id="label1" layoutX="763.0" layoutY="137.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -214,7 +214,7 @@
                   <Image url="@../imagenes/objetos_tienda/baston.png" />
                </image>
             </ImageView>
-            <Label layoutX="763.0" layoutY="198.0" text="0">
+            <Label fx:id="label2" layoutX="763.0" layoutY="198.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -224,7 +224,7 @@
                   <Image url="@../imagenes/objetos_tienda/chaleco.png" />
                </image>
             </ImageView>
-            <Label layoutX="763.0" layoutY="261.0" text="0">
+            <Label fx:id="label3" layoutX="763.0" layoutY="261.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -234,7 +234,7 @@
                   <Image url="@../imagenes/objetos_tienda/pesa.png" />
                </image>
             </ImageView>
-            <Label layoutX="763.0" layoutY="329.0" text="0">
+            <Label fx:id="label4" layoutX="763.0" layoutY="329.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -244,7 +244,7 @@
                   <Image url="@../imagenes/objetos_tienda/eter.png" />
                </image>
             </ImageView>
-            <Label layoutX="763.0" layoutY="407.0" text="0">
+            <Label fx:id="label5" layoutX="763.0" layoutY="407.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -254,7 +254,7 @@
                   <Image url="@../imagenes/objetos_tienda/pila.png" />
                </image>
             </ImageView>
-            <Label layoutX="763.0" layoutY="481.0" text="0">
+            <Label fx:id="label6" layoutX="763.0" layoutY="481.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -264,7 +264,7 @@
                   <Image url="@../imagenes/objetos_tienda/pluma.png" />
                </image>
             </ImageView>
-            <Label layoutX="763.0" layoutY="547.0" text="0">
+            <Label fx:id="label7" layoutX="763.0" layoutY="547.0" text="0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -278,6 +278,11 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
+            <Label fx:id="txtDinero" layoutX="307.0" layoutY="14.0" prefHeight="97.0" prefWidth="246.0" text="PokeDólares: 30000">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
     </AnchorPane>
   </children>
