@@ -106,15 +106,7 @@ public class ControllerPc {
             }
         }
 		
-     
-
-
     
-    @FXML
-    public void addEquipo() {
-    	System.out.println("addEquipo");
-    }
-    	
 
     @FXML 
     public void atras(javafx.event.ActionEvent event) {

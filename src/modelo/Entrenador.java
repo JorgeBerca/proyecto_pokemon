@@ -123,7 +123,6 @@ public class Entrenador {
 			pokemon.setIdPokemon(pokemonId);
 			pokemon.aprendeNuevosMovimientos();
 			equipo.add(pokemon);
-			System.out.println("Nuevo pokemon rival: "+pokemonId+" es un "+pokemon.getNombre()+" y se ha llamado "+pokemon.getMote());
     		return pokemon;
 		}
 		
@@ -158,14 +157,10 @@ public class Entrenador {
 		pokemon.setVelocidad(rand.nextInt(16) + 5);
 		pokemon.setAtEspecial(rand.nextInt(11) + 10);
 		pokemon.setDefEspecial(rand.nextInt(21) + 10);
-		System.out.println("------------------");
-		System.out.println(pokemon);
-		System.out.println("------------------");
 		return pokemon;
 	}
 
 	public void addNuevosMovimientos(Pokemon pokemon) {
-		System.out.println(pokemon);
 		ArrayList<Movimiento> movimientos = mvBD.getMovimientosNivel(pokemon.getNivel(), pokemon.getTipo1(), pokemon.getTipo2());
 		for (Movimiento movimiento: movimientos) {
 			String activo = pokemon.aprenderMovimiento(movimiento);
@@ -270,10 +265,6 @@ public class Entrenador {
 		Entrenador rival = generarOponente();
 		System.out.println(rival.getId()+" - "+rival.getNombre());
 		Pokemon lista[] = rival.getEquipo();
-		for (int i=0; i<lista.length; i++) {
-			System.out.println(lista[i].toString());	
-		}
-		
 	}
 
 	public int getNivelEquipo() {
@@ -293,8 +284,8 @@ public class Entrenador {
 		for (int i=0; i<6; i++) {
 			Pokemon nuevo = rival.nuevoPokemon(this.getRandomPokedex(), null);
 			nuevo.setExperiencia((nivel-1)*10);
-			nuevo.subirNivel(); 
-			System.out.println(nivel+" <--> "+nuevo.getNivel()+"        "+(nivel-1)*10);
+			nuevo.subirNivel();
+			System.out.println("Nuevo pokemon rival: "+nuevo.getNombre()+" de nivel: "+nuevo.getNivel());
 		}
 		return rival;
 	}
@@ -311,11 +302,11 @@ public class Entrenador {
 			System.out.println("El padre y la madre tienen que tener puntos de fertilidad.");
 			return null;
 		}
-		if (padre.getSexo() == madre.getSexo()) {
+		if (padre.getSexo().equals(madre.getSexo())) {
 			System.out.println("El padre y la madre tienen que tener distinto sexo.");
 			return null;
 		}
-		if (padre.getNombre() != madre.getNombre()) {
+		if (!padre.getNombre().equals(madre.getNombre())) {
 			System.out.println("El padre y la madre tienen que ser de la misma especie.");
 			return null;
 		}

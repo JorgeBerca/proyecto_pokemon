@@ -31,8 +31,6 @@ public class Combate {
 		this.numRival=0;
 		this.rival = dominguero.getEquipo()[numRival];
 		this.saludInicialRival = this.rival.getSalud();
-		System.out.println(this.rival);
-		System.out.println(this.rival.getMovimientosActivos());
 	}
 
 	public Entrenador getEntrenador() {
@@ -133,8 +131,6 @@ public class Combate {
 		this.rival = dominguero.getEquipo()[numRival];
 		this.saludInicialPaladin = this.paladin.getSalud();
 		this.saludInicialRival = this.rival.getSalud();
-		System.out.println(this.rival);
-		System.out.println(this.rival.getMovimientosActivos());
 		return true;		
 	}
 	

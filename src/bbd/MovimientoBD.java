@@ -13,8 +13,6 @@ public class MovimientoBD {
 	    try {
 	    	ArrayList<Movimiento>  lista = new ArrayList();
 	    	String sql = "SELECT * FROM movimientos WHERE NIVEL_APRENDIZAJE<=? AND TIPO IN ('Normal',?,?) AND ESTADO IS NULL ORDER BY ID_MOVIMIENTO";
-	    	System.out.println(sql);
-	    	System.out.println(nivel+" - "+tipo1+" - "+tipo2);
 	    	PreparedStatement stmt = BD.getConnetion().prepareStatement(sql);
 	    	stmt.setInt(1, nivel);
 	    	stmt.setString(2, tipo1);

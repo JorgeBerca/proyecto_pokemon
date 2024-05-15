@@ -60,7 +60,6 @@ public class ControllerRecuerdaMovimientos {
 	}
 	
 	private void activaDesactiva(Movimiento movimiento) {
-		System.out.println(movimiento.getNomMovimiento());
 		String activo=pokemon.activaDesactivaMovimiento(movimiento);
 		if (activo!=null) {
 			pkBD.actualizaMovimientoPokemon(movimiento.getIdMovimiento(), pokemon.getIdPokemon(), activo);

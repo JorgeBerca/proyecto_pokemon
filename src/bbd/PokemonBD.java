@@ -50,7 +50,6 @@ public class PokemonBD {
 								    		+"");		    		    
 		    while (rs.next()) {
 		    	Pokemon pokemon = creaPokemonRS(rs);
-		    	System.out.println("DEBUG - getListaPokemon - "+pokemon.getNombre()+" experiencia:"+pokemon.getExperiencia());
 		    	cargaMovimientos(pokemon);
 		    	lista.add(pokemon);
 		    }		    

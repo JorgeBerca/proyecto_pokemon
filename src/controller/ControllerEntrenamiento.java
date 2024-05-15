@@ -23,7 +23,6 @@ public class ControllerEntrenamiento {
 	public void initialize() {
 		if (Entrenador.getEntrenadorActual().getCuantosEquipo()<=0) return;
 		pokemon = Entrenador.getEntrenadorActual().getEquipo()[0];
-		System.out.println("DEBUG - initialize - experencia: "+pokemon.getExperiencia());
 		refrescaVista();
 	}
 	
@@ -44,9 +43,7 @@ public class ControllerEntrenamiento {
     public void entrenar() {
 		if (rival==null || pokemon==null) return;
 		pokemon.entrenar();
-		System.out.println("DEBUG - entrenar 1 - experencia: "+pokemon.getExperiencia());
 		pkBD.guarda(pokemon);
-		System.out.println("DEBUG - entrenar 2 - experencia: "+pokemon.getExperiencia());
 		System.out.println("Nueva experiencia: "+pokemon.getExperiencia());
 		UtilView.showInfo("Resultado del Entrenamiento","Tu "+pokemon.getMote()+" ha matado a "+rival.getNombre()+".\nHa ganado experiencia.");
 		rival = null;
@@ -65,7 +62,6 @@ public class ControllerEntrenamiento {
     	UtilView.loadSceneModal("/vistas/PantallaElegirEquipo.fxml", "Elige un Pokémon",resultado);
     	pokemon=resultado[0];
     	if (pokemon!=null) {
-    		System.out.println("DEBUG - equipo - experencia: "+pokemon.getExperiencia());
     		refrescaVista();
     	}
     		
