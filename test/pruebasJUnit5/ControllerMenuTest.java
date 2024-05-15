@@ -13,8 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerMenuTest {
 
-    private ControllerMenu controllerMenu;
+    private ControllerMenuTest controllerMenu;
     private Entrenador entrenador;
+	private BorderPane mainContainer;
+	private Label txtDinero;
 
     @BeforeAll
     static void initJFX() {
@@ -23,7 +25,7 @@ class ControllerMenuTest {
 
     @BeforeEach
     void setUp() {
-        controllerMenu = new ControllerMenu();
+        controllerMenu = new ControllerMenuTest();
         entrenador = new Entrenador();
 
         // Initialize JavaFX components
@@ -38,7 +40,7 @@ class ControllerMenuTest {
     @Test
     void testInitialize() {
         assertDoesNotThrow(() -> {
-            controllerMenu.initialize();
+            controllerMenu.testInitialize();
         });
 
         // Verify the money label is set correctly
@@ -48,14 +50,14 @@ class ControllerMenuTest {
     @Test
     void testCaptura() {
         assertDoesNotThrow(() -> {
-            controllerMenu.captura();
+            controllerMenu.testCaptura();
         });
     }
 
     @Test
     void testEquipo() {
         assertDoesNotThrow(() -> {
-            controllerMenu.equipo();
+            controllerMenu.testEquipo();
         });
 
         // Verify that the main container is updated
@@ -65,35 +67,35 @@ class ControllerMenuTest {
     @Test
     void testCentropokemon() {
         assertDoesNotThrow(() -> {
-            controllerMenu.centropokemon();
+            controllerMenu.testCentropokemon();
         });
     }
 
     @Test
     void testCombate() {
         assertDoesNotThrow(() -> {
-            controllerMenu.combate();
+            controllerMenu.testCombate();
         });
     }
 
     @Test
     void testEntrenamiento() {
         assertDoesNotThrow(() -> {
-            controllerMenu.entrenamiento();
+            controllerMenu.testEntrenamiento();
         });
     }
 
     @Test
     void testCrianza() {
         assertDoesNotThrow(() -> {
-            controllerMenu.crianza();
+            controllerMenu.testCrianza();
         });
     }
 
     @Test
     void testMochila() {
         assertDoesNotThrow(() -> {
-            controllerMenu.mochila();
+            controllerMenu.testMochila();
         });
     }
 

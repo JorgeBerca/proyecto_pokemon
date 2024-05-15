@@ -26,8 +26,8 @@ import javafx.scene.control.TextInputDialog;
 
 public class ControllerCaptura {
     @FXML
-    private ImageView pokemonrandom;
-    Pokedex pokedex = null;
+	public ImageView pokemonrandom;
+    public Pokedex pokedex = null;
 
 
     @FXML

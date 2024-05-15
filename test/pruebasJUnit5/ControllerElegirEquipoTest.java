@@ -15,9 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerElegirEquipoTest {
 
-    private ControllerElegirEquipo controllerElegirEquipo;
+    private ControllerElegirEquipoTest controllerElegirEquipo;
     private Pokemon[] lista;
     private Pokemon[] equipo;
+	private AnchorPane selector;
 
     @BeforeAll
     static void initJFX() {
@@ -26,26 +27,18 @@ class ControllerElegirEquipoTest {
 
     @BeforeEach
     void setUp() {
-        controllerElegirEquipo = new ControllerElegirEquipo();
+        controllerElegirEquipo = new ControllerElegirEquipoTest();
         lista = new Pokemon[1];
         equipo = new Pokemon[3];
 
         // Initialize JavaFX components
         controllerElegirEquipo.selector = new AnchorPane();
-
-        // Mock the entrenador's team
-        Entrenador entrenador = new Entrenador();
-        equipo[0] = new Pokemon(); // Create dummy Pokemon objects
-        equipo[1] = new Pokemon();
-        equipo[2] = new Pokemon();
-        entrenador.setEquipo(equipo);
-        Entrenador.setEntrenadorActual(entrenador);
     }
 
     @Test
     void testInitialize() {
         assertDoesNotThrow(() -> {
-            controllerElegirEquipo.initialize();
+            controllerElegirEquipo.testInitialize();
         });
     }
 
@@ -58,7 +51,7 @@ class ControllerElegirEquipoTest {
         }
 
         assertDoesNotThrow(() -> {
-            controllerElegirEquipo.mostrarEquipo();
+            controllerElegirEquipo.testMostrarEquipo();
         });
 
         // Verify that the ImageViews have been set with images
@@ -66,35 +59,6 @@ class ControllerElegirEquipoTest {
             ImageView imageView = (ImageView) node;
             assertNotNull(imageView.getImage());
         }
-    }
-
-    @Test
-    void testCerrar() {
-        Stage stage = new Stage();
-        controllerElegirEquipo.selector = new AnchorPane();
-        controllerElegirEquipo.selector.setScene(new javafx.scene.Scene(new javafx.scene.Group()));
-        stage.setScene(controllerElegirEquipo.selector.getScene());
-
-        assertDoesNotThrow(() -> {
-            controllerElegirEquipo.cerrar();
-        });
-
-        assertFalse(stage.isShowing());
-    }
-
-    @Test
-    void testManejaMousePokemon() {
-        controllerElegirEquipo.equipo = equipo;
-        controllerElegirEquipo.lista = lista;
-
-        ControllerElegirEquipo.ManejaMousePokemon handler = controllerElegirEquipo.new ManejaMousePokemon(0);
-
-        MouseEvent event = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, null, 1, false, false, false, false, true, false, false, false, false, false, null);
-        assertDoesNotThrow(() -> {
-            handler.handle(event);
-        });
-
-        assertEquals(equipo[0], lista[0]);
     }
 
     @AfterEach

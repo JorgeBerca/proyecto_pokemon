@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import modelo.Pokemon;
 import util.UtilView;
 
-public class ControllerCrianzaSecundario {
+public class ControllerCrianzaSecundarioTest {
 
 	Pokemon madre;
 	Pokemon padre;

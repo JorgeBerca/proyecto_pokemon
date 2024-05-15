@@ -1,5 +1,7 @@
 package pruebasJUnit5;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -98,28 +100,7 @@ public class ControllerCombate {
 		selector.toBack();
 		selector.setVisible(false);
 	}
-	
-	
-    @FXML
-    public void lucha() {
-		botonera.toFront();
-		botonera.setVisible(true);		
-		Movimiento movimientos[] = combate.getPaladin().getMovimientosActivos();
-		int index = 0;
-		for (Node nodo : botonera.getChildren()) {
-       		Button boton = (Button)nodo;
-    		if (index < movimientos.length ) {
-    			boton.setText(movimientos[index].getNomMovimiento());
-    			boton.setVisible(true);
-    			boton.setOnAction(new ManejaMovimientoLucha(movimientos[index]));
-    		} else {
-    			boton.setVisible(false);
-    		}
-    		index++;
-      	}			
-	}     
-    
-    
+        
     @FXML
     public void pokemon() {
     	
@@ -168,42 +149,10 @@ public class ControllerCombate {
 		}
 
 		@Override
-		public void handle(ActionEvent event) {
-	            
-				System.out.println("Has elegido el movimiento "+movimiento.getNomMovimiento());	            
-	            combate.movimientoEntrenador(movimiento);
-	            refrescaEnemigo();
-	            if (combate.getPorcentajeSaludRival()<=0) {
-	            	UtilView.showInfo("Combate", "Has matado a "+combate.getRival().getNombre());
-	            	if (combate.getGanador()==null) {
-	            		combate.siguientePokemonRival();
-	            		refrescaEnemigo();
-	            	}
-	            } else {	           
-		            Movimiento movimientoRival = combate.getMovimientoRival();
-		            System.out.println("El rival ha elegido el movimiento "+movimiento.getNomMovimiento());	            
-		            combate.movimientoRival(movimientoRival);
-		            refrescaEntrenador();
-		            if (combate.getPorcentajeSaludEntrenador()<=0) {
-		            	UtilView.showInfo("Combate", "Tu pokémon "+combate.getPaladin().getMote()+" ha muerto.");
-		            	if (combate.getGanador()==null)
-		            		mostrarEquipo();
-		            }
-	            }
-	            Entrenador ganador = combate.getGanador();
-	            if (ganador!=null) {
-	            	if (ganador.getId() == -1) {
-	            		UtilView.showInfo("Combate", "\n\nHas perdido :(\n\n");
-	            	} else {
-	            		combate.subirExperienciaEntrenador();
-	            		UtilView.showInfo("Combate", "\n¡¡¡ Has gandado !!!\n\nLos pokemon de tu equipo han ganado experiencia.\nComprueba en las estadísticas si han subido de nivel.\n");	            		
-	            	}
-	            	UtilView.mostrarMenuPrincipal(((Node) event.getSource()).getScene());
-	            }
-	            event.consume();			
+		public void handle(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
 		}
-
-
-    };        			
-
+    }
 }
+

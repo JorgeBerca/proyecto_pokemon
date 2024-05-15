@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modelo.Entrenador;
 import org.junit.jupiter.api.*;
+
+import controller.ControllerCentroPokemon;
 import util.UtilView;
 
 import java.io.IOException;
@@ -45,8 +47,8 @@ class ControllerCentroPokemonTest {
     void testPc() {
         assertDoesNotThrow(() -> {
             ActionEvent event = new ActionEvent();
-            Node node = new JFXPanel(); // Placeholder node for the event
-            event = new ActionEvent(node, node);
+            JFXPanel node = new JFXPanel(); // Placeholder node for the event
+            event = new ActionEvent();
             controllerCentroPokemon.pc(event);
         });
     }
@@ -55,8 +57,8 @@ class ControllerCentroPokemonTest {
     void testRecuerdaMovimientos() {
         assertDoesNotThrow(() -> {
             ActionEvent event = new ActionEvent();
-            Node node = new JFXPanel(); // Placeholder node for the event
-            event = new ActionEvent(node, node);
+            JFXPanel node = new JFXPanel(); // Placeholder node for the event
+            event = new ActionEvent();
             controllerCentroPokemon.recuerdaMovimientos(event);
         });
     }
@@ -65,8 +67,8 @@ class ControllerCentroPokemonTest {
     void testAtras() {
         assertDoesNotThrow(() -> {
             ActionEvent event = new ActionEvent();
-            Node node = new JFXPanel(); // Placeholder node for the event
-            event = new ActionEvent(node, node);
+            JFXPanel node = new JFXPanel(); // Placeholder node for the event
+            event = new ActionEvent();
             controllerCentroPokemon.atras(event);
         });
     }

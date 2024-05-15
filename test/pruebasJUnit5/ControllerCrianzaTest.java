@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import util.UtilView;
 
-public class ControllerCrianza {
+public class ControllerCrianzaTest {
     
 	@FXML
     public void criar (ActionEvent event) {

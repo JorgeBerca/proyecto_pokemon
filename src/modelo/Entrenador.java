@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.BooleanSupplier;
 
 import bbd.BD;
 import bbd.MovimientoBD;
@@ -39,6 +40,10 @@ public class Entrenador {
 		this.pc =  new ArrayList<Pokemon>();
 	}
 	
+	public Entrenador() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return this.id;
 	}
@@ -334,7 +339,26 @@ public class Entrenador {
 			pkBD.guarda(equipo[i]);
 		}
 	}
-	
+
+	public static void setEntrenadorActual(Entrenador entrenador) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setRandomPokedex(Pokedex pokedex) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public BooleanSupplier equipoCurado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setPC(Pokemon[] pc2) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 }
 

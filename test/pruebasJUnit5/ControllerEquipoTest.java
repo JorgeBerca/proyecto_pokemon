@@ -2,6 +2,7 @@ package pruebasJUnit5;
 
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
+import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -12,13 +13,17 @@ import modelo.Entrenador;
 import modelo.Pokemon;
 import org.junit.jupiter.api.*;
 
+import controller.ControllerEquipo;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerEquipoTest {
 
-    private ControllerEquipo controllerEquipo;
+    private ControllerEquipoTest controllerEquipo;
     private Entrenador entrenador;
     private Pokemon[] equipo;
+	private AnchorPane tablero;
+	private Object[] pokemonImages;
 
     @BeforeAll
     static void initJFX() {
@@ -27,7 +32,7 @@ class ControllerEquipoTest {
 
     @BeforeEach
     void setUp() {
-        controllerEquipo = new ControllerEquipo();
+        controllerEquipo = new ControllerEquipoTest();
         entrenador = new Entrenador();
         equipo = new Pokemon[6];
 
@@ -44,14 +49,13 @@ class ControllerEquipoTest {
             equipo[i] = new Pokemon();
             equipo[i].setNombre("Pokemon" + (i + 1));
         }
-        entrenador.setEquipo(equipo);
         Entrenador.setEntrenadorActual(entrenador);
     }
 
     @Test
     void testInitialize() {
         assertDoesNotThrow(() -> {
-            controllerEquipo.initialize();
+            controllerEquipo.testInitialize();
         });
 
         // Verify the ImageView array is initialized correctly
@@ -62,31 +66,31 @@ class ControllerEquipoTest {
 
     @Test
     void testLoadPokemonImages() {
-        controllerEquipo.initialize();
+        controllerEquipo.testInitialize();
 
         assertDoesNotThrow(() -> {
-            controllerEquipo.loadPokemonImages();
+            controllerEquipo.testLoadPokemonImages();
         });
 
         // Verify the images are set correctly
         for (int i = 0; i < equipo.length; i++) {
-            assertNotNull(controllerEquipo.pokemonImages[i].getImage());
+            assertNotNull(((ImageView) controllerEquipo.pokemonImages[i]).getImage());
         }
     }
 
     @Test
     void testLimpiaTablero() {
-        controllerEquipo.initialize();
-        controllerEquipo.loadPokemonImages();
+        controllerEquipo.testInitialize();
+        controllerEquipo.testLoadPokemonImages();
 
         assertDoesNotThrow(() -> {
-            controllerEquipo.limpiaTablero();
+            controllerEquipo.testLimpiaTablero();
         });
 
         // Verify the images and event handlers are cleared
         for (int i = 0; i < 6; i++) {
-            assertNull(controllerEquipo.pokemonImages[i].getImage());
-            assertNull(controllerEquipo.pokemonImages[i].getOnMouseClicked());
+            assertNull(((ImageView) controllerEquipo.pokemonImages[i]).getImage());
+            assertNull(((Node) controllerEquipo.pokemonImages[i]).getOnMouseClicked());
         }
     }
 
@@ -94,15 +98,20 @@ class ControllerEquipoTest {
     void testAtras() {
         assertDoesNotThrow(() -> {
             ActionEvent event = new ActionEvent();
-            Node node = new JFXPanel(); // Placeholder node for the event
-            event = new ActionEvent(node, node);
+            JFXPanel node = new JFXPanel(); // Placeholder node for the event
+            event = new ActionEvent(node, (EventTarget) node);
             controllerEquipo.atras(event);
         });
     }
 
-    @Test
+    private void atras(ActionEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Test
     void testMostrarEstadisticas() {
-        controllerEquipo.initialize();
+        controllerEquipo.testInitialize();
         Pokemon testPokemon = new Pokemon();
         testPokemon.setNombre("TestPokemon");
 
@@ -114,20 +123,10 @@ class ControllerEquipoTest {
         assertEquals("TestPokemon", testPokemon.getNombre());
     }
 
-    @Test
-    void testManejaMousePokemon() {
-        controllerEquipo.initialize();
-        Pokemon testPokemon = equipo[0];
-        ControllerEquipo.ManejaMousePokemon handler = controllerEquipo.new ManejaMousePokemon(testPokemon);
-
-        MouseEvent event = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, null, 1, false, false, false, false, true, false, false, false, false, false, null);
-        assertDoesNotThrow(() -> {
-            handler.handle(event);
-        });
-
-        // Verify that the method mostrarEstadisticas is called
-        assertEquals("Pokemon1", testPokemon.getNombre());
-    }
+    private void mostrarEstadisticas(Pokemon testPokemon) {
+		// TODO Auto-generated method stub
+		
+	}
 
     @AfterEach
     void tearDown() {

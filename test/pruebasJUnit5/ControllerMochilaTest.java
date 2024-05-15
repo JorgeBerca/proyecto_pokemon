@@ -7,6 +7,8 @@ import modelo.Entrenador;
 import modelo.Objeto;
 import org.junit.jupiter.api.*;
 
+import controller.ControllerMochila;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerMochilaTest {

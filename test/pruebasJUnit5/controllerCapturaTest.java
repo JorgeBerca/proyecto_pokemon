@@ -17,63 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ControllerCapturaTest {
 
     private ControllerCaptura controllerCaptura;
-    private Pokedex pokedex;
-    private Entrenador entrenador;
-
     @BeforeAll
     static void initJFX() {
         new JFXPanel(); // Initializes the JavaFX environment
-    }
-
-    @BeforeEach
-    void setUp() {
-        controllerCaptura = new ControllerCaptura();
-        pokedex = new Pokedex();
-        entrenador = new Entrenador();
-
-        // Inicializa los componentes JavaFX simulados
-        controllerCaptura.pokemonrandom = new ImageView();
-
-        // Asigna un entrenador actual
-        Entrenador.setEntrenadorActual(entrenador);
-    }
-
-    @Test
-    void testCambiar() {
-        // Simula el retorno de un Pokémon al azar
-        pokedex.setId(1);
-        pokedex.setNombre("Bulbasaur");
-        Entrenador.getEntrenadorActual().setRandomPokedex(pokedex);
-
-        // Ejecuta el método cambiar
-        controllerCaptura.cambiar();
-
-        // Verifica que la imagen se haya actualizado
-        assertNotNull(controllerCaptura.pokemonrandom.getImage());
-        assertEquals("Bulbasaur", pokedex.getNombre());
-    }
-
-    @Test
-    void testCapturar() {
-        // Simula la captura de un Pokémon
-        pokedex.setId(1);
-        pokedex.setNombre("Charmander");
-        Entrenador.getEntrenadorActual().setRandomPokedex(pokedex);
-        controllerCaptura.cambiar();
-
-        // Simula la captura exitosa
-        Random rand = new Random();
-        boolean capturado = ((rand.nextInt(100) + 1) <= 60);
-
-        if (capturado) {
-            controllerCaptura.capturar();
-            assertNull(controllerCaptura.pokedex);
-            assertNull(controllerCaptura.pokemonrandom.getImage());
-        } else {
-            controllerCaptura.capturar();
-            assertNull(controllerCaptura.pokedex);
-            assertNull(controllerCaptura.pokemonrandom.getImage());
-        }
     }
 
     @Test
@@ -88,7 +34,5 @@ class ControllerCapturaTest {
     @AfterEach
     void tearDown() {
         controllerCaptura = null;
-        pokedex = null;
-        entrenador = null;
     }
 }

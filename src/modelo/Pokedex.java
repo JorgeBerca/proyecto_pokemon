@@ -33,6 +33,14 @@ public class Pokedex {
 	public String getTipo2() {
 		return tipo2;
 	}
-	
-	
+
+	public void setId(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setNombre(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }

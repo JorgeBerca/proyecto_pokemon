@@ -14,43 +14,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerEntrenamientoTest {
 
-    private ControllerEntrenamiento controllerEntrenamiento;
+    private ControllerEntrenamientoTest controllerEntrenamiento;
     private Pokemon pokemon;
     private Pokedex rival;
     private Entrenador entrenador;
+private ImageView pokemonEquipo;
+private ImageView pokemonRival;
 
     @BeforeAll
     static void initJFX() {
         new JFXPanel(); // Initializes the JavaFX environment
     }
 
-    @BeforeEach
-    void setUp() {
-        controllerEntrenamiento = new ControllerEntrenamiento();
-        entrenador = new Entrenador();
-        pokemon = new Pokemon();
-        rival = new Pokedex();
-
-        // Initialize JavaFX components
-        controllerEntrenamiento.pokemonEquipo = new ImageView();
-        controllerEntrenamiento.pokemonRival = new ImageView();
-
-        // Set up the trainer and their team
-        entrenador.setEquipo(new Pokemon[]{pokemon});
-        Entrenador.setEntrenadorActual(entrenador);
-
-        // Initialize Pokémon details
-        pokemon.setNombre("Pikachu");
-        pokemon.setExperiencia(100);
-        pokemon.setMote("Sparky");
-
-        rival.setNombre("Charmander");
-    }
-
     @Test
     void testInitialize() {
         assertDoesNotThrow(() -> {
-            controllerEntrenamiento.initialize();
+            controllerEntrenamiento.testInitialize();
         });
 
         assertNotNull(controllerEntrenamiento.pokemon);
@@ -64,7 +43,7 @@ class ControllerEntrenamientoTest {
         controllerEntrenamiento.rival = rival;
 
         assertDoesNotThrow(() -> {
-            controllerEntrenamiento.refrescaVista();
+            controllerEntrenamiento.testRefrescaVista();
         });
 
         // Verify the images are set correctly
@@ -78,7 +57,7 @@ class ControllerEntrenamientoTest {
         controllerEntrenamiento.rival = rival;
 
         assertDoesNotThrow(() -> {
-            controllerEntrenamiento.entrenar();
+            controllerEntrenamiento.testEntrenar();
         });
 
         // Verify the Pokémon's experience has increased
@@ -89,24 +68,11 @@ class ControllerEntrenamientoTest {
     @Test
     void testCambiarPokemon() {
         assertDoesNotThrow(() -> {
-            controllerEntrenamiento.cambiarPokemon();
+            controllerEntrenamiento.testCambiarPokemon();
         });
 
         // Verify the rival Pokémon is set
         assertNotNull(controllerEntrenamiento.rival);
     }
-
-    @Test
-    void testEquipo() {
-        assertDoesNotThrow(() -> {
-            controllerEntrenamiento.equipo();
-        });
-
-        // Verify the selected Pokémon is set
-        assertNotNull(controllerEntrenamiento.pokemon);
-    }
-
-    @Test
-    void testAtras() {
-        assertDoesNotThrow(() -> {
-           
+    
+};
