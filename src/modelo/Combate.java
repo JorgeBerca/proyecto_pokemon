@@ -23,11 +23,13 @@ public class Combate {
 	public Combate(Entrenador entrenador) {
 		this.entrenador = entrenador;
 		this.dominguero = entrenador.generarOponente();
-		this.paladin = entrenador.getEquipo()[0];
+		if (entrenador.getCuantosEquipo()>0) {
+			this.paladin = entrenador.getEquipo()[0];
+			this.saludInicialPaladin = this.paladin.getSalud();
+		}
 		//this.paladin.setSalud(100000);
 		this.numRival=0;
 		this.rival = dominguero.getEquipo()[numRival];
-		this.saludInicialPaladin = this.paladin.getSalud();
 		this.saludInicialRival = this.rival.getSalud();
 		System.out.println(this.rival);
 		System.out.println(this.rival.getMovimientosActivos());

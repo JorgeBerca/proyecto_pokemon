@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.Optional;
 
+import application.Main;
 import controller.ControllerWithAttributes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -131,6 +132,11 @@ public class UtilView {
     public static void mostrarMenuPrincipal(Scene scene) {
     	mostrarPantalla("/vistas/PantallaMenuPrincipal.fxml",scene);
     }
+
+    public static void mostrarMenuPrincipal() {
+    	mostrarPantalla("/vistas/PantallaMenuPrincipal.fxml",Main.getStage());
+    }
+       
     
     public static void mostrarPantalla(String ruta, Scene scene) {
         try {
@@ -148,7 +154,22 @@ public class UtilView {
     	
     }
     
-	
+
+    public static void mostrarPantalla(String ruta, Stage stage) {
+        try {
+            // Cargar la vista del menú
+            Parent menuView = FXMLLoader.load(Entrenador.getEntrenadorActual().getClass().getResource(ruta));
+            
+            // Obtener el escenario actual y establecer la nueva escena
+            stage.setScene(new Scene(menuView));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al cargar la pantalla del menú: " + e.getMessage());
+        }
+    	
+    }
+
 	
 	
 	

@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import modelo.Musica;
 
 public class Main extends Application {
+	
+	private static Stage mainStage;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
         try {
@@ -18,6 +21,7 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../vistas/PantallaLogin.fxml"));
             Parent root = loader.load();
     		Scene scene = new Scene(root);
+    		mainStage=primaryStage;
             primaryStage.setScene(scene);
     		primaryStage.setTitle("Proyecto Pokemon");
             primaryStage.setResizable(false);
@@ -26,6 +30,10 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }		
+	
+	public static Stage getStage() {
+		return mainStage;
+	}
 	
 	public static void main(String[] args) {
 		launch(args);

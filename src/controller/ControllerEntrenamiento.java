@@ -64,8 +64,11 @@ public class ControllerEntrenamiento {
     	Pokemon[] resultado=new Pokemon[1];
     	UtilView.loadSceneModal("/vistas/PantallaElegirEquipo.fxml", "Elige un Pokémon",resultado);
     	pokemon=resultado[0];
-		System.out.println("DEBUG - equipo - experencia: "+pokemon.getExperiencia());
-    	refrescaVista();
+    	if (pokemon!=null) {
+    		System.out.println("DEBUG - equipo - experencia: "+pokemon.getExperiencia());
+    		refrescaVista();
+    	}
+    		
     }
     
 

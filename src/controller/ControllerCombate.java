@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import application.Main;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,6 +39,10 @@ public class ControllerCombate {
 	
 	
     public void initialize() {
+    	if (Entrenador.getEntrenadorActual().getCuantosEquipo()<=0) {
+    		UtilView.showError("Combate", "No tienes pokemons en tu equipo.\nNo puedes iniciar un combate.");
+    		UtilView.mostrarMenuPrincipal();    		
+    	}
     	combate = new Combate(Entrenador.getEntrenadorActual());
     	refrescaEntrenador();
     	refrescaEnemigo();
@@ -44,6 +50,7 @@ public class ControllerCombate {
     
 	
     private void refrescaEntrenador() {
+    	if (combate.getPaladin()==null) return;
     	tupokemon.setImage(UtilView.getImagenDetras(combate.getPaladin().getNombre()));
     	nombreTu.setText(combate.getPaladin().getMote());
     	vidatupokemon.setProgress(combate.getPorcentajeSaludEntrenador());
