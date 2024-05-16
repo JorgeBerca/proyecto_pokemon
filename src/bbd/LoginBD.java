@@ -3,21 +3,17 @@ package bbd;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import modelo.Entrenador;
-import modelo.ObjetoEntrenador;
 import modelo.Pokemon;
 
 public class LoginBD {
 
 	
 	private PokemonBD pkBD;
-	private MochilaTiendaBD mtBD;
 	
 	public LoginBD() {
 		this.pkBD = new PokemonBD();
-		this.mtBD = new MochilaTiendaBD();
 	}
 	
     public boolean checkCredentials(String username, String password) {
@@ -32,8 +28,6 @@ public class LoginBD {
                 		Entrenador.setEntrenadorActual(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3));
                 		Pokemon[] misPokemons = pkBD.getListaPokemonEntrenador(Entrenador.getEntrenadorActual().getId());
                 		Entrenador.getEntrenadorActual().setListaPokemon(misPokemons);
-                		ArrayList<ObjetoEntrenador> misObjetos = mtBD.getObjetosEntrenador(Entrenador.getEntrenadorActual().getId());
-                		Entrenador.getEntrenadorActual().setMochila(misObjetos);
                 	}
                     return resultado;
                 }

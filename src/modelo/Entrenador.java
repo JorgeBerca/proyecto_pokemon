@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.function.BooleanSupplier;
 
 import bbd.BD;
-import bbd.MochilaTiendaBD;
 import bbd.MovimientoBD;
 import bbd.PokemonBD;
 import bbd.PokedexBD;
@@ -17,7 +16,6 @@ public class Entrenador {
 	PokedexBD pdBD = new PokedexBD();
 	PokemonBD pkBD = new PokemonBD();
 	MovimientoBD mvBD = new MovimientoBD();
-	MochilaTiendaBD mtBD = new MochilaTiendaBD();
 	
 	public static Entrenador getEntrenadorActual() {
 		return entrenadorActual;
@@ -32,7 +30,6 @@ public class Entrenador {
 	int dinero;
 	ArrayList<Pokemon> equipo;
 	ArrayList<Pokemon> pc;
-	ArrayList<ObjetoEntrenador> mochila;
 
 	
 	public Entrenador(int id, String nombre, int dinero) {
@@ -41,7 +38,6 @@ public class Entrenador {
 		this.dinero = dinero;
 		this.equipo = new ArrayList<Pokemon>();
 		this.pc =  new ArrayList<Pokemon>();
-		this.mochila =  new ArrayList<ObjetoEntrenador>();
 	}
 	
 	public Entrenador() {
@@ -80,34 +76,6 @@ public class Entrenador {
 
 	public Pokemon[] getPC() {
 		return pc.toArray(new Pokemon[0]);
-	}
-	
-	public static void setEntrenadorActual(Entrenador entrenador) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setRandomPokedex(Pokedex pokedex) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public BooleanSupplier equipoCurado() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setPC(Pokemon[] pc2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public ArrayList<ObjetoEntrenador> getMochila() {
-		return mochila;
-	}
-
-	public void setMochila(ArrayList<ObjetoEntrenador> mochila) {
-		this.mochila = mochila;
 	}
 	
 	
@@ -362,33 +330,27 @@ public class Entrenador {
 			pkBD.guarda(equipo[i]);
 		}
 	}
-	
-	public boolean comprar(Objeto obj) {
+
+	public static void setEntrenadorActual(Entrenador entrenador) {
+		// TODO Auto-generated method stub
 		
-		if (obj==null) return false;
-		if (obj.getPrecio()>dinero) {
-			System.out.println("Fondos insuficientes.");
-			return false;
-		}
-		
-		ObjetoEntrenador objEnt = new ObjetoEntrenador(obj.getIdObjeto(), obj.getNombre(), 1);
-		if (mochila.contains(objEnt)) {
-			int index = mochila.indexOf(objEnt);
-			ObjetoEntrenador objMochila = mochila.get(index);
-			objMochila.setCantidad(objMochila.getCantidad()+1);
-			mtBD.actualizaObjetoMochila(id, objMochila);
-		} else {
-			mochila.add(objEnt);
-			mtBD.insertaObjetoMochila(id, objEnt);			
-		}
-				
-		entrenadorActual.setDinero(dinero-obj.getPrecio());
-		pkBD.actualizaDineroEntrenador(id, dinero);
-		return true;
 	}
 
-	
-		//label
+	public void setRandomPokedex(Pokedex pokedex) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public BooleanSupplier equipoCurado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setPC(Pokemon[] pc2) {
+		// TODO Auto-generated method stub
+		
+	}
+		
 }
 
 
