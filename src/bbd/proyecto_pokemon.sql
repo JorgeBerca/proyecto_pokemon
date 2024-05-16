@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2024 a las 14:14:41
+-- Tiempo de generación: 15-05-2024 a las 22:34:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -36,30 +36,6 @@ CREATE TABLE `combate` (
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `detallesentrenadorpokemon`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `detallesentrenadorpokemon` (
-`ID_POKEMON` int(11)
-,`NOM_POKEMON` varchar(30)
-,`TIPO1` varchar(20)
-,`TIPO2` varchar(20)
-,`MOTE` varchar(15)
-,`ATAQUE` int(11)
-,`DEFENSA` int(11)
-,`VELOCIDAD` int(11)
-,`AT_ESPECIAL` int(11)
-,`DEF_ESPECIAL` int(11)
-,`NIVEL` int(11)
-,`SALUD` int(11)
-,`SALUD_MAXIMA` int(11)
-,`NOM_ENTRENADOR` varchar(20)
-,`POKEDOLLARS` int(11)
-);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `entrenador`
 --
 
@@ -77,7 +53,7 @@ CREATE TABLE `entrenador` (
 INSERT INTO `entrenador` (`ID_ENTRENADOR`, `NOM_ENTRENADOR`, `PASS`, `POKEDOLLARS`) VALUES
 (1, 'abc', '123456', NULL),
 (2, 'Jorgito', '123', NULL),
-(3, '1', '1', 0),
+(3, '1', '1', 500),
 (5, '123', '123', NULL),
 (6, 'Robelto', '123', NULL),
 (8, '2', '2', NULL),
@@ -86,7 +62,7 @@ INSERT INTO `entrenador` (`ID_ENTRENADOR`, `NOM_ENTRENADOR`, `PASS`, `POKEDOLLAR
 (12, 'M', '1', NULL),
 (14, 'x', 'x', NULL),
 (15, 'z', 'z', NULL),
-(16, 'Jorge', '123', 4000);
+(16, '10', '10', NULL);
 
 -- --------------------------------------------------------
 
@@ -212,10 +188,16 @@ CREATE TABLE `movimiento_pokemon` (
 --
 
 INSERT INTO `movimiento_pokemon` (`ID_MOVIMIENTO`, `ID_POKEMON`, `ACTIVO`) VALUES
-(68, 149, 'S'),
-(68, 154, 'S'),
-(68, 155, 'S'),
-(68, 160, 'S');
+(14, 170, 'S'),
+(64, 170, 'N'),
+(66, 170, 'S'),
+(67, 170, 'S'),
+(68, 165, 'S'),
+(68, 167, 'S'),
+(68, 170, 'S'),
+(68, 172, 'S'),
+(68, 176, 'S'),
+(68, 178, 'S');
 
 -- --------------------------------------------------------
 
@@ -226,13 +208,42 @@ INSERT INTO `movimiento_pokemon` (`ID_MOVIMIENTO`, `ID_POKEMON`, `ACTIVO`) VALUE
 CREATE TABLE `objeto` (
   `ID_OBJETO` int(11) NOT NULL,
   `NOMBRE` varchar(20) NOT NULL,
-  `ATAQUE` int(11) DEFAULT NULL,
-  `AT_ESPECIAL` int(11) DEFAULT NULL,
-  `DEFENSA` int(11) DEFAULT NULL,
-  `DEF_ESPECIAL` int(11) DEFAULT NULL,
-  `VELOCIDAD` int(11) DEFAULT NULL,
   `PRECIO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `objeto`
+--
+
+INSERT INTO `objeto` (`ID_OBJETO`, `NOMBRE`, `PRECIO`) VALUES
+(1, 'ANILLO UNICO', 4500),
+(2, 'BASTON', 1500),
+(3, 'CHALECO', 1500),
+(4, 'PESA', 1500),
+(5, 'ETER', 500),
+(6, 'PILA', 1500),
+(7, 'PLUMA', 1500);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `objeto_entrenador`
+--
+
+CREATE TABLE `objeto_entrenador` (
+  `ID_OBJETO` int(11) NOT NULL,
+  `ID_ENTRENADOR` int(11) NOT NULL,
+  `CANTIDAD` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `objeto_entrenador`
+--
+
+INSERT INTO `objeto_entrenador` (`ID_OBJETO`, `ID_ENTRENADOR`, `CANTIDAD`) VALUES
+(1, 3, 1),
+(4, 3, 1),
+(5, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -340,10 +351,12 @@ CREATE TABLE `pokemon` (
 --
 
 INSERT INTO `pokemon` (`ID_POKEMON`, `NUM_POKEDEX`, `ID_ENTRENADOR`, `CAJA`, `NOMBRE`, `MOTE`, `SALUD`, `ATAQUE`, `DEFENSA`, `VELOCIDAD`, `AT_ESPECIAL`, `DEF_ESPECIAL`, `NIVEL`, `FERTILIDAD`, `SEXO`, `ESTADO`, `EXPERIENCIA`, `MOVIMIENTO1`, `MOVIMIENTO2`, `MOVIMIENTO3`, `MOVIMIENTO4`, `ID_OBJETO`, `SALUD_MAXIMA`) VALUES
-(149, 9, 3, 0, 'Blastoise', 'Blastoise', -32, 18, 22, 16, 15, 25, 1, 5, 'M', NULL, 1, NULL, NULL, NULL, NULL, NULL, 48),
-(154, 27, 3, 0, 'Oddish', 'Oddish', 34, 20, 10, 16, 16, 13, 1, 5, 'M', NULL, 1, NULL, NULL, NULL, NULL, NULL, 34),
-(155, 28, 3, 0, 'Gloom', 'Gloom', 34, 11, 25, 9, 10, 28, 1, 5, 'H', NULL, 1, NULL, NULL, NULL, NULL, NULL, 34),
-(160, 50, 16, 0, 'Arceus', 'Arceus', 43, 24, 21, 27, 28, 21, 4, 5, 'H', NULL, 34, NULL, NULL, NULL, NULL, NULL, 83);
+(165, 44, 3, 0, 'Machop', 'Machop', 78, 17, 29, 30, 19, 31, 4, 5, 'H', NULL, 32, NULL, NULL, NULL, NULL, NULL, 78),
+(167, 44, 3, 0, 'Machop', 'macho', 12, 11, 15, 14, 13, 15, 2, 5, 'M', NULL, 15, NULL, NULL, NULL, NULL, NULL, 12),
+(170, 11, 3, 0, 'Metapod', 'Precioso Mote', 221, 57, 76, 52, 69, 60, 16, 5, 'M', NULL, 155, NULL, NULL, NULL, NULL, NULL, 221),
+(172, 48, 3, 0, 'Gyarados', 'Gyarados', 98, 27, 38, 18, 26, 40, 5, 5, 'H', NULL, 45, NULL, NULL, NULL, NULL, NULL, 98),
+(176, 40, 16, 0, 'Haunter', 'pepe', -8, 26, 23, 20, 28, 18, 4, 5, 'H', NULL, 30, NULL, NULL, NULL, NULL, NULL, 72),
+(178, 13, 3, 1, 'Weedle', 'Weedle', 47, 12, 22, 11, 10, 14, 1, 5, 'H', NULL, 1, NULL, NULL, NULL, NULL, NULL, 47);
 
 -- --------------------------------------------------------
 
@@ -357,15 +370,6 @@ CREATE TABLE `turnos` (
   `ACCION_RIVAL` varchar(150) NOT NULL,
   `ID_COMBATE` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `detallesentrenadorpokemon`
---
-DROP TABLE IF EXISTS `detallesentrenadorpokemon`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detallesentrenadorpokemon`  AS SELECT `p`.`ID_POKEMON` AS `ID_POKEMON`, `pd`.`NOM_POKEMON` AS `NOM_POKEMON`, `pd`.`TIPO1` AS `TIPO1`, `pd`.`TIPO2` AS `TIPO2`, `p`.`NOMBRE` AS `MOTE`, `p`.`ATAQUE` AS `ATAQUE`, `p`.`DEFENSA` AS `DEFENSA`, `p`.`VELOCIDAD` AS `VELOCIDAD`, `p`.`AT_ESPECIAL` AS `AT_ESPECIAL`, `p`.`DEF_ESPECIAL` AS `DEF_ESPECIAL`, `p`.`NIVEL` AS `NIVEL`, `p`.`SALUD` AS `SALUD`, `p`.`SALUD_MAXIMA` AS `SALUD_MAXIMA`, `e`.`NOM_ENTRENADOR` AS `NOM_ENTRENADOR`, `e`.`POKEDOLLARS` AS `POKEDOLLARS` FROM ((`pokemon` `p` join `pokedex` `pd` on(`p`.`NUM_POKEDEX` = `pd`.`NUM_POKEDEX`)) join `entrenador` `e` on(`p`.`ID_ENTRENADOR` = `e`.`ID_ENTRENADOR`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -411,6 +415,12 @@ ALTER TABLE `objeto`
   ADD PRIMARY KEY (`ID_OBJETO`);
 
 --
+-- Indices de la tabla `objeto_entrenador`
+--
+ALTER TABLE `objeto_entrenador`
+  ADD PRIMARY KEY (`ID_OBJETO`,`ID_ENTRENADOR`);
+
+--
 -- Indices de la tabla `pokedex`
 --
 ALTER TABLE `pokedex`
@@ -446,7 +456,7 @@ ALTER TABLE `entrenador`
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-  MODIFY `ID_POKEMON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `ID_POKEMON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- Restricciones para tablas volcadas
