@@ -1,4 +1,5 @@
 package controller;
+
 import javafx.fxml.FXML;
 import java.util.Random;
 import bbd.BD;
@@ -23,6 +24,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
 
+/**
+ * Controlador para la gestión de capturas de Pokémon.
+ * Permite cambiar al Pokémon actualmente visible por un Pokémon aleatorio,
+ * para capturarlo. Utiliza la base de datos para obtener información
+ * del Pokémon aleatorio y actualizar la vista.
+ *
+ * @version 1.0
+ * @author JorgeDiego
+ * @see modelo.Pokedex
+ * @see bbd.PokedexBD
+ */
 
 public class ControllerCaptura {
     @FXML
@@ -30,6 +42,16 @@ public class ControllerCaptura {
     public Pokedex pokedex = null;
 
 
+    /**
+     * Cambia el Pokémon visible actual por un Pokémon aleatorio obtenido de la base de datos.
+     * Muestra en la vista el nombre y otros detalles del Pokémon encontrado.
+     * Lanza una alerta si ocurre algún error durante la obtención del Pokémon desde la base de datos.
+     *
+     * @throws SQLException si hay un error de conexión o consulta a la base de datos
+     * @version 1.0
+     * @author JorgeDiego
+     * @see Pokedex#getRadomPokemon()
+     */
     @FXML
     public void cambiar() {   	
         try {

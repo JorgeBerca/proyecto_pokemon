@@ -23,6 +23,16 @@ import modelo.Pokemon;
 import util.UtilView;
 
 
+/**
+ * Controlador para el combate de nuestro juego de Pokémon.
+ * Inicializa los componentes de la vista de usuario y maneja las acciones durante el combate entre dos Pokémon,
+ * gestionando los estados y la interacción del usuario a través de la interfaz gráfica.
+ *
+ * @version 1.0
+ * @author JorgeDiego
+ * @see modelo.Combate
+ * @see modelo.Pokemon
+ */
 
 public class ControllerCombate {
 
@@ -40,6 +50,12 @@ public class ControllerCombate {
 	@FXML Label nombreRival;
 	
 	
+	/**
+	 * Inicializa los componentes necesarios al cargar la vista de combate.
+	 *
+	 * @version 1.0
+	 * @author JorgeDiego
+	 */
 	
     public void initialize() {
     	if (Entrenador.getEntrenadorActual().getCuantosEquipo()<=0) {

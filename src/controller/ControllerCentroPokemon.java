@@ -15,7 +15,23 @@ import javafx.event.ActionEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * Este controlador permite curar al equipo de Pokémon y manejar otras interacciones como el acceso al PC de almacenamiento.
+ *
+ * @version 1.0
+ * @author JorgeDiego
+ * @see modelo.Entrenador
+ */
+
 public class ControllerCentroPokemon {
+	
+	/**
+	 * Cura a todos los Pokémon del equipo actual del entrenador.
+	 *
+	 * @version 1.0
+	 * @author JorgeDiego
+	 * @see modelo.Entrenador#curarEquipo()
+	 */
 	
 	@FXML
     public void curar() {
