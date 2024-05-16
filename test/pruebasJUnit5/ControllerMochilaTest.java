@@ -4,7 +4,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import modelo.Entrenador;
-import modelo.Objeto;
+import modelo.ObjetoEntrenador;
 import org.junit.jupiter.api.*;
 
 import controller.ControllerMochila;
